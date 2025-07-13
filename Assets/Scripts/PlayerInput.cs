@@ -2,9 +2,10 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovementInput : MonoBehaviour
+public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 3f;
+    [SerializeField] private float _splashRadius = 2f;
 
     private InputSystem_Actions _inputActions;
     private Vector2 _moveInput;
@@ -15,12 +16,23 @@ public class PlayerMovementInput : MonoBehaviour
 
         _inputActions.Player.Move.performed += MovePerformed;
         _inputActions.Player.Move.canceled += MoveCanceled;
+        _inputActions.Player.Splash.performed += SplashPerformed;
+    }
+
+    private void SplashPerformed(InputAction.CallbackContext obj)
+    {
+        Debug.Log("Creating zone");
+        Vector2 position = transform.position;
+
+        var zone = new CircleZone(position, _splashRadius);
+        ZoneManager.Instance.AddZone(zone);
     }
 
     private void OnDestroy()
     {
         _inputActions.Player.Move.performed -= MovePerformed;
         _inputActions.Player.Move.canceled -= MoveCanceled;
+        _inputActions.Player.Splash.performed -= SplashPerformed;
     }
 
     void OnEnable() => _inputActions.Enable();
@@ -42,11 +54,25 @@ public class PlayerMovementInput : MonoBehaviour
 
         if (isMoving)
         {
-            Vector3 newPos = transform.position + (Vector3)(_moveInput.normalized * _moveSpeed * Time.deltaTime);
-            transform.position = newPos;
-
-            SetOrientation(_moveInput.x);
+            HandleMovement(_moveInput);
         }
+    }
+
+    private void HandleMovement(Vector2 moveInput)
+    {
+        Vector3 direction = new Vector3(moveInput.x, moveInput.y, 0f).normalized;
+        Vector3 targetPosition = transform.position + direction * _moveSpeed * Time.fixedDeltaTime;
+
+        if (CanMoveTo(targetPosition))
+        {
+            transform.position = targetPosition;
+            SetOrientation(moveInput.x);
+        }
+    }
+
+    private static bool CanMoveTo(Vector3 targetPosition)
+    {
+        return ZoneManager.Instance != null && ZoneManager.Instance.IsInsideAnyZone(targetPosition);
     }
 
     private void SetOrientation(float xPosition)
