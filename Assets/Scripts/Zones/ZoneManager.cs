@@ -17,6 +17,8 @@ public class ZoneManager : MonoBehaviour
             return;
         }
         Instance = this;
+
+        AddZone(new CircleZone(Vector2.zero, 1.5f));
     }
 
     public void AddZone(IZone zone)
