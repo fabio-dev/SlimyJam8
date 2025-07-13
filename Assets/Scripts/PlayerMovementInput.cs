@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -37,12 +38,26 @@ public class PlayerMovementInput : MonoBehaviour
 
     private void FixedUpdate()
     {
-        bool isMoving = _moveInput == Vector2.zero;
+        bool isMoving = _moveInput != Vector2.zero;
 
         if (isMoving)
         {
             Vector3 newPos = transform.position + (Vector3)(_moveInput.normalized * _moveSpeed * Time.deltaTime);
             transform.position = newPos;
+
+            SetOrientation(_moveInput.x);
+        }
+    }
+
+    private void SetOrientation(float xPosition)
+    {
+        if (xPosition > 0)
+        {
+            transform.rotation = Quaternion.identity;
+        }
+        else if (xPosition < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, -180, 0);
         }
     }
 }
