@@ -10,14 +10,14 @@ public class PlayerMovementInput : BasePlayerInput
     void Awake()
     {
         _inputActions = new InputSystem_Actions();
-        _inputActions.Player.Move.performed += MovePerformed;
-        _inputActions.Player.Move.canceled += MoveCanceled;
+        InputManager.Instance.Player.Move.performed += MovePerformed;
+        InputManager.Instance.Player.Move.canceled += MoveCanceled;
     }
 
     private void OnDestroy()
     {
-        _inputActions.Player.Move.performed -= MovePerformed;
-        _inputActions.Player.Move.canceled -= MoveCanceled;
+        InputManager.Instance.Player.Move.performed -= MovePerformed;
+        InputManager.Instance.Player.Move.canceled -= MoveCanceled;
     }
 
     void OnEnable() => _inputActions.Enable();

@@ -17,9 +17,9 @@ public class PlayerAttackInput : BasePlayerInput
     {
         _mainCamera = Camera.main;
         _inputActions = new InputSystem_Actions();
-        _inputActions.Player.Look.performed += LookPerformed;
-        _inputActions.Player.Attack.performed += AttackPerformed;
-        _inputActions.Player.Attack.canceled += AttackCanceled;
+        InputManager.Instance.Player.Look.performed += LookPerformed;
+        InputManager.Instance.Player.Attack.performed += AttackPerformed;
+        InputManager.Instance.Player.Attack.canceled += AttackCanceled;
     }
 
     private void LookPerformed(InputAction.CallbackContext context)
@@ -85,9 +85,9 @@ public class PlayerAttackInput : BasePlayerInput
 
     private void OnDestroy()
     {
-        _inputActions.Player.Look.performed -= LookPerformed;
-        _inputActions.Player.Attack.performed -= AttackPerformed;
-        _inputActions.Player.Attack.canceled -= AttackCanceled;
+        InputManager.Instance.Player.Look.performed -= LookPerformed;
+        InputManager.Instance.Player.Attack.performed -= AttackPerformed;
+        InputManager.Instance.Player.Attack.canceled -= AttackCanceled;
     }
 
     void OnEnable() => _inputActions.Enable();

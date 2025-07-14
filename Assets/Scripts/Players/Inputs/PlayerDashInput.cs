@@ -11,11 +11,11 @@ public class PlayerDashInput : BasePlayerInput
     void Awake()
     {
         _inputActions = new InputSystem_Actions();
-        _inputActions.Player.Dash.performed += DashPerformed;
-        _inputActions.Player.Look.performed += LookPerformed;
+        InputManager.Instance.Player.Dash.performed += DashPerformed;
+        InputManager.Instance.Player.Look.performed += LookPerformed;
     }
 
-    private void DashPerformed(InputAction.CallbackContext obj)
+    private void DashPerformed(InputAction.CallbackContext context)
     {
         _ = TryDash();
     }
@@ -79,8 +79,8 @@ public class PlayerDashInput : BasePlayerInput
 
     private void OnDestroy()
     {
-        _inputActions.Player.Dash.performed -= DashPerformed;
-        _inputActions.Player.Look.performed -= LookPerformed;
+        InputManager.Instance.Player.Dash.performed -= DashPerformed;
+        InputManager.Instance.Player.Look.performed -= LookPerformed;
     }
 
     void OnEnable() => _inputActions.Enable();

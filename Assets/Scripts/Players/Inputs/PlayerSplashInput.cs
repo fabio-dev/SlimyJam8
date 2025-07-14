@@ -9,7 +9,7 @@ public class PlayerSplashInput : BasePlayerInput
     void Awake()
     {
         _inputActions = new InputSystem_Actions();
-        _inputActions.Player.Splash.performed += SplashPerformed;
+        InputManager.Instance.Player.Splash.performed += SplashPerformed;
     }
 
     private void SplashPerformed(InputAction.CallbackContext obj)
@@ -22,7 +22,7 @@ public class PlayerSplashInput : BasePlayerInput
 
     private void OnDestroy()
     {
-        _inputActions.Player.Splash.performed -= SplashPerformed;
+        InputManager.Instance.Player.Splash.performed -= SplashPerformed;
     }
 
     void OnEnable() => _inputActions.Enable();
