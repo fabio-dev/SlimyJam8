@@ -16,6 +16,11 @@ namespace Assets.Scripts.Domain
 
 		public HealthComponent Health { get; private set; }
 
+		public void SetMoveSpeed(float speed)
+		{
+			MoveSpeed = speed;
+		}
+
 		public void Move() => IsMoving = true;
 		public void StopMove() => IsMoving = false;
 	}
