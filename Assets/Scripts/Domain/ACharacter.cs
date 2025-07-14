@@ -26,5 +26,11 @@ namespace Assets.Scripts.Domain
         }
 
         public void StopMove() => IsMoving = false;
+		public void SetMoveSpeed(float speed)
+		{
+			MoveSpeed = speed;
+		}
+
+		public void Move() => IsMoving = true;
 	}
 }
