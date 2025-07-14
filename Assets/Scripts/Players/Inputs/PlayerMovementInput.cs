@@ -25,8 +25,8 @@ public class PlayerMovementInput : BasePlayerInput
 
     private void MoveCanceled(InputAction.CallbackContext context)
     {
-        _moveInput = Vector2.zero;
         Player.StopMove();
+        _moveInput = Vector2.zero;
     }
 
     private void MovePerformed(InputAction.CallbackContext context)
@@ -53,7 +53,7 @@ public class PlayerMovementInput : BasePlayerInput
         {
             transform.position = targetPosition;
             SetOrientation(moveInput.x);
-            Player.Move();
+            Player.Move(_moveInput);
         }
         else
         {

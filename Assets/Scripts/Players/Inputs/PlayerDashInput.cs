@@ -32,14 +32,10 @@ public class PlayerDashInput : BasePlayerInput
             return;
         }
 
-        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(_pointerScreenPosition);
-        mouseWorldPos.z = 0f;
-
-        Vector3 direction = (mouseWorldPos - transform.position).normalized;
-
+        Vector3 direction = Player.LastMove;
         if (direction == Vector3.zero)
         {
-            return;
+            direction = Vector3.right;
         }
 
         await DashAsync(direction);
