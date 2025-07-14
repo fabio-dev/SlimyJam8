@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Assets.Scripts.Domain
 {
 	public abstract class ACharacter
@@ -13,15 +15,22 @@ namespace Assets.Scripts.Domain
 		public float MoveSpeed { get; private set; }
 		public float BasicAttackCooldown { get; private set; }
 		public bool IsMoving { get; private set; }
+		public Vector2 LastMove { get; private set; }
 
 		public HealthComponent Health { get; private set; }
 
+		public void Move(Vector2 lastMove)
+        {
+			IsMoving = true;
+            LastMove = lastMove;
+        }
+
+        public void StopMove() => IsMoving = false;
 		public void SetMoveSpeed(float speed)
 		{
 			MoveSpeed = speed;
 		}
 
 		public void Move() => IsMoving = true;
-		public void StopMove() => IsMoving = false;
 	}
 }

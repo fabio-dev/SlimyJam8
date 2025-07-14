@@ -41,7 +41,7 @@ MonoBehaviour:
       Data: 1|FollowTargetStrategy, Assembly-CSharp
     - Name: _moveSpeed
       Entry: 4
-      Data: 0.1
+      Data: 0.05
     - Name: _stopRange
       Entry: 4
       Data: 0.5

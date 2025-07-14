@@ -5,88 +5,84 @@ using UnityEngine.InputSystem;
 
 public class PlayerDashInput : BasePlayerInput
 {
-	private InputSystem_Actions _inputActions;
-	private Vector2 _pointerScreenPosition;
+    private InputSystem_Actions _inputActions;
+    private Vector2 _pointerScreenPosition;
 
-	void Awake()
-	{
-		_inputActions = new InputSystem_Actions();
-		_inputActions.Player.Dash.performed += DashPerformed;
-		_inputActions.Player.Look.performed += LookPerformed;
-	}
+    void Awake()
+    {
+        _inputActions = new InputSystem_Actions();
+        InputManager.Instance.Player.Dash.performed += DashPerformed;
+        InputManager.Instance.Player.Look.performed += LookPerformed;
+    }
 
-	private void DashPerformed(InputAction.CallbackContext obj)
-	{
-		_ = TryDash();
-	}
+    private void DashPerformed(InputAction.CallbackContext context)
+    {
+        _ = TryDash();
+    }
 
-	private void LookPerformed(InputAction.CallbackContext context)
-	{
-		_pointerScreenPosition = context.ReadValue<Vector2>();
-	}
+    private void LookPerformed(InputAction.CallbackContext context)
+    {
+        _pointerScreenPosition = context.ReadValue<Vector2>();
+    }
 
-	private async Task TryDash()
-	{
-		if (Player.IsDashing)
-		{
-			return;
-		}
+    private async Task TryDash()
+    {
+        if (Player.IsDashing)
+        {
+            return;
+        }
 
-		Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(_pointerScreenPosition);
-		mouseWorldPos.z = 0f;
+        Vector3 direction = Player.LastMove;
+        if (direction == Vector3.zero)
+        {
+            direction = Vector3.right;
+        }
 
-		Vector3 direction = (mouseWorldPos - transform.position).normalized;
+        await DashAsync(direction);
+    }
 
-		if (direction == Vector3.zero)
-		{
-			return;
-		}
+    private async Task DashAsync(Vector3 direction)
+    {
+        Player.Dash();
 
-		await DashAsync(direction);
-	}
+        float dashTimer = 0f;
+        float zoneTimer = 0f;
 
-	private async Task DashAsync(Vector3 direction)
-	{
-		Player.Dash();
+        SetOrientation(direction.x);
 
-		float dashTimer = 0f;
-		float zoneTimer = 0f;
+        while (dashTimer < Player.DashDuration)
+        {
+            float elapsedDeltaTime = Time.deltaTime;
+            dashTimer += elapsedDeltaTime;
+            zoneTimer += elapsedDeltaTime;
 
-		SetOrientation(direction.x);
+            transform.position += direction * Player.DashMoveSpeed * elapsedDeltaTime;
 
-		while (dashTimer < Player.DashDuration)
-		{
-			float elapsedDeltaTime = Time.deltaTime;
-			dashTimer += elapsedDeltaTime;
-			zoneTimer += elapsedDeltaTime;
+            if (zoneTimer >= Player.DashZoneInterval)
+            {
+                CreateZone();
+                zoneTimer = 0f;
+            }
 
-			transform.position += direction * Player.DashMoveSpeed * elapsedDeltaTime;
+            await Task.Yield();
+        }
 
-			if (zoneTimer >= Player.DashZoneInterval)
-			{
-				CreateZone();
-				zoneTimer = 0f;
-			}
+        CreateZone();
+        Player.StopDash();
+    }
 
-			await Task.Yield();
-		}
+    private void CreateZone()
+    {
+        var zone = new CircleZone(transform.position, Player.DashRadius);
+        ZoneManager.Instance.AddZone(zone);
+    }
 
-		CreateZone();
-		Player.StopDash();
-	}
+    private void OnDestroy()
+    {
+        InputManager.Instance.Player.Dash.performed -= DashPerformed;
+        InputManager.Instance.Player.Look.performed -= LookPerformed;
+    }
 
-	private void CreateZone()
-	{
-		var zone = new CircleZone(transform.position, Player.DashRadius);
-		ZoneManager.Instance.AddZone(zone);
-	}
-
-	private void OnDestroy()
-	{
-		_inputActions.Player.Dash.performed -= DashPerformed;
-		_inputActions.Player.Look.performed -= LookPerformed;
-	}
-
-	void OnEnable() => _inputActions.Enable();
-	void OnDisable() => _inputActions.Disable();
+    void OnEnable() => _inputActions.Enable();
+    void OnDisable() => _inputActions.Disable();
 }
