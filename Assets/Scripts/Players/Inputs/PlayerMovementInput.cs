@@ -4,12 +4,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovementInput : BasePlayerInput
 {
-    private InputSystem_Actions _inputActions;
     private Vector2 _moveInput;
 
-    void Awake()
+    void Start()
     {
-        _inputActions = new InputSystem_Actions();
+        Init();
         InputManager.Instance.Player.Move.performed += MovePerformed;
         InputManager.Instance.Player.Move.canceled += MoveCanceled;
     }
@@ -19,9 +18,6 @@ public class PlayerMovementInput : BasePlayerInput
         InputManager.Instance.Player.Move.performed -= MovePerformed;
         InputManager.Instance.Player.Move.canceled -= MoveCanceled;
     }
-
-    void OnEnable() => _inputActions.Enable();
-    void OnDisable() => _inputActions.Disable();
 
     private void MoveCanceled(InputAction.CallbackContext context)
     {
@@ -61,8 +57,19 @@ public class PlayerMovementInput : BasePlayerInput
         }
     }
 
-    private static bool CanMoveTo(Vector3 targetPosition)
+    private bool CanMoveTo(Vector3 targetPosition)
     {
-        return ZoneManager.Instance != null && ZoneManager.Instance.IsInsideAnyZone(targetPosition);
+        return Player.IsJumping
+            || (ZoneManager.Instance != null
+            && ZoneManager.Instance.IsInsideAnyZone(targetPosition));
+    }
+
+    void OnEnable() => InputManager.Instance.Player.Move.Enable();
+    void OnDisable()
+    {
+        if (InputManager.Instance?.Player != null)
+        {
+            InputManager.Instance.Player.Move.Disable();
+        }
     }
 }

@@ -4,11 +4,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerSplashInput : BasePlayerInput
 {
-    private InputSystem_Actions _inputActions;
-
-    void Awake()
+    void Start()
     {
-        _inputActions = new InputSystem_Actions();
+        Init();
         InputManager.Instance.Player.Splash.performed += SplashPerformed;
     }
 
@@ -25,6 +23,12 @@ public class PlayerSplashInput : BasePlayerInput
         InputManager.Instance.Player.Splash.performed -= SplashPerformed;
     }
 
-    void OnEnable() => _inputActions.Enable();
-    void OnDisable() => _inputActions.Disable();
+    void OnEnable() => InputManager.Instance.Player.Splash.Enable();
+    void OnDisable()
+    {
+        if (InputManager.Instance?.Player != null)
+        {
+            InputManager.Instance.Player.Splash.Disable();
+        }
+    }
 }

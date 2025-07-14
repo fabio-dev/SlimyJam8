@@ -5,24 +5,15 @@ using UnityEngine.InputSystem;
 
 public class PlayerDashInput : BasePlayerInput
 {
-    private InputSystem_Actions _inputActions;
-    private Vector2 _pointerScreenPosition;
-
-    void Awake()
+    void Start()
     {
-        _inputActions = new InputSystem_Actions();
+        Init();
         InputManager.Instance.Player.Dash.performed += DashPerformed;
-        InputManager.Instance.Player.Look.performed += LookPerformed;
     }
 
     private void DashPerformed(InputAction.CallbackContext context)
     {
         _ = TryDash();
-    }
-
-    private void LookPerformed(InputAction.CallbackContext context)
-    {
-        _pointerScreenPosition = context.ReadValue<Vector2>();
     }
 
     private async Task TryDash()
@@ -80,9 +71,14 @@ public class PlayerDashInput : BasePlayerInput
     private void OnDestroy()
     {
         InputManager.Instance.Player.Dash.performed -= DashPerformed;
-        InputManager.Instance.Player.Look.performed -= LookPerformed;
     }
 
-    void OnEnable() => _inputActions.Enable();
-    void OnDisable() => _inputActions.Disable();
+    void OnEnable() => InputManager.Instance.Player.Dash.Enable();
+    void OnDisable()
+    {
+        if (InputManager.Instance?.Player != null)
+        {
+            InputManager.Instance.Player.Dash.Disable();
+        }
+    }
 }

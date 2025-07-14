@@ -7,16 +7,15 @@ using UnityEngine.InputSystem;
 public class PlayerAttackInput : BasePlayerInput
 {
     [SerializeField] private ProjectileGO _projectilePrefab;
-    private InputSystem_Actions _inputActions;
     private Vector2 _pointerScreenPosition;
     private CancellationTokenSource _attackCancellationTokenSource;
     private Camera _mainCamera;
     private float _lastAttackTime;
 
-    void Awake()
+    void Start()
     {
+        Init();
         _mainCamera = Camera.main;
-        _inputActions = new InputSystem_Actions();
         InputManager.Instance.Player.Look.performed += LookPerformed;
         InputManager.Instance.Player.Attack.performed += AttackPerformed;
         InputManager.Instance.Player.Attack.canceled += AttackCanceled;
@@ -90,10 +89,13 @@ public class PlayerAttackInput : BasePlayerInput
         InputManager.Instance.Player.Attack.canceled -= AttackCanceled;
     }
 
-    void OnEnable() => _inputActions.Enable();
+    void OnEnable() => InputManager.Instance.Player.Enable();
     void OnDisable()
     {
-        _inputActions.Disable();
+        if (InputManager.Instance?.Player != null)
+        {
+            InputManager.Instance.Player.Attack.Disable();
+        }
         _attackCancellationTokenSource?.Cancel();
         _attackCancellationTokenSource = null;
     }

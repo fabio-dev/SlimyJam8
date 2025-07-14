@@ -5,7 +5,7 @@ public class BasePlayerInput : MonoBehaviour
 {
     protected PlayerGO _playerGO;
 
-    void Start()
+    protected void Init()
     {
         _playerGO = GetComponent<PlayerGO>();
     }

@@ -44,5 +44,4 @@ public class InputManager : MonoBehaviour
 
     public InputSystem_Actions.PlayerActions Player => _playerControls.Player;
     public InputSystem_Actions.UIActions UI => _playerControls.UI;
-
 }
