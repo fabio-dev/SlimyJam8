@@ -10,6 +10,7 @@
             DashDuration = .15f;
             DashSpeedMultiplier = 8f;
             DashZoneInterval = .02f;
+            BasicAttackCooldown = 1f;
         }
 
         public float MoveSpeed { get; private set; }
@@ -19,6 +20,7 @@
         public float DashSpeedMultiplier { get; private set; }
         public float DashMoveSpeed => MoveSpeed * DashSpeedMultiplier;
         public float DashZoneInterval { get; private set; }
+        public float BasicAttackCooldown { get; private set; }
         public bool IsDashing { get; private set; }
         public bool IsMoving { get; private set; }
 

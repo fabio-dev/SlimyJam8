@@ -1,0 +1,100 @@
+using Assets.Scripts.Domain;
+using System.Threading;
+using System.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class PlayerAttackInput : BasePlayerInput
+{
+    [SerializeField] private ProjectileGO _projectilePrefab;
+    private InputSystem_Actions _inputActions;
+    private Vector2 _pointerScreenPosition;
+    private CancellationTokenSource _attackCancellationTokenSource;
+    private Camera _mainCamera;
+    private float _lastAttackTime;
+
+    void Awake()
+    {
+        _mainCamera = Camera.main;
+        _inputActions = new InputSystem_Actions();
+        _inputActions.Player.Look.performed += LookPerformed;
+        _inputActions.Player.Attack.performed += AttackPerformed;
+        _inputActions.Player.Attack.canceled += AttackCanceled;
+    }
+
+    private void LookPerformed(InputAction.CallbackContext context)
+    {
+        _pointerScreenPosition = context.ReadValue<Vector2>();
+    }
+
+    private void AttackPerformed(InputAction.CallbackContext obj)
+    {
+        bool isAttacking = _attackCancellationTokenSource != null;
+        if (isAttacking)
+        {
+            return;
+        }
+
+        CancellationTokenSource cancellationTokenSource = new();
+        _attackCancellationTokenSource = cancellationTokenSource;
+        _ = AttackLoop(cancellationTokenSource.Token);
+    }
+
+    private void AttackCanceled(InputAction.CallbackContext obj)
+    {
+        _attackCancellationTokenSource?.Cancel();
+        _attackCancellationTokenSource = null;
+    }
+
+    private async Task AttackLoop(CancellationToken token)
+    {
+        float timeSinceLastAttack = Time.time - _lastAttackTime;
+        if (timeSinceLastAttack < Player.BasicAttackCooldown)
+        {
+            await Task.Delay(Mathf.RoundToInt((Player.BasicAttackCooldown - timeSinceLastAttack) * 1000), token);
+        }
+
+        try
+        {
+            while (!token.IsCancellationRequested)
+            {
+                Shoot(_pointerScreenPosition);
+                _lastAttackTime = Time.time;
+                await Task.Delay(Mathf.RoundToInt(Player.BasicAttackCooldown * 1000));
+            }
+        }
+        catch (TaskCanceledException)
+        { }
+        catch (System.Exception ex)
+        {
+            Debug.LogError($"Unexpected error in AttackLoop : {ex}");
+        }
+    }
+
+    private void Shoot(Vector2 pointerScreenPosition)
+    {
+        Vector3 pointerWorldPosition = _mainCamera.ScreenToWorldPoint(pointerScreenPosition);
+        pointerWorldPosition.z = 0;
+
+        Vector2 shootDirection = (pointerWorldPosition - transform.position).normalized;
+
+        ProjectileGO projectile = Instantiate(_projectilePrefab, transform.position, Quaternion.identity);
+        projectile.transform.right = shootDirection;
+        projectile.Launch(shootDirection);
+    }
+
+    private void OnDestroy()
+    {
+        _inputActions.Player.Look.performed -= LookPerformed;
+        _inputActions.Player.Attack.performed -= AttackPerformed;
+        _inputActions.Player.Attack.canceled -= AttackCanceled;
+    }
+
+    void OnEnable() => _inputActions.Enable();
+    void OnDisable()
+    {
+        _inputActions.Disable();
+        _attackCancellationTokenSource?.Cancel();
+        _attackCancellationTokenSource = null;
+    }
+}

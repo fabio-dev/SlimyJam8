@@ -47,11 +47,11 @@ TagManager:
   - name: Splash
     uniqueID: 3867113009
     locked: 0
-  - name: Units
-    uniqueID: 2186173743
-    locked: 0
   - name: Projectiles
     uniqueID: 2787927713
+    locked: 0
+  - name: Units
+    uniqueID: 2186173743
     locked: 0
   m_RenderingLayers:
   - Default
