@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DG.Tweening;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ZoneManager : MonoBehaviour
@@ -51,6 +52,7 @@ public class ZoneManager : MonoBehaviour
         }
 
         GameObject visual = Instantiate(circleZoneVisualPrefab, center, Quaternion.identity);
-        visual.transform.localScale = new Vector3(radius * 2f, radius * 2f, 1f);
+        visual.transform.localScale = Vector2.zero;
+        visual.transform.DOScale(radius * 2f, .15f);
     }
 }
