@@ -5,9 +5,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 	[SerializeField] private PlayerGO _playerGO;
-
-	// TEMP to test enemy behaviours.
 	[SerializeField] private EnemyGO _enemyGO;
+	[SerializeField] private AbilityUI _dashAbility;
+	[SerializeField] private AbilityUI _splashAbility;
+	[SerializeField] private AbilityUI _jumpAbility;
 
 	private bool _firstUpdate = false;
 	public PlayerGO PlayerGO { get { return _playerGO; } }
@@ -48,6 +49,10 @@ public class GameManager : MonoBehaviour
 
 		Enemy enemy = new Enemy();
 		_enemyGO.SetEnemy(enemy);
+
+		_dashAbility.SetAbility(player.DashAbility);
+		_splashAbility.SetAbility(player.SplashAbility);
+		_jumpAbility.SetAbility(player.JumpAbility);
 
 		_onInitialized?.Invoke();
 	}

@@ -1,9 +1,11 @@
 using DG.Tweening;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerJumpInput : BasePlayerInput
 {
     private Tween _jumpAnimation;
+    private float _lastJumpTime = float.MinValue;
 
     void Start()
     {
@@ -31,12 +33,19 @@ public class PlayerJumpInput : BasePlayerInput
 
     private void JumpPerformed(InputAction.CallbackContext context)
     {
-        if (Player.IsJumping)
+        if (Player.IsJumping || Player.IsDashing)
+        {
+            return;
+        }
+
+        float timeSinceLastJump = Time.time - _lastJumpTime;
+        if (timeSinceLastJump < Player.JumpAbility.Cooldown)
         {
             return;
         }
 
         Player.Jump();
+        _lastJumpTime = Time.time;
         GetAnimation()?.Restart();
     }
 
@@ -45,7 +54,7 @@ public class PlayerJumpInput : BasePlayerInput
         InputManager.Instance.Player.Jump.performed -= JumpPerformed;
     }
 
-    void OnEnable() =>InputManager.Instance.Player.Jump.Enable();
+    void OnEnable() => InputManager.Instance.Player.Jump.Enable();
     void OnDisable()
     {
         if (InputManager.Instance?.Player != null)

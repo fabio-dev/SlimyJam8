@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerSplashInput : BasePlayerInput
 {
+    private float _lastSplashTime = float.MinValue;
+
     void Start()
     {
         Init();
@@ -12,6 +14,20 @@ public class PlayerSplashInput : BasePlayerInput
 
     private void SplashPerformed(InputAction.CallbackContext obj)
     {
+        float timeSinceLastSplash = Time.time - _lastSplashTime;
+        if (timeSinceLastSplash < Player.SplashAbility.Cooldown)
+        {
+            return;
+        }
+
+        if (Player.IsDashing || Player.IsJumping)
+        {
+            return;
+        }
+
+        Player?.Splash();
+        _lastSplashTime = Time.time;
+
         Vector2 position = transform.position;
 
         var zone = new CircleZone(position, Player.SplashRadius);

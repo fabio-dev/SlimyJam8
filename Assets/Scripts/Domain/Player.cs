@@ -7,6 +7,10 @@ namespace Assets.Scripts.Domain
 		public event Action OnJumpStart;
 		public event Action OnJumpEnd;
 
+		public Ability DashAbility { get; private set; }
+		public Ability SplashAbility { get; private set; }	
+		public Ability JumpAbility { get; private set; }
+
 		public Player() : base()
 		{
 			SplashRadius = 1.7f;
@@ -15,6 +19,10 @@ namespace Assets.Scripts.Domain
 			DashSpeedMultiplier = 8f;
 			DashZoneInterval = .02f;
 			JumpDuration = 1f;
+
+			DashAbility = new Ability(2f);
+			SplashAbility = new Ability(8f);
+			JumpAbility = new Ability(2f);
 		}
 
 		public float SplashRadius { get; private set; }
@@ -27,13 +35,18 @@ namespace Assets.Scripts.Domain
 		public bool IsDashing { get; private set; }
         public bool IsJumping { get; private set; }
 
-        public void Dash() => IsDashing = true;
+		public void Dash()
+		{
+			IsDashing = true;
+            DashAbility.Cast();
+		}
 
 		public void StopDash() => IsDashing = false;
 
 		public void Jump()
 		{
 			IsJumping = true;
+			JumpAbility?.Cast();
 			OnJumpStart?.Invoke();
 		}
 
@@ -41,6 +54,11 @@ namespace Assets.Scripts.Domain
 		{
 			IsJumping = false;
 			OnJumpEnd?.Invoke();
+		}
+
+		public void Splash()
+		{
+			SplashAbility?.Cast();
 		}
 	}
 }

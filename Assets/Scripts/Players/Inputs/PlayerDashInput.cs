@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerDashInput : BasePlayerInput
 {
+    private float _lastDashTime = float.MinValue;
+
     void Start()
     {
         Init();
@@ -18,7 +20,13 @@ public class PlayerDashInput : BasePlayerInput
 
     private async Task TryDash()
     {
-        if (Player.IsDashing)
+        if (Player.IsDashing || Player.IsJumping)
+        {
+            return;
+        }
+
+        float timeSinceLastDash = Time.time - _lastDashTime;
+        if (timeSinceLastDash < Player.DashAbility.Cooldown)
         {
             return;
         }
@@ -35,6 +43,7 @@ public class PlayerDashInput : BasePlayerInput
     private async Task DashAsync(Vector3 direction)
     {
         Player.Dash();
+        _lastDashTime = Time.time;
 
         float dashTimer = 0f;
         float zoneTimer = 0f;
