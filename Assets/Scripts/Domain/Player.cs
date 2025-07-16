@@ -60,5 +60,11 @@ namespace Assets.Scripts.Domain
 		{
 			SplashAbility?.Cast();
 		}
-	}
+
+        internal void DecreaseDashCooldownInPercentage(float baseCooldownReductionInPercentage)
+        {
+			float amountToReduce = DashAbility.BaseCooldown * baseCooldownReductionInPercentage;
+            DashAbility.DecreaseCooldown(amountToReduce);
+        }
+    }
 }

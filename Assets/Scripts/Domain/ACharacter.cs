@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Domain
 {
-	public abstract class ACharacter
+    public abstract class ACharacter
 	{
 		// TODO set the health from this constructor.
 		public ACharacter()
@@ -31,6 +31,9 @@ namespace Assets.Scripts.Domain
 			MoveSpeed = speed;
 		}
 
-		public void Move() => IsMoving = true;
+        public void IncreaseMoveSpeed(float bonusSpeed)
+        {
+			MoveSpeed += bonusSpeed;
+        }
 	}
 }

@@ -1,5 +1,6 @@
 using Assets.Scripts.Domain;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -9,6 +10,9 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private AbilityUI _dashAbility;
 	[SerializeField] private AbilityUI _splashAbility;
 	[SerializeField] private AbilityUI _jumpAbility;
+	[SerializeField] private PowerUpSpawner _powerUpSpawner;
+	[SerializeField] private PowerUpUI _powerUpUiPrefab;
+	[SerializeField] private Transform _powerUps;
 
 	private bool _firstUpdate = false;
 	public PlayerGO PlayerGO { get { return _playerGO; } }
@@ -54,6 +58,24 @@ public class GameManager : MonoBehaviour
 		_splashAbility.SetAbility(player.SplashAbility);
 		_jumpAbility.SetAbility(player.JumpAbility);
 
-		_onInitialized?.Invoke();
+        SelectPowerUp(player);
+
+        _onInitialized?.Invoke();
+	}
+
+	private void SelectPowerUp(Player player)
+	{
+		List<APowerUp> powerUps = _powerUpSpawner.GetRandomPowerUps(3);
+
+		foreach(APowerUp powerUp in powerUps)
+		{
+			PowerUpUI powerUpUi = Instantiate(_powerUpUiPrefab, _powerUps);
+			powerUpUi.SetPowerUp(powerUp);
+
+			powerUpUi.OnSelect += (powerUp) =>
+			{
+				powerUp.Use(player);
+			};
+		}
 	}
 }
