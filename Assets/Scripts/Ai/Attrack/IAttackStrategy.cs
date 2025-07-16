@@ -1,9 +1,6 @@
-using Assets.Scripts.Domain;
-using UnityEngine;
-
 public interface IAttackStrategy
 {
-	public IAttackStrategy Init(EnemyGO owner, HealthComponent healthComponent, Transform targetTransform);
+	public IAttackStrategy Init(EnemyGO owner, PlayerGO target);
 
 	public void Update();
 }
