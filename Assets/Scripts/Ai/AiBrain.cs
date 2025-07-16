@@ -41,7 +41,7 @@ public class AiBrain : MonoBehaviour
 
 		PlayerGO player = GameManager.Instance.PlayerGO;
 		Transform targetTransform = player.transform;
-		_attackStrategy = _settings.AttackStrategy.Init(_owner, player.Player.Health, targetTransform);
+		_attackStrategy = _settings.AttackStrategy.Init(_owner, player);
 		_movementStrategy = _settings.MovementStrategy.Init(_owner, targetTransform);
 	}
 }
