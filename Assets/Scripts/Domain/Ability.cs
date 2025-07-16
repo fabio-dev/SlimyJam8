@@ -2,20 +2,25 @@
 
 namespace Assets.Scripts.Domain
 {
-    public class Ability
-    {
-        public event Action<float> OnCast;
+	public class Ability
+	{
+		private Cooldown _cooldown = null;
 
-        public Ability(float cooldown)
-        {
-            Cooldown = cooldown;
-        }
+		public event Action<float> OnCast;
 
-        public float Cooldown { get; private set; }
+		public Ability(float cooldown)
+		{
+			_cooldown = new Cooldown(cooldown);
+		}
 
-        public void Cast()
-        {
-            OnCast?.Invoke(Cooldown);
-        }
-    }
+		public float Cooldown { get { return _cooldown.Duration; } }
+
+		public bool CanCast { get { return _cooldown.IsRunning() == false; } }
+
+		public void Cast()
+		{
+			OnCast?.Invoke(Cooldown);
+			_cooldown.Start();
+		}
+	}
 }

@@ -2,13 +2,13 @@
 
 namespace Assets.Scripts.Domain
 {
-    public class Player : ACharacter
+	public class Player : ACharacter
 	{
 		public event Action OnJumpStart;
 		public event Action OnJumpEnd;
 
 		public Ability DashAbility { get; private set; }
-		public Ability SplashAbility { get; private set; }	
+		public Ability SplashAbility { get; private set; }
 		public Ability JumpAbility { get; private set; }
 
 		public Player() : base()
@@ -33,12 +33,12 @@ namespace Assets.Scripts.Domain
 		public float DashMoveSpeed => MoveSpeed * DashSpeedMultiplier;
 		public float DashZoneInterval { get; private set; }
 		public bool IsDashing { get; private set; }
-        public bool IsJumping { get; private set; }
+		public bool IsJumping { get; private set; }
 
 		public void Dash()
 		{
 			IsDashing = true;
-            DashAbility.Cast();
+			DashAbility.Cast();
 		}
 
 		public void StopDash() => IsDashing = false;
