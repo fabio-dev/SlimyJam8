@@ -10,11 +10,11 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private AbilityUI _dashAbility;
 	[SerializeField] private AbilityUI _splashAbility;
 	[SerializeField] private AbilityUI _jumpAbility;
-	[SerializeField] private PowerUpSpawner _powerUpSpawner;
-	[SerializeField] private PowerUpUI _powerUpUiPrefab;
-	[SerializeField] private Transform _powerUps;
+	[SerializeField] private PowerUpManager _powerUpManager;
 
 	private bool _firstUpdate = false;
+	private Player _player;
+
 	public PlayerGO PlayerGO { get { return _playerGO; } }
 	public static GameManager Instance { get; private set; }
 
@@ -48,34 +48,18 @@ public class GameManager : MonoBehaviour
 
 	private void FirstUpdate()
 	{
-		Player player = new Player();
-		_playerGO.SetPlayer(player);
+		_player = new Player();
+		_playerGO.SetPlayer(_player);
 
 		Enemy enemy = new Enemy();
 		_enemyGO.SetEnemy(enemy);
 
-		_dashAbility.SetAbility(player.DashAbility);
-		_splashAbility.SetAbility(player.SplashAbility);
-		_jumpAbility.SetAbility(player.JumpAbility);
+		_dashAbility.SetAbility(_player.DashAbility);
+		_splashAbility.SetAbility(_player.SplashAbility);
+		_jumpAbility.SetAbility(_player.JumpAbility);
 
-        SelectPowerUp(player);
+		_powerUpManager.Setup(_player);
 
         _onInitialized?.Invoke();
-	}
-
-	private void SelectPowerUp(Player player)
-	{
-		List<APowerUp> powerUps = _powerUpSpawner.GetRandomPowerUps(3);
-
-		foreach(APowerUp powerUp in powerUps)
-		{
-			PowerUpUI powerUpUi = Instantiate(_powerUpUiPrefab, _powerUps);
-			powerUpUi.SetPowerUp(powerUp);
-
-			powerUpUi.OnSelect += (powerUp) =>
-			{
-				powerUp.Use(player);
-			};
-		}
 	}
 }
