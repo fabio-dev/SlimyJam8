@@ -33,7 +33,6 @@ public class AiBrain : MonoBehaviour
 
 	private void OnGameInitialized()
 	{
-
 		if (_settings == null)
 		{
 			return;

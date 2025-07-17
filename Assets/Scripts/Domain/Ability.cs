@@ -4,7 +4,7 @@ namespace Assets.Scripts.Domain
 {
 	public class Ability
 	{
-		private Cooldown _cooldown = null;
+		private Cooldown _cooldown;
 
 		public event Action<float> OnCast;
 
@@ -15,10 +15,8 @@ namespace Assets.Scripts.Domain
 		}
 
         public float BaseCooldown { get; private set; }
-
-        public float Cooldown { get { return _cooldown.Duration; } }
-
-		public bool CanCast { get { return _cooldown.IsRunning() == false; } }
+        public float Cooldown => _cooldown.Duration;
+		public bool CanCast => _cooldown.IsRunning() == false;
 
 		public void Cast()
 		{
@@ -28,7 +26,7 @@ namespace Assets.Scripts.Domain
 
         internal void DecreaseCooldown(float reduction)
         {
-            Cooldown = Math.Max(Cooldown - reduction, 0f);
+            _cooldown.SetDuration(Math.Max(Cooldown - reduction, 0f));
         }
     }
 }

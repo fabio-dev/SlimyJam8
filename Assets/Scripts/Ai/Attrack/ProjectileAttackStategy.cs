@@ -4,7 +4,7 @@ using UnityEngine;
 public class ProjectileAttackStategy : IAttackStrategy
 {
 	[SerializeField] private float _attackRangeSettings = 5.0f;
-	[SerializeField] private float _attackRateSettings = 0.5f;
+	[SerializeField] private float _attackRateSettings = 1f;
 	[SerializeField] private ProjectileGO _projectilePrefab = null;
 
 	private EnemyGO _owner = null;
@@ -32,11 +32,12 @@ public class ProjectileAttackStategy : IAttackStrategy
 		directionToTaget.z = 0f;
 		float distanceToTarget = directionToTaget.magnitude;
 
-		if (distanceToTarget < _attackRange && _cooldown.IsRunning() == false)
+		if (distanceToTarget < _attackRange && !_cooldown.IsRunning())
 		{
-			ProjectileGO projectileGO = GameObject.Instantiate(_projectile, currentPos, Quaternion.identity);
+			ProjectileGO projectileGO = Object.Instantiate(_projectile, currentPos, Quaternion.identity);
 			projectileGO.transform.right = directionToTaget;
 			projectileGO.Launch(directionToTaget);
+            Object.Destroy(projectileGO, 2f);
 			_cooldown.Start();
 		}
 	}

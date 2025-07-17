@@ -8,7 +8,7 @@ namespace Assets.Scripts.Domain
 
 		public Cooldown(float duration)
 		{
-			this.Duration = duration;
+			Duration = duration;
 		}
 
 		// Could also get the Time.time through the parameter of this method to avoid having a UnityEngine dependency.
@@ -27,6 +27,11 @@ namespace Assets.Scripts.Domain
 		{
 			_lastStartTime = 0.0f;
 		}
-	}
+
+        public void SetDuration(float duration)
+        {
+			Duration = duration;
+        }
+    }
 }
 
