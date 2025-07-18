@@ -1,4 +1,5 @@
 using Assets.Scripts.Domain;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,26 +12,34 @@ public class PlayerSplashInput : BasePlayerInput
 	}
 
 	private void SplashPerformed(InputAction.CallbackContext obj)
-	{
-		if (Player.SplashAbility?.CanCast == false)
-		{
-			return;
-		}
+    {
+        if (Player.SplashAbility?.CanCast == false)
+        {
+            return;
+        }
 
-		if (Player.IsDashing || Player.IsJumping)
-		{
-			return;
-		}
+        if (!Player.CanMakeAction)
+        {
+            return;
+        }
 
-		Player?.Splash();
+        _ = MakeSplashAsync();
+    }
 
-		Vector2 position = transform.position;
+    private async Task MakeSplashAsync()
+    {
+        Player?.Splash();
+        await Task.Delay(300);
 
-		var zone = new CircleZone(position, Player.SplashRadius);
-		ZoneManager.Instance.AddZone(zone);
-	}
+        Vector2 position = transform.position;
 
-	private void OnDestroy()
+        var zone = new CircleZone(position, Player.SplashRadius);
+        ZoneManager.Instance.AddZone(zone);
+
+        Player?.EndSplash();
+    }
+
+    private void OnDestroy()
     {
 		if (InputManager.Instance?.Player != null)
 		{

@@ -20,7 +20,7 @@ public class ProjectileGO : MonoBehaviour
 
     private void OnDestroy()
     {
-        ProjectileIdleAnimator animator = GetComponent<ProjectileIdleAnimator>();
+        SpriteAnimator animator = GetComponent<SpriteAnimator>();
         if (animator != null)
         {
             animator.Kill();

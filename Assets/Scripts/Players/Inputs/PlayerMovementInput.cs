@@ -36,6 +36,11 @@ public class PlayerMovementInput : BasePlayerInput
 
     private void HandleMovement(Vector2 moveInput)
     {
+        if (Player.State == PlayerState.Dashing
+            || Player.State == PlayerState.Splashing)
+        {
+            return;
+        }
         Vector3 direction = new Vector3(moveInput.x, moveInput.y, 0f).normalized;
         Vector3 targetPosition = transform.position + direction * Player.MoveSpeed * Time.fixedDeltaTime;
 
@@ -53,7 +58,7 @@ public class PlayerMovementInput : BasePlayerInput
 
     private bool CanMoveTo(Vector3 targetPosition)
     {
-        return Player.IsJumping
+        return Player.State == PlayerState.Jumping
             || (ZoneManager.Instance != null
             && ZoneManager.Instance.IsInsideAnyZone(targetPosition));
     }

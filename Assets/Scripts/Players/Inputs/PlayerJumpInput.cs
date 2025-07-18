@@ -30,7 +30,7 @@ public class PlayerJumpInput : BasePlayerInput
 
 	private void JumpPerformed(InputAction.CallbackContext context)
 	{
-		if (Player.IsJumping || Player.IsDashing)
+		if (!Player.CanMakeAction)
 		{
 			return;
 		}

@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class ProjectileIdleAnimator : MonoBehaviour
+public class SpriteAnimator : MonoBehaviour
 {
     [SerializeField] private Sprite[] _sprites;
     [SerializeField] private float _delayBetweenSprites = .1f;
@@ -11,6 +11,12 @@ public class ProjectileIdleAnimator : MonoBehaviour
 
     private int _currentSpriteIndex = -1;
 
+    public void SetSprites(Sprite[] sprites)
+    {
+        _sprites = sprites;
+        _currentSpriteIndex = -1;
+    }
+
     void Start()
     {
         _spriteAnimation = DOTween.Sequence();
@@ -18,11 +24,12 @@ public class ProjectileIdleAnimator : MonoBehaviour
         foreach (Sprite sprite in _sprites)
         {
             _spriteAnimation.AppendInterval(_delayBetweenSprites);
-            _spriteAnimation.AppendCallback(SetNextSprite);
+            _spriteAnimation.AppendCallback(() => SetNextSprite(_sprites));
         }
 
         _spriteAnimation.SetLoops(-1);
-        SetNextSprite();
+
+        SetNextSprite(_sprites);
     }
 
     public void Kill()
@@ -30,15 +37,15 @@ public class ProjectileIdleAnimator : MonoBehaviour
         _spriteAnimation.Kill();
     }
 
-    private void SetNextSprite()
+    private void SetNextSprite(Sprite[] sprites)
     {
         _currentSpriteIndex++;
 
-        if (_currentSpriteIndex >= _sprites.Length)
+        if (_currentSpriteIndex >= sprites.Length)
         {
             _currentSpriteIndex = 0;
         }
 
-        _spriteRenderer.sprite = _sprites[_currentSpriteIndex];
+        _spriteRenderer.sprite = sprites[_currentSpriteIndex];
     }
 }

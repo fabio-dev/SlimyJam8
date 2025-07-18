@@ -19,13 +19,14 @@ namespace Assets.Scripts.Domain
 
 		public HealthComponent Health { get; private set; }
 
-		public void Move(Vector2 lastMove)
+		public virtual void Move(Vector2 lastMove)
         {
 			IsMoving = true;
             LastMove = lastMove;
         }
 
-        public void StopMove() => IsMoving = false;
+        public virtual void StopMove() => IsMoving = false;
+
 		public void SetMoveSpeed(float speed)
 		{
 			MoveSpeed = speed;

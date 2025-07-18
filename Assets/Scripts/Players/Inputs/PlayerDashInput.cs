@@ -18,7 +18,7 @@ public class PlayerDashInput : BasePlayerInput
 
 	private async Task TryDash()
 	{
-		if (Player.IsDashing || Player.IsJumping)
+		if (!Player.CanMakeAction)
 		{
 			return;
 		}
