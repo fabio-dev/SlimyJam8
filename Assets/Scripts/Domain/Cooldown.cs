@@ -2,7 +2,7 @@ namespace Assets.Scripts.Domain
 {
 	public class Cooldown
 	{
-		private float _lastStartTime;
+		private float _lastStartTime = float.MinValue;
 
 		public float Duration { get; private set; }
 
@@ -20,7 +20,7 @@ namespace Assets.Scripts.Domain
 		public bool IsRunning()
 		{
 			float timeSinceLastStart = UnityEngine.Time.time - _lastStartTime;
-			return timeSinceLastStart < Duration;
+			return timeSinceLastStart <= Duration;
 		}
 
 		public void Stop()

@@ -16,7 +16,7 @@ namespace Assets.Scripts.Domain
 
         public float BaseCooldown { get; private set; }
         public float Cooldown => _cooldown.Duration;
-		public bool CanCast => _cooldown.IsRunning() == false;
+		public bool CanCast => !_cooldown.IsRunning();
 
 		public void Cast()
 		{

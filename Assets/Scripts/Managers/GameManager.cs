@@ -1,6 +1,5 @@
 using Assets.Scripts.Domain;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -59,7 +58,21 @@ public class GameManager : MonoBehaviour
 		_jumpAbility.SetAbility(_player.JumpAbility);
 
 		_powerUpManager.Setup(_player);
+		_powerUpManager.OnSelecting += () => Pause();
+		_powerUpManager.OnSelected += () => Resume();
 
         _onInitialized?.Invoke();
+	}
+
+	private void Pause()
+	{
+		Time.timeScale = 0f;
+        _playerGO.Pause();
+	}
+
+	private void Resume()
+	{
+		Time.timeScale = 1f;
+		_playerGO.Resume();
 	}
 }

@@ -7,7 +7,7 @@ public class PlayerJumpInput : BasePlayerInput
 	void Start()
 	{
 		Init();
-		InputManager.Instance.Player.Jump.performed += JumpPerformed;
+		InputManager.Instance.Player.Value.Jump.performed += JumpPerformed;
 	}
 
 	private Tween GetAnimation()
@@ -45,16 +45,25 @@ public class PlayerJumpInput : BasePlayerInput
 	}
 
 	private void OnDestroy()
-	{
-		InputManager.Instance.Player.Jump.performed -= JumpPerformed;
+    {
+		if (InputManager.Instance?.Player != null)
+		{
+			InputManager.Instance.Player.Value.Jump.performed -= JumpPerformed;
+		}
 	}
 
-	void OnEnable() => InputManager.Instance.Player.Jump.Enable();
+	void OnEnable()
+	{
+		if (InputManager.Instance?.Player == null)
+		{
+			InputManager.Instance.Player.Value.Jump.Enable();
+		}
+	}
 	void OnDisable()
 	{
 		if (InputManager.Instance?.Player != null)
 		{
-			InputManager.Instance.Player.Jump.Disable();
+			InputManager.Instance.Player.Value.Jump.Disable();
 		}
 	}
 }

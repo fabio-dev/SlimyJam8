@@ -7,7 +7,7 @@ public class PlayerSplashInput : BasePlayerInput
 	void Start()
 	{
 		Init();
-		InputManager.Instance.Player.Splash.performed += SplashPerformed;
+		InputManager.Instance.Player.Value.Splash.performed += SplashPerformed;
 	}
 
 	private void SplashPerformed(InputAction.CallbackContext obj)
@@ -31,16 +31,25 @@ public class PlayerSplashInput : BasePlayerInput
 	}
 
 	private void OnDestroy()
-	{
-		InputManager.Instance.Player.Splash.performed -= SplashPerformed;
+    {
+		if (InputManager.Instance?.Player != null)
+		{
+			InputManager.Instance.Player.Value.Splash.performed -= SplashPerformed;
+		}
 	}
 
-	void OnEnable() => InputManager.Instance.Player.Splash.Enable();
+	void OnEnable()
+	{
+		if (InputManager.Instance?.Player != null)
+		{
+			InputManager.Instance.Player.Value.Splash.Enable();
+		}
+	}
 	void OnDisable()
 	{
 		if (InputManager.Instance?.Player != null)
 		{
-			InputManager.Instance.Player.Splash.Disable();
+			InputManager.Instance.Player.Value.Splash.Disable();
 		}
 	}
 }

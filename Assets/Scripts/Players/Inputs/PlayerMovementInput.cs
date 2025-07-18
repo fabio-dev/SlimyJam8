@@ -9,14 +9,8 @@ public class PlayerMovementInput : BasePlayerInput
     void Start()
     {
         Init();
-        InputManager.Instance.Player.Move.performed += MovePerformed;
-        InputManager.Instance.Player.Move.canceled += MoveCanceled;
-    }
-
-    private void OnDestroy()
-    {
-        InputManager.Instance.Player.Move.performed -= MovePerformed;
-        InputManager.Instance.Player.Move.canceled -= MoveCanceled;
+        InputManager.Instance.Player.Value.Move.performed += MovePerformed;
+        InputManager.Instance.Player.Value.Move.canceled += MoveCanceled;
     }
 
     private void MoveCanceled(InputAction.CallbackContext context)
@@ -64,12 +58,28 @@ public class PlayerMovementInput : BasePlayerInput
             && ZoneManager.Instance.IsInsideAnyZone(targetPosition));
     }
 
-    void OnEnable() => InputManager.Instance.Player.Move.Enable();
+    private void OnDestroy()
+    {
+        if (InputManager.Instance?.Player != null)
+        {
+            InputManager.Instance.Player.Value.Move.performed -= MovePerformed;
+            InputManager.Instance.Player.Value.Move.canceled -= MoveCanceled;
+        }
+    }
+
+    void OnEnable()
+    {
+        if (InputManager.Instance?.Player != null)
+        {
+            InputManager.Instance.Player.Value.Move.Enable();
+        }
+    }
+
     void OnDisable()
     {
         if (InputManager.Instance?.Player != null)
         {
-            InputManager.Instance.Player.Move.Disable();
+            InputManager.Instance.Player.Value.Move.Disable();
         }
     }
 }

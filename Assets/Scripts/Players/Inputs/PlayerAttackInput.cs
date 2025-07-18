@@ -16,9 +16,9 @@ public class PlayerAttackInput : BasePlayerInput
     {
         Init();
         _mainCamera = Camera.main;
-        InputManager.Instance.Player.Look.performed += LookPerformed;
-        InputManager.Instance.Player.Attack.performed += AttackPerformed;
-        InputManager.Instance.Player.Attack.canceled += AttackCanceled;
+        InputManager.Instance.Player.Value.Look.performed += LookPerformed;
+        InputManager.Instance.Player.Value.Attack.performed += AttackPerformed;
+        InputManager.Instance.Player.Value.Attack.canceled += AttackCanceled;
     }
 
     private void LookPerformed(InputAction.CallbackContext context)
@@ -84,17 +84,26 @@ public class PlayerAttackInput : BasePlayerInput
 
     private void OnDestroy()
     {
-        InputManager.Instance.Player.Look.performed -= LookPerformed;
-        InputManager.Instance.Player.Attack.performed -= AttackPerformed;
-        InputManager.Instance.Player.Attack.canceled -= AttackCanceled;
+        if (InputManager.Instance?.Player != null)
+        {
+            InputManager.Instance.Player.Value.Look.performed -= LookPerformed;
+            InputManager.Instance.Player.Value.Attack.performed -= AttackPerformed;
+            InputManager.Instance.Player.Value.Attack.canceled -= AttackCanceled;
+        }
     }
 
-    void OnEnable() => InputManager.Instance.Player.Enable();
+    void OnEnable()
+    {
+        if (InputManager.Instance?.Player != null)
+        {
+            InputManager.Instance.Player.Value.Enable();
+        }
+    }
     void OnDisable()
     {
         if (InputManager.Instance?.Player != null)
         {
-            InputManager.Instance.Player.Attack.Disable();
+            InputManager.Instance.Player.Value.Attack.Disable();
         }
         _attackCancellationTokenSource?.Cancel();
         _attackCancellationTokenSource = null;

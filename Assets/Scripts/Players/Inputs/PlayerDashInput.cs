@@ -8,7 +8,7 @@ public class PlayerDashInput : BasePlayerInput
 	void Start()
 	{
 		Init();
-		InputManager.Instance.Player.Dash.performed += DashPerformed;
+		InputManager.Instance.Player.Value.Dash.performed += DashPerformed;
 	}
 
 	private void DashPerformed(InputAction.CallbackContext context)
@@ -75,15 +75,25 @@ public class PlayerDashInput : BasePlayerInput
 
 	private void OnDestroy()
 	{
-		InputManager.Instance.Player.Dash.performed -= DashPerformed;
+		if (InputManager.Instance?.Player != null)
+		{
+			InputManager.Instance.Player.Value.Dash.performed -= DashPerformed;
+		}
 	}
 
-	void OnEnable() => InputManager.Instance.Player.Dash.Enable();
+	void OnEnable()
+	{
+		if (InputManager.Instance?.Player != null)
+		{
+			InputManager.Instance.Player.Value.Dash.Enable();
+        }
+    }
+
 	void OnDisable()
 	{
 		if (InputManager.Instance?.Player != null)
 		{
-			InputManager.Instance.Player.Dash.Disable();
+			InputManager.Instance.Player.Value.Dash.Disable();
 		}
 	}
 }

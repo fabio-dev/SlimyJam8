@@ -42,6 +42,6 @@ public class InputManager : MonoBehaviour
         _playerControls.Disable();
     }
 
-    public InputSystem_Actions.PlayerActions Player => _playerControls.Player;
-    public InputSystem_Actions.UIActions UI => _playerControls.UI;
+    public InputSystem_Actions.PlayerActions? Player => _playerControls?.Player;
+    public InputSystem_Actions.UIActions? UI => _playerControls?.UI;
 }
