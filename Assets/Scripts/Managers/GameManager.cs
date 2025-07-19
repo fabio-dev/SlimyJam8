@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private AbilityUI _splashAbility;
 	[SerializeField] private AbilityUI _jumpAbility;
 	[SerializeField] private PowerUpManager _powerUpManager;
+	[SerializeField] private CameraFollow _camera;
 
 	private bool _firstUpdate = false;
 	private Player _player;
@@ -68,11 +69,13 @@ public class GameManager : MonoBehaviour
 	{
 		Time.timeScale = 0f;
         _playerGO.Pause();
+		_camera.Pause();
 	}
 
 	private void Resume()
 	{
 		Time.timeScale = 1f;
 		_playerGO.Resume();
+		_camera.Resume();
 	}
 }
