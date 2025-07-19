@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1507039583
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2c444b21ecd350947a13e6faa3386350, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -96,7 +96,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5194469363760829010}
-  - component: {fileID: 1787717924477156767}
   - component: {fileID: 8957668169113179623}
   - component: {fileID: 1297402288563583131}
   m_Layer: 0
@@ -122,25 +121,6 @@ Transform:
   - {fileID: 9221131390814252512}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1787717924477156767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2759366090439972403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0e9ed9a62ce37a4aaa6c69b4fd1d9a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sprites:
-  - {fileID: 21300000, guid: 2c444b21ecd350947a13e6faa3386350, type: 3}
-  - {fileID: 21300000, guid: 1ddf6a8c12438c74faf686c70c61e3b1, type: 3}
-  - {fileID: 21300000, guid: f718dcec76b107643ae699736a7b3684, type: 3}
-  - {fileID: 21300000, guid: 1ddf6a8c12438c74faf686c70c61e3b1, type: 3}
-  _delayBetweenSprites: 0.1
-  _spriteRenderer: {fileID: 1146011727961546826}
 --- !u!50 &8957668169113179623
 Rigidbody2D:
   serializedVersion: 5

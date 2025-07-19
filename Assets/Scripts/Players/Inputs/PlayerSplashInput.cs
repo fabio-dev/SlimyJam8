@@ -29,7 +29,7 @@ public class PlayerSplashInput : BasePlayerInput
     private async Task MakeSplashAsync()
     {
         Player?.Splash();
-        await Task.Delay(300);
+        await Task.Delay(400);
 
         Vector2 position = transform.position;
 

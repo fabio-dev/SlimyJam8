@@ -45,7 +45,7 @@ namespace Assets.Scripts.Domain
 			JumpDuration = 1f;
 
 			DashAbility = new Ability(2f);
-			SplashAbility = new Ability(8f);
+			SplashAbility = new Ability(1f);
 			JumpAbility = new Ability(2f);
 			State = PlayerState.Idle;
 		}

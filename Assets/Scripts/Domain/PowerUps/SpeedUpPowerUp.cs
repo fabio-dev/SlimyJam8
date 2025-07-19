@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.Domain
 {
-    [CreateAssetMenu(fileName = "SpeedUp", menuName = "PowerUps/Stats/SpeedUp", order = 1)]
+    [CreateAssetMenu(fileName = "SpeedUp", menuName = "ScriptableObjects/PowerUps/Stats/SpeedUp", order = 1)]
     public class SpeedUpPowerUp : APowerUp
     {
         [Range(0f, 1f)]

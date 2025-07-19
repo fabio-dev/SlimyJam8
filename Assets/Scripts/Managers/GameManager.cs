@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
 	private void FirstUpdate()
 	{
 		_player = new Player();
-		_playerGO.SetPlayer(_player);
+		_playerGO.Setup(_player);
 
 		Enemy enemy = new Enemy();
 		_enemyGO.SetEnemy(enemy);

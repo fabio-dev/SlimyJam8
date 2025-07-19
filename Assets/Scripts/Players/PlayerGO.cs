@@ -1,31 +1,26 @@
 ﻿using Assets.Scripts.Domain;
-using System.Collections;
 using UnityEngine;
 
 public class PlayerGO : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private SpriteRenderer _shadowSpriteRenderer;
-    [SerializeField] private Sprite[] _idleSprites;
-    [SerializeField] private Sprite[] _movingSprites;
-    [SerializeField] private Sprite[] _jumpSprites;
-    [SerializeField] private Sprite[] _damagedSprites;
-    [SerializeField] private Sprite[] _splashSprites;
-
-    private SpriteAnimator _animator;
+    
+    private PlayerAnimatorController _animatorController;
     private BasePlayerInput[] _inputs;
-    public Player Player { get; private set; }
 
+    public Player Player { get; private set; }
     public SpriteRenderer SpriteRenderer => _spriteRenderer;
+
+    public PlayerState State => Player.State;
 
     private void Start()
     {
         _inputs = GetComponents<BasePlayerInput>();
-        _animator = GetComponent<SpriteAnimator>();
-        _animator.SetSprites(_idleSprites);
+        _animatorController = GetComponent<PlayerAnimatorController>();
     }
 
-    public void SetPlayer(Player player)
+    public void Setup(Player player)
     {
         if (Player != null)
         {
@@ -34,6 +29,8 @@ public class PlayerGO : MonoBehaviour
 
         Player = player;
         RegisterEvents();
+
+        _animatorController.Setup(this);
     }
 
     public void Pause()
@@ -56,26 +53,6 @@ public class PlayerGO : MonoBehaviour
     {
         Player.OnJumpStart += JumpStart;
         Player.OnJumpEnd += JumpEnd;
-        Player.OnStateChanged += StateChanged;
-    }
-
-    private void StateChanged(PlayerState state)
-    {
-        switch (state)
-        {
-            case PlayerState.Idle:
-                _animator.SetSprites(_idleSprites);
-                break;
-            case PlayerState.Moving:
-                _animator.SetSprites(_movingSprites);
-                break;
-            case PlayerState.Jumping:
-                _animator.SetSprites(_jumpSprites);
-                break;
-            case PlayerState.Splashing:
-                _animator.SetSprites(_splashSprites);
-                break;
-        }
     }
 
     private void UnregisterEvents()
@@ -86,13 +63,11 @@ public class PlayerGO : MonoBehaviour
 
     private void JumpStart()
     {
-        _animator.SetSprites(_jumpSprites);
         _shadowSpriteRenderer.gameObject.SetActive(true);
     }
 
     private void JumpEnd()
     {
-        _animator.SetSprites(_idleSprites);
         _shadowSpriteRenderer.gameObject.SetActive(false);
     }
 }
