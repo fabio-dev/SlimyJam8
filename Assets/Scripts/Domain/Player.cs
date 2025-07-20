@@ -1,10 +1,9 @@
 ﻿using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Assets.Scripts.Domain
 {
-    public class Player : ACharacter
+	public class Player : ACharacter
 	{
 		private PlayerState _state;
 
@@ -35,7 +34,7 @@ namespace Assets.Scripts.Domain
 			}
 		}
 
-		public Player() : base()
+		public Player(float moveSpeed, float basicAttackCooldown, float healtAmount) : base(moveSpeed, basicAttackCooldown, healtAmount)
 		{
 			SplashRadius = 1.7f;
 			DashRadius = .5f;
@@ -60,19 +59,19 @@ namespace Assets.Scripts.Domain
 
 		public bool CanMakeAction => State == PlayerState.Idle || State == PlayerState.Moving;
 
-        public override void Move(Vector2 lastMove)
-        {
+		public override void Move(Vector2 lastMove)
+		{
 			State = PlayerState.Moving;
-            base.Move(lastMove);
-        }
+			base.Move(lastMove);
+		}
 
-        public override void StopMove()
-        {
-            base.StopMove();
+		public override void StopMove()
+		{
+			base.StopMove();
 			State = PlayerState.Idle;
-        }
+		}
 
-        public void Dash()
+		public void Dash()
 		{
 			State = PlayerState.Dashing;
 			DashAbility.Cast();
@@ -85,7 +84,7 @@ namespace Assets.Scripts.Domain
 
 		public void Jump()
 		{
-            State = PlayerState.Jumping;
+			State = PlayerState.Jumping;
 			JumpAbility?.Cast();
 			OnJumpStart?.Invoke();
 		}
@@ -104,13 +103,13 @@ namespace Assets.Scripts.Domain
 
 		public void EndSplash()
 		{
-			State= PlayerState.Idle;
+			State = PlayerState.Idle;
 		}
 
-        internal void DecreaseDashCooldownInPercentage(float baseCooldownReductionInPercentage)
-        {
+		internal void DecreaseDashCooldownInPercentage(float baseCooldownReductionInPercentage)
+		{
 			float amountToReduce = DashAbility.BaseCooldown * baseCooldownReductionInPercentage;
-            DashAbility.DecreaseCooldown(amountToReduce);
-        }
-    }
+			DashAbility.DecreaseCooldown(amountToReduce);
+		}
+	}
 }

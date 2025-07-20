@@ -184,6 +184,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7946201230523200164, guid: d44a52fea652d05428622b90b2734348, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 7946201230523200164, guid: d44a52fea652d05428622b90b2734348, type: 3}
+    - target: {fileID: 7946201230523200164, guid: d44a52fea652d05428622b90b2734348, type: 3}
       propertyPath: _movingSprites.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -275,6 +279,18 @@ PrefabInstance:
       propertyPath: '_damagedSprites.Array.data[3]'
       value: 
       objectReference: {fileID: 6560599682329561443, guid: 30af839043ae6cd41b0d77f9c69d306b, type: 3}
+    - target: {fileID: 7946201230523200164, guid: d44a52fea652d05428622b90b2734348, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7946201230523200164, guid: d44a52fea652d05428622b90b2734348, type: 3}
+      propertyPath: 'serializationData.ReferencedUnityObjects.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1112096649}
+    - target: {fileID: 7946201230523200164, guid: d44a52fea652d05428622b90b2734348, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -634,6 +650,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 955137538411816529, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 955137538411816529, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
+    - target: {fileID: 955137538411816529, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 955137538411816529, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
+      propertyPath: 'serializationData.ReferencedUnityObjects.Array.data[0]'
+      value: 
+      objectReference: {fileID: 877068771}
+    - target: {fileID: 955137538411816529, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6714619182592615071, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.62
@@ -680,7 +712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6963846044673964606, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -698,6 +730,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f75b1c4722c7f9b4594561c1a9b4e81b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &877068771 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6714619182592615071, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
+  m_PrefabInstance: {fileID: 856060211}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &998941885
 PrefabInstance:
   m_ObjectHideFlags: 0

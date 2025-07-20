@@ -86,8 +86,8 @@ public class PlayerDashInput : BasePlayerInput
 		if (InputManager.Instance?.Player != null)
 		{
 			InputManager.Instance.Player.Value.Dash.Enable();
-        }
-    }
+		}
+	}
 
 	void OnDisable()
 	{

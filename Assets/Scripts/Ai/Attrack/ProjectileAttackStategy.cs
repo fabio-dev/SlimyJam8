@@ -5,6 +5,7 @@ public class ProjectileAttackStategy : IAttackStrategy
 {
 	[SerializeField] private float _attackRangeSettings = 5.0f;
 	[SerializeField] private float _attackRateSettings = 1f;
+	[SerializeField] private float _damageAmount = 1.0f;
 	[SerializeField] private ProjectileGO _projectilePrefab = null;
 
 	private EnemyGO _owner = null;
@@ -12,6 +13,7 @@ public class ProjectileAttackStategy : IAttackStrategy
 	private ProjectileGO _projectile = null;
 	private Cooldown _cooldown = null;
 	private float _attackRange = 0.0f;
+	private float _damage = 0.0f;
 
 	public IAttackStrategy Init(EnemyGO owner, PlayerGO target)
 	{
@@ -21,6 +23,7 @@ public class ProjectileAttackStategy : IAttackStrategy
 		strategy._projectile = _projectilePrefab;
 		strategy._attackRange = _attackRangeSettings;
 		strategy._cooldown = new Cooldown(_attackRateSettings);
+		strategy._damage = _damageAmount;
 		return strategy;
 	}
 
@@ -36,8 +39,8 @@ public class ProjectileAttackStategy : IAttackStrategy
 		{
 			ProjectileGO projectileGO = Object.Instantiate(_projectile, currentPos, Quaternion.identity);
 			projectileGO.transform.right = directionToTaget;
-			projectileGO.Launch(directionToTaget);
-            Object.Destroy(projectileGO, 2f);
+			projectileGO.Launch(directionToTaget, _damage);
+			Object.Destroy(projectileGO, 2f);
 			_cooldown.Start();
 		}
 	}

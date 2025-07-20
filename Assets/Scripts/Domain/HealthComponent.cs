@@ -1,3 +1,5 @@
+using System;
+
 namespace Assets.Scripts.Domain
 {
 	public class HealthComponent
@@ -8,12 +10,23 @@ namespace Assets.Scripts.Domain
 			DamageTaken = 0;
 		}
 
+		public Action OnDie;
+
 		public float BaseValue { get; private set; }
 		public float DamageTaken { get; private set; }
 
 		public void TakeDamage(float damage)
 		{
+			if (IsDead())
+			{
+				return;
+			}
+
 			DamageTaken += damage;
+			if (IsDead())
+			{
+				OnDie?.Invoke();
+			}
 		}
 
 		public bool IsDead()
