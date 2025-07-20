@@ -4,7 +4,6 @@ namespace Assets.Scripts.Domain
 {
 	public abstract class ACharacter
 	{
-		// TODO set the health from this constructor.
 		public ACharacter(float moveSpeed, float basicAttackCooldown, float healtAmount)
 		{
 			MoveSpeed = moveSpeed;

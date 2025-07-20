@@ -4,55 +4,54 @@ using UnityEngine;
 
 public class ZoneManager : MonoBehaviour
 {
-    public static ZoneManager Instance { get; private set; }
+	public static ZoneManager Instance { get; private set; }
 
-    private List<IZone> zones = new List<IZone>();
+	private List<IZone> zones = new List<IZone>();
 
-    [SerializeField] private GameObject circleZoneVisualPrefab;
+	[SerializeField] private GameObject circleZoneVisualPrefab;
 
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
+	private void Awake()
+	{
+		if (Instance != null && Instance != this)
+		{
+			Destroy(gameObject);
+			return;
+		}
 
-        AddZone(new CircleZone(Vector2.zero, 1.5f));
-    }
+		Instance = this;
+	}
 
-    public void AddZone(IZone zone)
-    {
-        zones.Add(zone);
+	public void AddZone(IZone zone)
+	{
+		zones.Add(zone);
 
-        if (zone is CircleZone circle)
-        {
-            CreateVisual(circle.center, circle.radius);
-        }
-    }
+		if (zone is CircleZone circle)
+		{
+			CreateVisual(circle.GetCenter(), circle.radius);
+		}
+	}
 
-    public bool IsInsideAnyZone(Vector2 point)
-    {
-        foreach (IZone zone in zones)
-        {
-            if (zone.Contains(point))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
+	public bool IsInsideAnyZone(Vector2 point)
+	{
+		foreach (IZone zone in zones)
+		{
+			if (zone.Contains(point))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 
-    private void CreateVisual(Vector2 center, float radius)
-    {
-        if (circleZoneVisualPrefab == null)
-        {
-            return;
-        }
+	private void CreateVisual(Vector2 center, float radius)
+	{
+		if (circleZoneVisualPrefab == null)
+		{
+			return;
+		}
 
-        GameObject visual = Instantiate(circleZoneVisualPrefab, center, Quaternion.identity);
-        visual.transform.localScale = Vector2.zero;
-        visual.transform.DOScale(radius * 2f, .15f);
-    }
+		GameObject visual = Instantiate(circleZoneVisualPrefab, center, Quaternion.identity);
+		visual.transform.localScale = Vector2.zero;
+		visual.transform.DOScale(radius * 2f, .15f);
+	}
 }

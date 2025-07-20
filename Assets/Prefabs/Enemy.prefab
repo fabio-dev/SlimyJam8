@@ -135,6 +135,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f75b1c4722c7f9b4594561c1a9b4e81b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 6714619182592615071}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _deathZone
+      Entry: 7
+      Data: 0|CircleZone, Assembly-CSharp
+    - Name: centerTransform
+      Entry: 10
+      Data: 0
+    - Name: radius
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!114 &8358360567541710514
 MonoBehaviour:
   m_ObjectHideFlags: 0
