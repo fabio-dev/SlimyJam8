@@ -7,19 +7,24 @@ public class AiBrain : MonoBehaviour
 
 	private IMovementStrategy _movementStrategy = null;
 	private IAttackStrategy _attackStrategy = null;
+	private bool _isDead = false;
 
 	private void Start()
 	{
 		GameManager.Instance.OnInitialized += OnGameInitialized;
 	}
 
-	private void OnDisable()
+    private void OnDisable()
 	{
 		GameManager.Instance.OnInitialized -= OnGameInitialized;
 	}
 
 	private void Update()
 	{
+		if (_isDead)
+		{
+			return;
+		}
 		if (_movementStrategy != null)
 		{
 			_movementStrategy.Update();
@@ -42,5 +47,11 @@ public class AiBrain : MonoBehaviour
 		Transform targetTransform = player.transform;
 		_attackStrategy = _settings.AttackStrategy.Init(_owner, player);
 		_movementStrategy = _settings.MovementStrategy.Init(_owner, targetTransform);
-	}
+        _owner.Enemy.OnDie += OnDie;
+    }
+
+    private void OnDie()
+    {
+		_isDead = true;
+    }
 }

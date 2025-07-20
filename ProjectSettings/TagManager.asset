@@ -53,5 +53,8 @@ TagManager:
   - name: Units
     uniqueID: 2186173743
     locked: 0
+  - name: Gun
+    uniqueID: 276603135
+    locked: 0
   m_RenderingLayers:
   - Default

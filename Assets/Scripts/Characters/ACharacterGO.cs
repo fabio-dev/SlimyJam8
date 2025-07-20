@@ -5,10 +5,12 @@ using UnityEngine;
 public abstract class ACharacterGO : SerializedMonoBehaviour
 {
 	[SerializeField] private IZone _deathZone;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
 
-	public ACharacter Character { get; private set; }
+    public ACharacter Character { get; private set; }
+    public SpriteRenderer SpriteRenderer => _spriteRenderer;
 
-	public virtual void Setup(ACharacter character)
+    public virtual void Setup(ACharacter character)
 	{
 		Character = character;
 		Character.Health.OnDie += OnDie;
@@ -21,6 +23,6 @@ public abstract class ACharacterGO : SerializedMonoBehaviour
 		ZoneManager.Instance.AddZone(_deathZone);
 
 		// Maybe play a death animation or something like that.
-		GameObject.Destroy(gameObject);
+		GameObject.Destroy(gameObject, .3f);
 	}
 }

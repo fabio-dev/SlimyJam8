@@ -6,8 +6,9 @@ namespace Assets.Scripts.Domain
 	public class Player : ACharacter
 	{
 		private PlayerState _state;
+        private bool _isJumping;
 
-		public event Action OnJumpStart;
+        public event Action OnJumpStart;
 		public event Action OnJumpEnd;
 		public event Action<PlayerState> OnStateChanged;
 
@@ -20,6 +21,11 @@ namespace Assets.Scripts.Domain
 			set
 			{
 				if (_state == value)
+				{
+					return;
+				}
+
+				if (_isJumping && value != PlayerState.Jumping)
 				{
 					return;
 				}
@@ -84,7 +90,8 @@ namespace Assets.Scripts.Domain
 
 		public void Jump()
 		{
-			State = PlayerState.Jumping;
+			_isJumping = true;
+            State = PlayerState.Jumping;
 			JumpAbility?.Cast();
 			OnJumpStart?.Invoke();
 		}
@@ -92,7 +99,8 @@ namespace Assets.Scripts.Domain
 		public void EndJump()
 		{
 			OnJumpEnd?.Invoke();
-			State = PlayerState.Idle;
+			_isJumping = false;
+            State = PlayerState.Idle;
 		}
 
 		public void Splash()

@@ -3,21 +3,21 @@ using UnityEngine;
 
 public class PlayerGO : ACharacterGO
 {
-	[SerializeField] private SpriteRenderer _spriteRenderer;
 	[SerializeField] private SpriteRenderer _shadowSpriteRenderer;
 
 	private PlayerAnimatorController _animatorController;
+	private BoxCollider2D _collider;
 	private BasePlayerInput[] _inputs;
 
-	public Player Player { get { return Character as Player; } }
-	public SpriteRenderer SpriteRenderer => _spriteRenderer;
+	public Player Player => Character as Player;
 
-	public PlayerState State => Player.State;
+    public PlayerState State => Player.State;
 
 	private void Start()
 	{
 		_inputs = GetComponents<BasePlayerInput>();
 		_animatorController = GetComponent<PlayerAnimatorController>();
+		_collider = GetComponent<BoxCollider2D>();
 	}
 
 	public override void Setup(ACharacter character)
@@ -71,10 +71,12 @@ public class PlayerGO : ACharacterGO
 	private void JumpStart()
 	{
 		_shadowSpriteRenderer.gameObject.SetActive(true);
+		_collider.enabled = false;
 	}
 
 	private void JumpEnd()
 	{
 		_shadowSpriteRenderer.gameObject.SetActive(false);
-	}
+        _collider.enabled = true;
+    }
 }

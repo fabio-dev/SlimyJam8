@@ -46,6 +46,7 @@ public class PlayerAnimatorController : MonoBehaviour
 
     private void PlayerStateChanged(PlayerState state)
     {
+        Debug.Log($"Player state changed to {state}");
         if (_currentAnimator != null)
         {
             _currentAnimator.Stop();

@@ -297,7 +297,14 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      dungeon-tiles_0: -8148267045074929207
+      dungeon-tiles_1: 3046402117351187762
+      dungeon-tiles_2: -4662487053770387661
+      dungeon-tiles_3: 4778029999934097138
+      dungeon-tiles_4: -8106771517027072699
+      dungeon-tiles_5: -118471133285385648
+      dungeon-tiles_6: 4900624193472266936
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

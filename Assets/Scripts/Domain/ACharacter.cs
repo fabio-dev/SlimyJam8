@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Domain
@@ -9,7 +10,12 @@ namespace Assets.Scripts.Domain
 			MoveSpeed = moveSpeed;
 			BasicAttackCooldown = basicAttackCooldown;
 			Health = new HealthComponent(healtAmount);
+            Health.OnDamaged += TriggerOnDamaged;
+            Health.OnDie += TriggerOnDie;
 		}
+
+        public event Action<float> OnDamaged;
+		public event Action OnDie;
 
 		public float MoveSpeed { get; private set; }
 		public float BasicAttackCooldown { get; private set; }
@@ -18,7 +24,7 @@ namespace Assets.Scripts.Domain
 
 		public HealthComponent Health { get; private set; }
 
-		public virtual void Move(Vector2 lastMove)
+        public virtual void Move(Vector2 lastMove)
 		{
 			IsMoving = true;
 			LastMove = lastMove;
@@ -34,6 +40,16 @@ namespace Assets.Scripts.Domain
 		public void IncreaseMoveSpeed(float bonusSpeed)
 		{
 			MoveSpeed += bonusSpeed;
-		}
-	}
+        }
+
+        private void TriggerOnDie()
+        {
+            OnDie?.Invoke();
+        }
+
+        private void TriggerOnDamaged(float damage)
+        {
+            OnDamaged?.Invoke(damage);
+        }
+    }
 }

@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using UnityEngine;
  
 public abstract class ASpriteAnimator : ScriptableObject
@@ -7,6 +8,8 @@ public abstract class ASpriteAnimator : ScriptableObject
     protected SpriteRenderer _spriteRenderer;
     protected Sequence _spriteAnimation;
     protected int _currentSpriteIndex = -1;
+
+    public event Action OnComplete;
 
     protected virtual Sequence CreateSpriteSequence()
     {
@@ -19,12 +22,27 @@ public abstract class ASpriteAnimator : ScriptableObject
         }
 
         animation.SetAutoKill(false);
+        animation.OnComplete(Complete);
         return animation;
+    }
+
+    private void Complete()
+    {
+        OnComplete?.Invoke();
     }
 
     public void SetSpriteRenderer(SpriteRenderer spriteRenderer)
     {
         _spriteRenderer = spriteRenderer;  
+    }
+
+    public void Replay()
+    {
+        if (_spriteAnimation == null)
+        {
+            _spriteAnimation = CreateSpriteSequence();
+        }
+        _spriteAnimation.Restart();
     }
 
     public void Play()
