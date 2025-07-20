@@ -2,7 +2,7 @@ namespace Assets.Scripts.Domain
 {
 	public class Enemy : ACharacter
 	{
-		public Enemy() : base()
+		public Enemy(float moveSpeed, float basicAttackCooldown, float healtAmount) : base(moveSpeed, basicAttackCooldown, healtAmount)
 		{
 
 		}

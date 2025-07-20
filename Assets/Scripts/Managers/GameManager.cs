@@ -48,11 +48,11 @@ public class GameManager : MonoBehaviour
 
 	private void FirstUpdate()
 	{
-		_player = new Player();
+		_player = new Player(3.0f, 1.0f, 20.0f);
 		_playerGO.Setup(_player);
 
-		Enemy enemy = new Enemy();
-		_enemyGO.SetEnemy(enemy);
+		Enemy enemy = new Enemy(3.0f, 1.0f, 5.0f);
+		_enemyGO.Setup(enemy);
 
 		_dashAbility.SetAbility(_player.DashAbility);
 		_splashAbility.SetAbility(_player.SplashAbility);
@@ -62,13 +62,13 @@ public class GameManager : MonoBehaviour
 		_powerUpManager.OnSelecting += () => Pause();
 		_powerUpManager.OnSelected += () => Resume();
 
-        _onInitialized?.Invoke();
+		_onInitialized?.Invoke();
 	}
 
 	private void Pause()
 	{
 		Time.timeScale = 0f;
-        _playerGO.Pause();
+		_playerGO.Pause();
 		_camera.Pause();
 	}
 
