@@ -20,14 +20,14 @@ public class ProjectileGO : MonoBehaviour
 		transform.position += _direction * _speed * Time.deltaTime;
 	}
 
-	private void OnTriggerEnter2D(Collider2D collision)
-	{
-		if (collision.TryGetComponent(out ACharacterGO characterGO) == false)
-		{
-			return;
-		}
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.TryGetComponent(out ACharacterGO characterGO) == false)
+        {
+            return;
+        }
 
-		characterGO.Character.Health.TakeDamage(_damageAmount);
-		Destroy(gameObject, 0.1f);
-	}
+        characterGO.Character.Health.TakeDamage(_damageAmount);
+        Destroy(gameObject, 0f);
+    }
 }

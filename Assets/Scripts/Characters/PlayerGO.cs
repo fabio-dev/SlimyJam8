@@ -6,7 +6,7 @@ public class PlayerGO : ACharacterGO
 	[SerializeField] private SpriteRenderer _shadowSpriteRenderer;
 
 	private PlayerAnimatorController _animatorController;
-	private BoxCollider2D _collider;
+	private CapsuleCollider2D _collider;
 	private BasePlayerInput[] _inputs;
 
 	public Player Player => Character as Player;
@@ -17,7 +17,7 @@ public class PlayerGO : ACharacterGO
 	{
 		_inputs = GetComponents<BasePlayerInput>();
 		_animatorController = GetComponent<PlayerAnimatorController>();
-		_collider = GetComponent<BoxCollider2D>();
+		_collider = GetComponent<CapsuleCollider2D>();
 	}
 
 	public override void Setup(ACharacter character)
@@ -70,13 +70,13 @@ public class PlayerGO : ACharacterGO
 
 	private void JumpStart()
 	{
-		_shadowSpriteRenderer.gameObject.SetActive(true);
-		_collider.enabled = false;
-	}
+        _shadowSpriteRenderer.gameObject.SetActive(true);
+		gameObject.layer = LayerMask.NameToLayer("PlayerJumping");
+    }
 
-	private void JumpEnd()
+    private void JumpEnd()
 	{
 		_shadowSpriteRenderer.gameObject.SetActive(false);
-        _collider.enabled = true;
+		gameObject.layer = LayerMask.NameToLayer("Player");
     }
 }

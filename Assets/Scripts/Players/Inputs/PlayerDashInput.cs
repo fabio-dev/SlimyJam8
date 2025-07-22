@@ -1,15 +1,20 @@
 using Assets.Scripts.Domain;
+using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerDashInput : BasePlayerInput
 {
+	private Rigidbody2D _rigidBody;
+
 	void Start()
 	{
 		Init();
 		InputManager.Instance.Player.Value.Dash.performed += DashPerformed;
-	}
+        _rigidBody = GetComponent<Rigidbody2D>();
+
+    }
 
 	private void DashPerformed(InputAction.CallbackContext context)
 	{
@@ -34,8 +39,8 @@ public class PlayerDashInput : BasePlayerInput
 			direction = Vector3.right;
 		}
 
-		await DashAsync(direction);
-	}
+        StartCoroutine(DashCoroutine(direction));
+    }
 
 	private async Task DashAsync(Vector3 direction)
 	{
@@ -52,9 +57,10 @@ public class PlayerDashInput : BasePlayerInput
 			dashTimer += elapsedDeltaTime;
 			zoneTimer += elapsedDeltaTime;
 
-			transform.position += direction * Player.DashMoveSpeed * elapsedDeltaTime;
+            Vector2 move = direction.normalized * Player.DashMoveSpeed * elapsedDeltaTime;
+            _rigidBody.MovePosition(_rigidBody.position + move);
 
-			if (zoneTimer >= Player.DashZoneInterval)
+            if (zoneTimer >= Player.DashZoneInterval)
 			{
 				CreateZone();
 				zoneTimer = 0f;
@@ -67,7 +73,41 @@ public class PlayerDashInput : BasePlayerInput
 		Player.StopDash();
 	}
 
-	private void CreateZone()
+    private IEnumerator DashCoroutine(Vector2 direction)
+    {
+        Player.Dash();
+
+        float dashTimer = 0f;
+        float zoneTimer = 0f;
+        float duration = Player.DashDuration;
+        float interval = Player.DashZoneInterval;
+        float speed = Player.DashMoveSpeed;
+
+        SetOrientation(direction.x);
+
+        while (dashTimer < duration)
+        {
+            float deltaTime = Time.fixedDeltaTime;
+            dashTimer += deltaTime;
+            zoneTimer += deltaTime;
+
+            Vector2 move = direction.normalized * speed * deltaTime;
+            _rigidBody.MovePosition(_rigidBody.position + move);
+
+            if (zoneTimer >= interval)
+            {
+                CreateZone();
+                zoneTimer = 0f;
+            }
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        CreateZone();
+        Player.StopDash();
+    }
+
+    private void CreateZone()
 	{
 		var zone = new CircleZone(transform.position, Player.DashRadius);
 		ZoneManager.Instance.AddZone(zone);

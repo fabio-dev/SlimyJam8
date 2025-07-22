@@ -8,9 +8,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7919842605636054070, guid: 6b1825ad9ea09cb4d8f462eeb0b6aed0, type: 3}
+      propertyPath: m_ContactCaptureLayers.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1192863851784513281, guid: 6b1825ad9ea09cb4d8f462eeb0b6aed0, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2759366090439972403, guid: 6b1825ad9ea09cb4d8f462eeb0b6aed0, type: 3}
       propertyPath: m_Name
@@ -18,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2759366090439972403, guid: 6b1825ad9ea09cb4d8f462eeb0b6aed0, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5194469363760829010, guid: 6b1825ad9ea09cb4d8f462eeb0b6aed0, type: 3}
       propertyPath: m_LocalPosition.x

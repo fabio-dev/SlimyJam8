@@ -44,9 +44,9 @@ namespace Assets.Scripts.Domain
 		{
 			SplashRadius = 1.7f;
 			DashRadius = .5f;
-			DashDuration = .15f;
-			DashSpeedMultiplier = 8f;
-			DashZoneInterval = .02f;
+			DashDuration = .2f;
+			DashSpeedMultiplier = 6f;
+			DashZoneInterval = .015f;
 			JumpDuration = 1f;
 
 			DashAbility = new Ability(2f);

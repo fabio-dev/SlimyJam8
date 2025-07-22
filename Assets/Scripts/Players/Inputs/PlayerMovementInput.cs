@@ -5,12 +5,14 @@ using UnityEngine.InputSystem;
 public class PlayerMovementInput : BasePlayerInput
 {
     private Vector2 _moveInput;
+    private Rigidbody2D _rigidbody;
 
     void Start()
     {
         Init();
         InputManager.Instance.Player.Value.Move.performed += MovePerformed;
         InputManager.Instance.Player.Value.Move.canceled += MoveCanceled;
+        _rigidbody = GetComponent<Rigidbody2D>();
     }
 
     private void MoveCanceled(InputAction.CallbackContext context)
@@ -42,11 +44,12 @@ public class PlayerMovementInput : BasePlayerInput
             return;
         }
         Vector3 direction = new Vector3(moveInput.x, moveInput.y, 0f).normalized;
-        Vector3 targetPosition = transform.position + direction * Player.MoveSpeed * Time.fixedDeltaTime;
+        Vector2 movement = direction * Player.MoveSpeed * Time.fixedDeltaTime;
+        Vector2 targetPosition = _rigidbody.position + movement;
 
         if (CanMoveTo(targetPosition))
         {
-            transform.position = targetPosition;
+            _rigidbody.MovePosition(targetPosition);
             SetOrientation(moveInput.x);
             Player.Move(_moveInput);
         }
