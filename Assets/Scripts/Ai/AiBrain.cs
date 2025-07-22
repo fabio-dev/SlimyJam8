@@ -9,17 +9,12 @@ public class AiBrain : MonoBehaviour
 	private IAttackStrategy _attackStrategy = null;
 	private bool _isDead = false;
 
-	private void Start()
-	{
-		GameManager.Instance.OnInitialized += OnGameInitialized;
-	}
+    private void Start()
+    {
+		Setup();
+    }
 
-    private void OnDisable()
-	{
-		GameManager.Instance.OnInitialized -= OnGameInitialized;
-	}
-
-	private void Update()
+    private void Update()
 	{
 		if (_isDead)
 		{
@@ -36,7 +31,7 @@ public class AiBrain : MonoBehaviour
 		}
 	}
 
-	private void OnGameInitialized()
+	private void Setup()
 	{
 		if (_settings == null)
 		{

@@ -6,9 +6,11 @@ public abstract class ACharacterGO : SerializedMonoBehaviour
 {
 	[SerializeField] private IZone _deathZone;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+	[SerializeField] private Rigidbody2D _rigidbody;
 
     public ACharacter Character { get; private set; }
     public SpriteRenderer SpriteRenderer => _spriteRenderer;
+    public Rigidbody2D Rigidbody => _rigidbody;
 
     public virtual void Setup(ACharacter character)
 	{

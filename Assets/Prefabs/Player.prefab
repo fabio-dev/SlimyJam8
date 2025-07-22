@@ -188,6 +188,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   _spriteRenderer: {fileID: 303568171005361907}
+  _rigidbody: {fileID: 1296781025534712504}
   _shadowSpriteRenderer: {fileID: 2249982294702300435}
 --- !u!114 &8632900487272391373
 MonoBehaviour:

@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 	[SerializeField] private PlayerGO _playerGO;
-	[SerializeField] private EnemyGO _enemyGO;
+	[SerializeField] private EnemySpawner _enemySpawner;
 	[SerializeField] private AbilityUI _dashAbility;
 	[SerializeField] private AbilityUI _splashAbility;
 	[SerializeField] private AbilityUI _jumpAbility;
@@ -18,14 +18,7 @@ public class GameManager : MonoBehaviour
 	public PlayerGO PlayerGO { get { return _playerGO; } }
 	public static GameManager Instance { get; private set; }
 
-	private Action _onInitialized;
-	public Action OnInitialized
-	{
-		get { return _onInitialized; }
-		set { _onInitialized -= value; _onInitialized += value; }
-	}
-
-	private void Awake()
+    private void Awake()
 	{
 		if (Instance != null && Instance != this)
 		{
@@ -48,21 +41,18 @@ public class GameManager : MonoBehaviour
 
 	private void FirstUpdate()
 	{
-		_player = new Player(3.0f, 1.0f, 20.0f);
+		_player = new Player(3.0f, 1.0f, 2000.0f);
 		_playerGO.Setup(_player);
 
-		Enemy enemy = new Enemy(3.0f, 1.0f, 5.0f);
-		_enemyGO.Setup(enemy);
+		_enemySpawner.Setup(_playerGO);
 
-		_dashAbility.SetAbility(_player.DashAbility);
+        _dashAbility.SetAbility(_player.DashAbility);
 		_splashAbility.SetAbility(_player.SplashAbility);
 		_jumpAbility.SetAbility(_player.JumpAbility);
 
 		_powerUpManager.Setup(_player);
 		_powerUpManager.OnSelecting += () => Pause();
 		_powerUpManager.OnSelected += () => Resume();
-
-		_onInitialized?.Invoke();
 	}
 
 	private void Pause()
