@@ -18,10 +18,10 @@ public class PlayerDashInput : BasePlayerInput
 
 	private void DashPerformed(InputAction.CallbackContext context)
 	{
-		_ = TryDash();
+		TryDash();
 	}
 
-	private async Task TryDash()
+	private void TryDash()
 	{
 		if (!Player.CanMakeAction)
 		{
@@ -41,37 +41,6 @@ public class PlayerDashInput : BasePlayerInput
 
         StartCoroutine(DashCoroutine(direction));
     }
-
-	private async Task DashAsync(Vector3 direction)
-	{
-		Player.Dash();
-
-		float dashTimer = 0f;
-		float zoneTimer = 0f;
-
-		SetOrientation(direction.x);
-
-		while (dashTimer < Player.DashDuration)
-		{
-			float elapsedDeltaTime = Time.deltaTime;
-			dashTimer += elapsedDeltaTime;
-			zoneTimer += elapsedDeltaTime;
-
-            Vector2 move = direction.normalized * Player.DashMoveSpeed * elapsedDeltaTime;
-            _rigidBody.MovePosition(_rigidBody.position + move);
-
-            if (zoneTimer >= Player.DashZoneInterval)
-			{
-				CreateZone();
-				zoneTimer = 0f;
-			}
-
-			await Task.Yield();
-		}
-
-		CreateZone();
-		Player.StopDash();
-	}
 
     private IEnumerator DashCoroutine(Vector2 direction)
     {
