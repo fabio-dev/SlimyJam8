@@ -24,7 +24,7 @@ public abstract class ACharacterGO : SerializedMonoBehaviour
 
 		ZoneManager.Instance.AddZone(_deathZone);
 
-		// Maybe play a death animation or something like that.
-		GameObject.Destroy(gameObject, .3f);
+        // Maybe play a death animation or something like that.
+        GameObject.Destroy(gameObject, .3f);
 	}
 }

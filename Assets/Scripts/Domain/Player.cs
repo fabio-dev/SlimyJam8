@@ -48,20 +48,23 @@ namespace Assets.Scripts.Domain
 			DashSpeedMultiplier = 6f;
 			DashZoneInterval = .015f;
 			JumpDuration = 1f;
+            InvulnerabilityDuration = 1f;
 
-			DashAbility = new Ability(2f);
+            DashAbility = new Ability(2f);
 			SplashAbility = new Ability(1f);
 			JumpAbility = new Ability(2f);
+
 			State = PlayerState.Idle;
 		}
 
-		public float SplashRadius { get; private set; }
+        public float SplashRadius { get; private set; }
 		public float DashRadius { get; private set; }
 		public float DashDuration { get; private set; }
 		public float DashSpeedMultiplier { get; private set; }
 		public float JumpDuration { get; private set; }
 		public float DashMoveSpeed => MoveSpeed * DashSpeedMultiplier;
 		public float DashZoneInterval { get; private set; }
+		public float InvulnerabilityDuration { get; private set; }
 
 		public bool CanMakeAction => State == PlayerState.Idle || State == PlayerState.Moving;
 
@@ -113,6 +116,9 @@ namespace Assets.Scripts.Domain
 		{
 			State = PlayerState.Idle;
 		}
+
+		public void Invulnerable() => Health.Invulnerable();
+		public void Vulnerable() => Health.Vulnerable();
 
 		internal void DecreaseDashCooldownInPercentage(float baseCooldownReductionInPercentage)
 		{

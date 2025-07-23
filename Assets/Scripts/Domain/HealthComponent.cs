@@ -4,6 +4,8 @@ namespace Assets.Scripts.Domain
 {
     public class HealthComponent
 	{
+		private bool _invulnerable;
+
 		public HealthComponent(float baseValue)
 		{
 			BaseValue = baseValue;
@@ -18,6 +20,11 @@ namespace Assets.Scripts.Domain
 
         public void TakeDamage(float damage)
 		{
+			if (_invulnerable)
+			{
+				return;
+			}
+
 			if (IsDead())
 			{
 				return;
@@ -36,5 +43,8 @@ namespace Assets.Scripts.Domain
 		{
 			return BaseValue - DamageTaken <= 0;
 		}
-	}
+
+        internal void Invulnerable() => _invulnerable = true;
+		internal void Vulnerable() => _invulnerable = false;
+    }
 }

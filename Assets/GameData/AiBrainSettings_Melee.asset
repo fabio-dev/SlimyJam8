@@ -26,7 +26,7 @@ MonoBehaviour:
       Data: 0|MeleeAttackStrategy, Assembly-CSharp
     - Name: _attackRangeSettings
       Entry: 4
-      Data: 1
+      Data: 0.5
     - Name: _attackDamageSettings
       Entry: 4
       Data: 1
@@ -44,7 +44,7 @@ MonoBehaviour:
       Data: 6
     - Name: _stopRangeSettings
       Entry: 4
-      Data: 1
+      Data: 0.5
     - Name: 
       Entry: 8
       Data: 

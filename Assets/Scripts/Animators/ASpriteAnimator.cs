@@ -9,6 +9,8 @@ public abstract class ASpriteAnimator : ScriptableObject
     protected Sequence _spriteAnimation;
     protected int _currentSpriteIndex = -1;
 
+    public bool IsPlaying() => _spriteAnimation?.IsPlaying() ?? false;
+
     public event Action OnComplete;
 
     protected virtual Sequence CreateSpriteSequence()

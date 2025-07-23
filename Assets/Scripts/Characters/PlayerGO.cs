@@ -1,15 +1,20 @@
 ﻿using Assets.Scripts.Domain;
+using DG.Tweening;
 using UnityEngine;
 
 public class PlayerGO : ACharacterGO
 {
 	[SerializeField] private SpriteRenderer _shadowSpriteRenderer;
+	[SerializeField] private Transform _center;
 
+	private Cooldown _invulnerableCooldown;
+	private bool _invulnerableCooldownStarted;
 	private PlayerAnimatorController _animatorController;
-	private CapsuleCollider2D _collider;
 	private BasePlayerInput[] _inputs;
 
 	public Player Player => Character as Player;
+
+	public Transform Center => _center;
 
     public PlayerState State => Player.State;
 
@@ -17,10 +22,19 @@ public class PlayerGO : ACharacterGO
 	{
 		_inputs = GetComponents<BasePlayerInput>();
 		_animatorController = GetComponent<PlayerAnimatorController>();
-		_collider = GetComponent<CapsuleCollider2D>();
 	}
 
-	public override void Setup(ACharacter character)
+    private void Update()
+    {
+        if (_invulnerableCooldownStarted && !_invulnerableCooldown.IsRunning())
+		{
+			_invulnerableCooldownStarted = false;
+			_invulnerableCooldown.Stop();
+			Player.Health.Vulnerable();
+		}
+    }
+
+    public override void Setup(ACharacter character)
 	{
 		if (Character != null)
 		{
@@ -29,7 +43,12 @@ public class PlayerGO : ACharacterGO
 
 		base.Setup(character);
 
-		RegisterEvents();
+		if (character is Player player)
+		{
+            _invulnerableCooldown = new Cooldown(player.InvulnerabilityDuration);
+        }
+
+        RegisterEvents();
 		_animatorController.Setup(this);
 	}
 
@@ -60,9 +79,22 @@ public class PlayerGO : ACharacterGO
 	{
 		Player.OnJumpStart += JumpStart;
 		Player.OnJumpEnd += JumpEnd;
+        Player.OnDamaged += OnDamaged;
 	}
 
-	private void UnregisterEvents()
+    private void OnDamaged(float obj)
+    {
+        Player.Invulnerable();
+		_invulnerableCooldownStarted = true;
+        _invulnerableCooldown.Start();
+
+        SpriteRenderer
+          .DOFade(0f, .1f)
+          .SetLoops(5, LoopType.Yoyo)
+          .OnComplete(() => SpriteRenderer.DOFade(1f, 0f));
+    }
+
+    private void UnregisterEvents()
 	{
 		Player.OnJumpStart -= JumpStart;
 		Player.OnJumpEnd -= JumpEnd;

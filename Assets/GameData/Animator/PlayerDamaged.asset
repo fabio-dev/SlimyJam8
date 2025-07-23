@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2991ec4b39c20df4082907d16f14bd71, type: 3}
+  m_Name: PlayerDamaged
+  m_EditorClassIdentifier: 
+  _sprites:
+  - _sprite: {fileID: 2678978564333713138, guid: 30af839043ae6cd41b0d77f9c69d306b, type: 3}
+    _duration: 0.1
+  - _sprite: {fileID: 7836426385498070193, guid: 30af839043ae6cd41b0d77f9c69d306b, type: 3}
+    _duration: 0.1
+  - _sprite: {fileID: 9149618228206769057, guid: 30af839043ae6cd41b0d77f9c69d306b, type: 3}
+    _duration: 0.1
+  - _sprite: {fileID: 6560599682329561443, guid: 30af839043ae6cd41b0d77f9c69d306b, type: 3}
+    _duration: 0.1
