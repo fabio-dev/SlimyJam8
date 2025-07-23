@@ -1,23 +1,33 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class EnemyAnimatorController : MonoBehaviour
+public class DuzeAnimatorController : MonoBehaviour
 {
-    [SerializeField] private ASpriteAnimator _idleAnimator;
-    [SerializeField] private ASpriteAnimator _damagedAnimator;
-    [SerializeField] private ASpriteAnimator _dieAnimator;
+    [SerializeField] private SpriteAnimations _idleAnimations;
+    [SerializeField] private SpriteAnimations _damagedAnimations;
+    [SerializeField] private SpriteAnimations _dieAnimations;
 
+    private LoopSpriteAnimator _idleAnimator = new();
+    private OneTimeSpriteAnimator _damagedAnimator = new();
+    private OneTimeSpriteAnimator _dieAnimator = new();
     private EnemyGO _enemyGO;
 
     public void Setup(EnemyGO enemyGO)
     {
         UnregisterEvents();
         _enemyGO = enemyGO;
-        _idleAnimator.SetSpriteRenderer(_enemyGO.SpriteRenderer);
-        _damagedAnimator.SetSpriteRenderer(_enemyGO.SpriteRenderer);
+
+        _idleAnimator.SetSpriteRenderer(enemyGO.SpriteRenderer);
+        _damagedAnimator.SetSpriteRenderer(enemyGO.SpriteRenderer);
+        _dieAnimator.SetSpriteRenderer(enemyGO.SpriteRenderer);
+
+        _idleAnimator.SetSpritesAnimations(_idleAnimations);
+        _damagedAnimator.SetSpritesAnimations(_damagedAnimations);
+        _dieAnimator.SetSpritesAnimations(_dieAnimations);
+        
         _damagedAnimator.OnComplete += PlayIdleAnimation;
-        _dieAnimator.SetSpriteRenderer(_enemyGO.SpriteRenderer);
+
         RegisterEvents();
+
         _idleAnimator.Play();
     }
 

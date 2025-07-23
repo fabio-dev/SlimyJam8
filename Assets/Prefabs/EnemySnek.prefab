@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6630591260298955488
+--- !u!1001 &7884374157994238658
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,17 +9,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 955137538411816529, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
-      propertyPath: _animatorController
-      value: 
-      objectReference: {fileID: 5204972745851585008}
-    - target: {fileID: 955137538411816529, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 955137538411816529, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
     - target: {fileID: 2150572542758624212, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 2903329216876628354, guid: 94ac62c3613462a4281164e5d14174d3, type: 3}
+      objectReference: {fileID: 6741202298437556726, guid: 3a30aaefd478e3a4ba78f117643d323c, type: 3}
     - target: {fileID: 6714619182592615071, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -62,37 +58,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6963846044673964606, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
       propertyPath: m_Name
-      value: EnemyDuze
+      value: EnemySnek
       objectReference: {fileID: 0}
-    - target: {fileID: 8358360567541710514, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
-      propertyPath: _settings
-      value: 
-      objectReference: {fileID: 11400000, guid: f3b3d9ee823742b4d8c55853efe3fc43, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6963846044673964606, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5204972745851585008}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
---- !u!1 &4368520818886521054 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6963846044673964606, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
-  m_PrefabInstance: {fileID: 6630591260298955488}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5204972745851585008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4368520818886521054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a66b9f7e87fe804a9e2fcaa28387a4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _idleAnimator: {fileID: 11400000, guid: 59f226c58e9fbaa4d99fa42d5493dac7, type: 2}
-  _damagedAnimator: {fileID: 11400000, guid: f4ec276cc2e0b6740a9259f1442f72b0, type: 2}
-  _dieAnimator: {fileID: 11400000, guid: 27e8c4cd06a4fdc4aab143b3680286f2, type: 2}

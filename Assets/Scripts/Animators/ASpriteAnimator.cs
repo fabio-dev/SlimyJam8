@@ -1,10 +1,10 @@
-using DG.Tweening;
+﻿using DG.Tweening;
 using System;
 using UnityEngine;
- 
-public abstract class ASpriteAnimator : ScriptableObject
+
+public class ASpriteAnimator
 {
-    [SerializeField] protected SpriteAnimationDuration[] _sprites;
+    private SpriteAnimations _sprites;
     protected SpriteRenderer _spriteRenderer;
     protected Sequence _spriteAnimation;
     protected int _currentSpriteIndex = -1;
@@ -13,11 +13,16 @@ public abstract class ASpriteAnimator : ScriptableObject
 
     public event Action OnComplete;
 
+    public void SetSpritesAnimations(SpriteAnimations sprites)
+    {
+        _sprites = sprites;
+    }
+
     protected virtual Sequence CreateSpriteSequence()
     {
         Sequence animation = DOTween.Sequence();
 
-        foreach (SpriteAnimationDuration sprite in _sprites)
+        foreach (SpriteAnimationDuration sprite in _sprites.Sprites)
         {
             animation.AppendInterval(sprite.Duration);
             animation.AppendCallback(SetNextSprite);
@@ -35,7 +40,7 @@ public abstract class ASpriteAnimator : ScriptableObject
 
     public void SetSpriteRenderer(SpriteRenderer spriteRenderer)
     {
-        _spriteRenderer = spriteRenderer;  
+        _spriteRenderer = spriteRenderer;
     }
 
     public void Replay()
@@ -71,11 +76,11 @@ public abstract class ASpriteAnimator : ScriptableObject
     {
         _currentSpriteIndex++;
 
-        if (_currentSpriteIndex >= _sprites.Length)
+        if (_currentSpriteIndex >= _sprites.Sprites.Length)
         {
             _currentSpriteIndex = 0;
         }
 
-        _spriteRenderer.sprite = _sprites[_currentSpriteIndex].Sprite;
+        _spriteRenderer.sprite = _sprites.Sprites[_currentSpriteIndex].Sprite;
     }
 }

@@ -272,11 +272,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da6e506accdc37f4bad66947c939fba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _idleAnimator: {fileID: 11400000, guid: 15c370b88a7ac204fa557a42451a8d7b, type: 2}
-  _moveAnimator: {fileID: 11400000, guid: 2de2fd67f885e5042b79aa28c306a2a9, type: 2}
-  _jumpAnimator: {fileID: 11400000, guid: 7a958b700aa9c284ab678081e3265d39, type: 2}
-  _splashAnimator: {fileID: 11400000, guid: 695b67d36f07e614a88ac3fb98e890ad, type: 2}
-  _damagedAnimator: {fileID: 11400000, guid: d5536a70fda29ac4095fe8282f651884, type: 2}
+  _idleAnimations: {fileID: 11400000, guid: 90e7ebde2670d3a47891328d0c595a59, type: 2}
+  _moveAnimations: {fileID: 11400000, guid: 976c247bb66d48747b6d9696ef7ee4fd, type: 2}
+  _jumpAnimations: {fileID: 11400000, guid: 00440f32fda70bd49be16c0434a3bde6, type: 2}
+  _splashAnimations: {fileID: 11400000, guid: 416990b5e8953ed428ef4514c1461be3, type: 2}
+  _damagedAnimations: {fileID: 11400000, guid: 2736e104eb8ef3843a6f56525827d29a, type: 2}
 --- !u!50 &1296781025534712504
 Rigidbody2D:
   serializedVersion: 5

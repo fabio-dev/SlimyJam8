@@ -97,7 +97,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -111,7 +111,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -132,9 +132,9 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
+    maxTextureSize: 1024
+    resizeAlgorithm: 1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -176,10 +176,10 @@ TextureImporter:
       name: snek-spritesheet_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 707
-        width: 54
-        height: 56
+        x: 0
+        y: 704
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -198,10 +198,10 @@ TextureImporter:
       name: snek-spritesheet_1
       rect:
         serializedVersion: 2
-        x: 69
-        y: 705
-        width: 54
-        height: 60
+        x: 64
+        y: 704
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -220,10 +220,10 @@ TextureImporter:
       name: snek-spritesheet_2
       rect:
         serializedVersion: 2
-        x: 8
-        y: 639
-        width: 54
-        height: 60
+        x: 0
+        y: 640
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,10 +242,10 @@ TextureImporter:
       name: snek-spritesheet_3
       rect:
         serializedVersion: 2
-        x: 72
-        y: 639
-        width: 55
-        height: 56
+        x: 64
+        y: 640
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -264,10 +264,10 @@ TextureImporter:
       name: snek-spritesheet_4
       rect:
         serializedVersion: 2
-        x: 8
+        x: 0
         y: 576
-        width: 50
-        height: 62
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -286,10 +286,10 @@ TextureImporter:
       name: snek-spritesheet_5
       rect:
         serializedVersion: 2
-        x: 71
-        y: 575
-        width: 50
-        height: 60
+        x: 64
+        y: 576
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -308,10 +308,10 @@ TextureImporter:
       name: snek-spritesheet_6
       rect:
         serializedVersion: 2
-        x: 1
-        y: 453
-        width: 63
-        height: 118
+        x: 0
+        y: 512
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -330,10 +330,10 @@ TextureImporter:
       name: snek-spritesheet_7
       rect:
         serializedVersion: 2
-        x: 69
-        y: 451
-        width: 52
-        height: 60
+        x: 64
+        y: 512
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -352,10 +352,10 @@ TextureImporter:
       name: snek-spritesheet_8
       rect:
         serializedVersion: 2
-        x: 72
-        y: 511
-        width: 54
-        height: 60
+        x: 0
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -374,10 +374,10 @@ TextureImporter:
       name: snek-spritesheet_9
       rect:
         serializedVersion: 2
-        x: 7
-        y: 387
-        width: 50
-        height: 60
+        x: 64
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -396,10 +396,10 @@ TextureImporter:
       name: snek-spritesheet_10
       rect:
         serializedVersion: 2
-        x: 70
-        y: 385
-        width: 52
-        height: 63
+        x: 0
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -418,10 +418,10 @@ TextureImporter:
       name: snek-spritesheet_11
       rect:
         serializedVersion: 2
-        x: 7
-        y: 323
-        width: 50
-        height: 62
+        x: 64
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -440,10 +440,10 @@ TextureImporter:
       name: snek-spritesheet_12
       rect:
         serializedVersion: 2
-        x: 70
-        y: 323
-        width: 52
-        height: 59
+        x: 0
+        y: 320
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -462,10 +462,10 @@ TextureImporter:
       name: snek-spritesheet_13
       rect:
         serializedVersion: 2
-        x: 7
-        y: 259
-        width: 50
-        height: 62
+        x: 64
+        y: 320
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -484,10 +484,10 @@ TextureImporter:
       name: snek-spritesheet_14
       rect:
         serializedVersion: 2
-        x: 70
-        y: 257
-        width: 52
-        height: 60
+        x: 0
+        y: 256
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -506,10 +506,10 @@ TextureImporter:
       name: snek-spritesheet_15
       rect:
         serializedVersion: 2
-        x: 1
-        y: 131
-        width: 60
-        height: 122
+        x: 64
+        y: 256
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -528,10 +528,10 @@ TextureImporter:
       name: snek-spritesheet_16
       rect:
         serializedVersion: 2
-        x: 69
-        y: 191
-        width: 58
-        height: 60
+        x: 0
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -550,10 +550,10 @@ TextureImporter:
       name: snek-spritesheet_17
       rect:
         serializedVersion: 2
-        x: 70
-        y: 129
-        width: 53
-        height: 61
+        x: 64
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -572,10 +572,10 @@ TextureImporter:
       name: snek-spritesheet_18
       rect:
         serializedVersion: 2
-        x: 2
-        y: 3
-        width: 56
-        height: 125
+        x: 0
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -594,10 +594,10 @@ TextureImporter:
       name: snek-spritesheet_19
       rect:
         serializedVersion: 2
-        x: 70
-        y: 1
-        width: 52
-        height: 63
+        x: 64
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -616,10 +616,10 @@ TextureImporter:
       name: snek-spritesheet_20
       rect:
         serializedVersion: 2
-        x: 72
-        y: 63
-        width: 56
-        height: 62
+        x: 0
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -634,11 +634,77 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: snek-spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 701133d16a91d664dab6189b6ed9445a
+      internalID: -411627006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snek-spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d34235ae47165d1448fc3c0bf10353b2
+      internalID: 1359042870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snek-spritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a567f81d025d1184da0e9185c0326b45
+      internalID: 341541367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: fd538e101351a6e4a8db78f834b72bfd
     internalID: 0
     vertices: []
     indices: 
@@ -647,7 +713,31 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      snek-spritesheet_0: -3960373431150651561
+      snek-spritesheet_1: -9100620652105750685
+      snek-spritesheet_10: 6741202298437556726
+      snek-spritesheet_11: 6306395513563267378
+      snek-spritesheet_12: 4139605855762175775
+      snek-spritesheet_13: 5599095534734717436
+      snek-spritesheet_14: 4194132369729689736
+      snek-spritesheet_15: 7388974895408921146
+      snek-spritesheet_16: 5757874965217339842
+      snek-spritesheet_17: 4893328505055064788
+      snek-spritesheet_18: 5571558533590226940
+      snek-spritesheet_19: 5770155214981373248
+      snek-spritesheet_2: 1923247530095277923
+      snek-spritesheet_20: 1419120158968020696
+      snek-spritesheet_21: -411627006
+      snek-spritesheet_22: 1359042870
+      snek-spritesheet_23: 341541367
+      snek-spritesheet_3: -5201706265012044438
+      snek-spritesheet_4: -7732307753351328741
+      snek-spritesheet_5: 2973244332815261081
+      snek-spritesheet_6: -7874622926599142391
+      snek-spritesheet_7: 7655189601801803546
+      snek-spritesheet_8: 8444888982636129448
+      snek-spritesheet_9: -1999546651904822766
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
