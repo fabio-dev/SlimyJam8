@@ -40,7 +40,7 @@ namespace Assets.Scripts.Domain
 			}
 		}
 
-		public Player(float moveSpeed, float basicAttackCooldown, float healtAmount) : base(moveSpeed, basicAttackCooldown, healtAmount)
+		public Player()
 		{
 			SplashRadius = 1.7f;
 			DashRadius = .5f;

@@ -18,7 +18,7 @@ public class PlayerGO : ACharacterGO
 
     public PlayerState State => Player.State;
 
-	private void Start()
+    private void Start()
 	{
 		_inputs = GetComponents<BasePlayerInput>();
 		_animatorController = GetComponent<PlayerAnimatorController>();
@@ -82,7 +82,13 @@ public class PlayerGO : ACharacterGO
 		Player.OnJumpStart += JumpStart;
 		Player.OnJumpEnd += JumpEnd;
         Player.OnDamaged += OnDamaged;
+        Player.OnDie += Dying;
 	}
+
+    private void Dying()
+    {
+		Pause();
+    }
 
     private void OnDamaged(float obj)
     {

@@ -5,20 +5,22 @@ namespace Assets.Scripts.Domain
 {
 	public abstract class ACharacter
 	{
-		public ACharacter(float moveSpeed, float basicAttackCooldown, float healtAmount)
+		public ACharacter()
 		{
-			MoveSpeed = moveSpeed;
-			BasicAttackCooldown = basicAttackCooldown;
-			Health = new HealthComponent(healtAmount);
-            Health.OnDamaged += TriggerOnDamaged;
-            Health.OnDie += TriggerOnDie;
 		}
 
         public event Action<float> OnDamaged;
 		public event Action OnDie;
 
+		public void SetHealth(float health)
+		{
+			Health = new HealthComponent(health);
+            Health.OnDamaged += TriggerOnDamaged;
+            Health.OnDie += TriggerOnDie;
+        }
+
 		public float MoveSpeed { get; private set; }
-		public float BasicAttackCooldown { get; private set; }
+		public float BasicAttackCooldown { get; set; }
 		public bool IsMoving { get; private set; }
 		public Vector2 LastMove { get; private set; }
 

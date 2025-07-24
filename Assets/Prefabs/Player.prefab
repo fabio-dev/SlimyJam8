@@ -278,6 +278,7 @@ MonoBehaviour:
   _jumpAnimations: {fileID: 11400000, guid: 00440f32fda70bd49be16c0434a3bde6, type: 2}
   _splashAnimations: {fileID: 11400000, guid: 416990b5e8953ed428ef4514c1461be3, type: 2}
   _damagedAnimations: {fileID: 11400000, guid: 2736e104eb8ef3843a6f56525827d29a, type: 2}
+  _dyingAnimations: {fileID: 11400000, guid: 2736e104eb8ef3843a6f56525827d29a, type: 2}
 --- !u!50 &1296781025534712504
 Rigidbody2D:
   serializedVersion: 5

@@ -8,12 +8,14 @@ public class PlayerAnimatorController : MonoBehaviour
     [SerializeField] private SpriteAnimations _jumpAnimations;
     [SerializeField] private SpriteAnimations _splashAnimations;
     [SerializeField] private SpriteAnimations _damagedAnimations;
+    [SerializeField] private SpriteAnimations _dyingAnimations;
 
     private LoopSpriteAnimator _idleAnimator = new();
     private LoopSpriteAnimator _moveAnimator = new();
     private OneTimeSpriteAnimator _jumpAnimator = new();
     private OneTimeSpriteAnimator _splashAnimator = new();
     private OneTimeSpriteAnimator _damagedAnimator = new();
+    private OneTimeSpriteAnimator _dyingAnimator = new();
 
     private PlayerGO _playerGO;
     private ASpriteAnimator _currentAnimator;
@@ -32,6 +34,8 @@ public class PlayerAnimatorController : MonoBehaviour
         _splashAnimator.SetSpritesAnimations(_splashAnimations);
         _damagedAnimator.SetSpriteRenderer(_playerGO.SpriteRenderer);
         _damagedAnimator.SetSpritesAnimations(_damagedAnimations);
+        _dyingAnimator.SetSpriteRenderer(_playerGO.SpriteRenderer);
+        _dyingAnimator.SetSpritesAnimations(_dyingAnimations);
         RegisterEvents();
 
         PlayerStateChanged(_playerGO.State);
@@ -46,6 +50,7 @@ public class PlayerAnimatorController : MonoBehaviour
 
         _playerGO.Player.OnStateChanged += PlayerStateChanged;
         _playerGO.Player.Health.OnDamaged += PlayerDamaged;
+        _playerGO.Player.OnDie += PlayerDying;
         _damagedAnimator.OnComplete += DamagedAnimatorComplete;
     }
 
@@ -58,7 +63,19 @@ public class PlayerAnimatorController : MonoBehaviour
 
         _playerGO.Player.OnStateChanged -= PlayerStateChanged;
         _playerGO.Player.Health.OnDamaged -= PlayerDamaged;
+        _playerGO.Player.OnDie -= PlayerDying;
         _damagedAnimator.OnComplete -= DamagedAnimatorComplete;
+    }
+
+    private void PlayerDying()
+    {
+        if (_currentAnimator != null)
+        {
+            _currentAnimator.Stop();
+        }
+
+        _currentAnimator = _dyingAnimator;
+        _currentAnimator.Play();
     }
 
     private void DamagedAnimatorComplete()
@@ -79,6 +96,11 @@ public class PlayerAnimatorController : MonoBehaviour
 
     private void PlayerStateChanged(PlayerState state)
     {
+        if (_dyingAnimator.IsPlaying())
+        {
+            return;
+        }
+
         if (_damagedAnimator.IsPlaying())
         {
             return;

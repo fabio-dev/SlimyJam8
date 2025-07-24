@@ -29,6 +29,11 @@ public class ProjectileAttackStategy : IAttackStrategy
 
 	public void Update()
 	{
+		if (_target == null)
+		{
+			return;
+		}
+
 		Vector3 currentPos = _owner.transform.position;
 		Vector3 targetPos = _target.transform.position;
 		Vector3 directionToTaget = targetPos - currentPos;

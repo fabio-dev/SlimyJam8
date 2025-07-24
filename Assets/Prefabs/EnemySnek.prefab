@@ -165,6 +165,9 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 2150572542758624212}
   _rigidbody: {fileID: 7800500842652666766}
   _deathMaskPrefab: {fileID: 7602200193259143599, guid: c8a6a5a4d2ff1e64081ace7c542271e6, type: 3}
+  _moveSpeed: 1.2
+  _health: 2
+  _basicAttackCooldown: 1
 --- !u!114 &8358360567541710514
 MonoBehaviour:
   m_ObjectHideFlags: 0

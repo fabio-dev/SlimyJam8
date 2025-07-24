@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private AbilityUI _jumpAbility;
 	[SerializeField] private PowerUpManager _powerUpManager;
 	[SerializeField] private CameraFollow _camera;
-	[SerializeField] private EnemyGO _enemy;
+	[SerializeField] private HealthUI _healthUI;
 
 	private bool _firstUpdate = false;
 	private Player _player;
@@ -42,12 +42,15 @@ public class GameManager : MonoBehaviour
 
 	private void FirstUpdate()
 	{
-		_player = new Player(3.0f, 1.0f, 2000.0f);
+		_player = new Player();
+		_player.SetHealth(5f);
+		_player.BasicAttackCooldown = .5f;
+		_player.SetMoveSpeed(3f);
 		_playerGO.Setup(_player);
 
-		_enemy.Setup(new Enemy(3f, 2f, 1f));
-
         _enemySpawner.Setup(_playerGO);
+
+		_healthUI.Setup(_player);
 
         _dashAbility.SetAbility(_player.DashAbility);
 		_splashAbility.SetAbility(_player.SplashAbility);

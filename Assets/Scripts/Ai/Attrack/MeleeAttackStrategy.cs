@@ -28,6 +28,11 @@ public class MeleeAttackStrategy : IAttackStrategy
 
 	public void Update()
 	{
+		if (_target == null)
+		{
+			return;
+		}
+
 		if (_target != null || _targetHealthComponent != null)
 		{
 			Vector3 currentPos = _owner.transform.position;

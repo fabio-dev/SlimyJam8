@@ -19,13 +19,13 @@ public abstract class ACharacterGO : SerializedMonoBehaviour
     public virtual void Setup(ACharacter character)
 	{
 		Character = character;
-		Character.Health.OnDie += OnDie;
+		Character.OnDie += OnDie;
 		IsSetup = true;
     }
 
 	protected virtual void OnDie()
 	{
-		Character.Health.OnDie -= OnDie;
+		Character.OnDie -= OnDie;
 		ZoneManager.Instance.AddZone(_deathZone);
         DeathMaskAnimatorController deathMask = Instantiate(_deathMaskPrefab, transform.position, Quaternion.identity);
 		deathMask.StartIn(.3f);

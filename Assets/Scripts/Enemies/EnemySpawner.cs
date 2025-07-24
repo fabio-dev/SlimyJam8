@@ -40,7 +40,7 @@ public class EnemySpawner : MonoBehaviour
         EnemyGO enemyPrefab = RandomEnemy();
         EnemyGO enemyGO = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
 
-        Enemy enemy = new Enemy(3.0f, 1.0f, 5.0f);
+        Enemy enemy = new Enemy();
         enemyGO.Setup(enemy);
     }
 

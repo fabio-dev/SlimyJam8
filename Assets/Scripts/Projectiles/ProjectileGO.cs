@@ -28,9 +28,9 @@ public class ProjectileGO : MonoBehaviour
 		transform.position += _direction * _speed * Time.deltaTime;
 	}
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collision.gameObject.TryGetComponent(out ACharacterGO characterGO) == false)
+        if (collider.gameObject.TryGetComponent(out ACharacterGO characterGO) == false)
         {
             return;
         }
