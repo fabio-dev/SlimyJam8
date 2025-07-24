@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2991ec4b39c20df4082907d16f14bd71, type: 3}
-  m_Name: DuzeDamaged
+  m_Script: {fileID: 11500000, guid: cf99756fedacd6042bd9ea0fbf1c09c3, type: 3}
+  m_Name: Duze_damaged
   m_EditorClassIdentifier: 
   _sprites:
   - _sprite: {fileID: 4430075418359825755, guid: 94ac62c3613462a4281164e5d14174d3, type: 3}
-    _duration: 0.15
+    _duration: 0.1
   - _sprite: {fileID: 7857747019092454044, guid: 94ac62c3613462a4281164e5d14174d3, type: 3}
-    _duration: 0.15
+    _duration: 0.1
   - _sprite: {fileID: 7050214815682035589, guid: 94ac62c3613462a4281164e5d14174d3, type: 3}
-    _duration: 0.15
+    _duration: 0.1

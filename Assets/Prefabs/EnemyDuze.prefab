@@ -93,6 +93,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a66b9f7e87fe804a9e2fcaa28387a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _idleAnimator: {fileID: 11400000, guid: 59f226c58e9fbaa4d99fa42d5493dac7, type: 2}
-  _damagedAnimator: {fileID: 11400000, guid: f4ec276cc2e0b6740a9259f1442f72b0, type: 2}
-  _dieAnimator: {fileID: 11400000, guid: 27e8c4cd06a4fdc4aab143b3680286f2, type: 2}
+  _idleAnimations: {fileID: 11400000, guid: 83261d497c7f32a4a8e5e888f831a33a, type: 2}
+  _damagedAnimations: {fileID: 11400000, guid: 2a270c67b15b52f4ea79eed876c7b745, type: 2}
+  _dieAnimations: {fileID: 11400000, guid: 4e0583c5521428d41b0dbfd128bff41d, type: 2}
