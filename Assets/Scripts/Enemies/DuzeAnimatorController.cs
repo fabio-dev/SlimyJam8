@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class DuzeAnimatorController : MonoBehaviour
+public class DuzeAnimatorController : MonoBehaviour, IAnimatorController
 {
     [SerializeField] private SpriteAnimations _idleAnimations;
     [SerializeField] private SpriteAnimations _damagedAnimations;
@@ -69,7 +69,7 @@ public class DuzeAnimatorController : MonoBehaviour
         _dieAnimator.Play();
     }
 
-    internal void Kill()
+    public void Kill()
     {
         _idleAnimator.Kill();
         _damagedAnimator.Kill();

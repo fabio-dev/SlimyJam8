@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf99756fedacd6042bd9ea0fbf1c09c3, type: 3}
+  m_Name: Snek_side_dying
+  m_EditorClassIdentifier: 
+  _sprites:
+  - _sprite: {fileID: 1923247530095277923, guid: 3a30aaefd478e3a4ba78f117643d323c, type: 3}
+    _duration: 0.1
+  - _sprite: {fileID: -5201706265012044438, guid: 3a30aaefd478e3a4ba78f117643d323c, type: 3}
+    _duration: 0.1

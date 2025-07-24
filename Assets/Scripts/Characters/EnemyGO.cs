@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EnemyGO : ACharacterGO
 {
-    [SerializeField] private DuzeAnimatorController _animatorController;
+    [SerializeField] private IAnimatorController _animatorController;
 
     public override void Setup(ACharacter character)
     {
