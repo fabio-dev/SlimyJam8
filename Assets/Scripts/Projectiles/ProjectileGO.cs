@@ -1,3 +1,4 @@
+using Assets.Scripts.Domain;
 using UnityEngine;
 
 public class ProjectileGO : MonoBehaviour
@@ -7,16 +8,23 @@ public class ProjectileGO : MonoBehaviour
 
 	private Vector3 _direction;
 	private float _damageAmount = 0.0f;
+    private Cooldown _launchDelay = new Cooldown(1f);
 
-	public void Launch(Vector3 direction, float damageAmount)
-	{
-		_direction = direction.normalized;
-		_damageAmount = damageAmount;
-		Destroy(gameObject, _lifeTime);
-	}
+    internal void Launch(Vector3 directionToTaget, float damage, float delay)
+    {
+        _direction = directionToTaget.normalized;
+        _damageAmount = damage;
+        Destroy(gameObject, _lifeTime);
+        _launchDelay.SetDuration(delay);
+        _launchDelay.Start();
+    }
 
-	private void FixedUpdate()
+    private void FixedUpdate()
 	{
+        if (_launchDelay.IsRunning())
+        {
+            return;
+        }
 		transform.position += _direction * _speed * Time.deltaTime;
 	}
 

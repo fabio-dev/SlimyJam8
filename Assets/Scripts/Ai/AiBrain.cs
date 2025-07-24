@@ -11,7 +11,19 @@ public class AiBrain : MonoBehaviour
 
     private void Start()
     {
-		Setup();
+		if (_owner.IsSetup)
+		{
+			Setup();
+		}
+		else
+		{
+			_owner.OnSetup += Setup;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        _owner.OnSetup -= Setup;
     }
 
     private void Update()

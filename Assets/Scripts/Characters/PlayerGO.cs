@@ -32,9 +32,9 @@ public class PlayerGO : ACharacterGO
 			_invulnerableCooldown.Stop();
 			Player.Health.Vulnerable();
 		}
-    }
+	}
 
-    public override void Setup(ACharacter character)
+	public override void Setup(ACharacter character)
 	{
 		if (Character != null)
 		{
@@ -45,11 +45,13 @@ public class PlayerGO : ACharacterGO
 
 		if (character is Player player)
 		{
-            _invulnerableCooldown = new Cooldown(player.InvulnerabilityDuration);
-        }
+			_invulnerableCooldown = new Cooldown(player.InvulnerabilityDuration);
+		}
 
-        RegisterEvents();
+		RegisterEvents();
 		_animatorController.Setup(this);
+
+		TriggerOnSetup();
 	}
 
 	protected override void OnDie()

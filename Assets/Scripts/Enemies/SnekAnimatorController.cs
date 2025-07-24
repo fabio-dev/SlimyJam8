@@ -55,16 +55,33 @@ public class SnekAnimatorController : MonoBehaviour, IAnimatorController
         _attackAnimatorSide.SetSpriteRenderer(_enemyGO.SpriteRenderer);
         _attackAnimatorBack.SetSpriteRenderer(_enemyGO.SpriteRenderer);
 
+        _idleAnimatorFace.SetSpritesAnimations(_idleAnimationsFace);
+        _idleAnimatorSide.SetSpritesAnimations(_idleAnimationsSide);
+        _idleAnimatorBack.SetSpritesAnimations(_idleAnimationsBack);
+        _damagedAnimatorFace.SetSpritesAnimations(_damagedAnimationsFace);
+        _damagedAnimatorSide.SetSpritesAnimations(_damagedAnimationsSide);
+        _damagedAnimatorBack.SetSpritesAnimations(_damagedAnimationsBack);
+        _dieAnimatorFace.SetSpritesAnimations(_dieAnimationsFace);
+        _dieAnimatorSide.SetSpritesAnimations(_dieAnimationsSide);
+        _dieAnimatorBack.SetSpritesAnimations(_dieAnimationsBack);
+        _attackAnimatorFace.SetSpritesAnimations(_attackAnimationsFace);
+        _attackAnimatorSide.SetSpritesAnimations(_attackAnimationsSide);
+        _attackAnimatorBack.SetSpritesAnimations(_attackAnimationsBack);
+
         RegisterEvents();
         PlayIdleAnimation();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Vector2 currentPosition = transform.position;
+        if (currentPosition - _lastPosition == Vector2.zero)
+        {
+            return;
+        }
 
-        float xDiff = currentPosition.x - transform.position.x;
-        float yDiff =  currentPosition.y - transform.position.y;
+        double xDiff = currentPosition.x - _lastPosition.x;
+        double yDiff =  currentPosition.y - _lastPosition.y;
 
         if (xDiff >= 0)
         {
@@ -81,7 +98,7 @@ public class SnekAnimatorController : MonoBehaviour, IAnimatorController
         }
         else
         {
-            SetOrientation(yDiff >= 0 ? SpriteOrientation.Back : SpriteOrientation.Back);
+            SetOrientation(yDiff >= 0 ? SpriteOrientation.Back : SpriteOrientation.Face);
         }
 
         _lastPosition = currentPosition;
@@ -93,7 +110,6 @@ public class SnekAnimatorController : MonoBehaviour, IAnimatorController
         {
             return;
         }
-        Debug.Log("Orientation changed");
         _orientation = orientation;
         _onOrientationChanged?.Invoke(orientation);
     }
@@ -109,7 +125,7 @@ public class SnekAnimatorController : MonoBehaviour, IAnimatorController
         }
 
         _enemyGO.Enemy.OnDamaged -= PlayDamagedAnimation;
-        _enemyGO.Enemy.OnDie -= PLayDieAnimation;
+        _enemyGO.Enemy.OnDie -= PlayDieAnimation;
         _onOrientationChanged -= OrientationChanged;
         _damagedAnimatorFace.OnComplete -= PlayIdleAnimation;
         _damagedAnimatorSide.OnComplete -= PlayIdleAnimation;
@@ -127,8 +143,9 @@ public class SnekAnimatorController : MonoBehaviour, IAnimatorController
         }
 
         _enemyGO.Enemy.OnDamaged += PlayDamagedAnimation;
-        _enemyGO.Enemy.OnDie += PLayDieAnimation;
+        _enemyGO.Enemy.OnDie += PlayDieAnimation;
         _onOrientationChanged += OrientationChanged;
+        _enemyGO.OnAttack += PlayAttackAnimation;
         _damagedAnimatorFace.OnComplete += PlayIdleAnimation;
         _damagedAnimatorSide.OnComplete += PlayIdleAnimation;
         _damagedAnimatorBack.OnComplete += PlayIdleAnimation;
@@ -197,7 +214,7 @@ public class SnekAnimatorController : MonoBehaviour, IAnimatorController
         }
     }
 
-    private void PLayDieAnimation()
+    private void PlayDieAnimation()
     {
         switch (_orientation)
         {
@@ -214,8 +231,30 @@ public class SnekAnimatorController : MonoBehaviour, IAnimatorController
         }
     }
 
+    private void PlayAttackAnimation()
+    {
+        switch (_orientation)
+        {
+            case SpriteOrientation.Side:
+                Play(_attackAnimatorSide);
+                break;
+            case SpriteOrientation.Back:
+                Play(_attackAnimatorBack);
+                break;
+            case SpriteOrientation.Face:
+            default:
+                Play(_attackAnimatorFace);
+                break;
+        }
+    }
+
     private void Play(ASpriteAnimator animator)
     {
+        if (_currentAnimator == animator)
+        {
+            return;
+        }
+
         if (_currentAnimator != null)
         {
             _currentAnimator.Stop();

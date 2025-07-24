@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sprites:
   - _sprite: {fileID: 5571558533590226940, guid: 3a30aaefd478e3a4ba78f117643d323c, type: 3}
-    _duration: 0.1
+    _duration: 0.2
   - _sprite: {fileID: 5770155214981373248, guid: 3a30aaefd478e3a4ba78f117643d323c, type: 3}
-    _duration: 0.1
+    _duration: 0.5

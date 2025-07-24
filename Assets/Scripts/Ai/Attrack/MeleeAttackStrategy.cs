@@ -10,6 +10,8 @@ public class MeleeAttackStrategy : IAttackStrategy
 	private EnemyGO _owner = null;
 	private HealthComponent _targetHealthComponent = null;
 	private Transform _target = null;
+	private float _attackRange;
+	private float _attackDamage;
 	private Cooldown _cooldown = null;
 
 	public IAttackStrategy Init(EnemyGO owner, PlayerGO target)
@@ -18,6 +20,8 @@ public class MeleeAttackStrategy : IAttackStrategy
 		strategy._owner = owner;
 		strategy._targetHealthComponent = target.Player.Health;
 		strategy._target = target.Center;
+		strategy._attackRange = _attackRangeSettings;
+		strategy._attackDamage = _attackDamageSettings;
 		strategy._cooldown = new Cooldown(_attackRateSettings);
 		return strategy;
 	}
@@ -30,11 +34,12 @@ public class MeleeAttackStrategy : IAttackStrategy
 			Vector3 targetPos = _target.transform.position;
 			float distanceToTarget = (targetPos - currentPos).magnitude;
 
-			if (distanceToTarget <= _attackRangeSettings && !_cooldown.IsRunning())
+			if (distanceToTarget <= _attackRange && !_cooldown.IsRunning())
 			{
-				_targetHealthComponent.TakeDamage(_attackDamageSettings);
+				_targetHealthComponent.TakeDamage(_attackDamage);
 				_cooldown.Start();
-			}
-		}
+				_owner.TriggerAttack();
+            }
+        }
 	}
 }

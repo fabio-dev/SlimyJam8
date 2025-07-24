@@ -37,11 +37,13 @@ public class ProjectileAttackStategy : IAttackStrategy
 
 		if (distanceToTarget < _attackRange && !_cooldown.IsRunning())
 		{
+			_owner.TriggerAttack();
+
 			ProjectileGO projectileGO = Object.Instantiate(_projectile, currentPos, Quaternion.identity);
 			projectileGO.transform.right = directionToTaget;
-			projectileGO.Launch(directionToTaget, _damage);
+			projectileGO.Launch(directionToTaget, _damage, .2f);
 			Object.Destroy(projectileGO, 2f);
 			_cooldown.Start();
-		}
-	}
+        }
+    }
 }
