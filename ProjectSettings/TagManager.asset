@@ -56,6 +56,9 @@ TagManager:
   - name: Projectiles
     uniqueID: 2787927713
     locked: 0
+  - name: DeathMask
+    uniqueID: 1265976825
+    locked: 0
   - name: Gun
     uniqueID: 276603135
     locked: 0

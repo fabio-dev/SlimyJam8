@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 276603135
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3ec38d4f449eb9b48abe5d7f091ab29c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -221,6 +221,7 @@ MonoBehaviour:
       Data: 
   _spriteRenderer: {fileID: 303568171005361907}
   _rigidbody: {fileID: 1296781025534712504}
+  _deathMaskPrefab: {fileID: 7602200193259143599, guid: c8a6a5a4d2ff1e64081ace7c542271e6, type: 3}
   _shadowSpriteRenderer: {fileID: 2249982294702300435}
   _center: {fileID: 8924332137476545429}
 --- !u!114 &8632900487272391373
@@ -416,7 +417,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2108793553
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 7085641141073579087, guid: 30af839043ae6cd41b0d77f9c69d306b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

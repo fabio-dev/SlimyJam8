@@ -8,6 +8,7 @@ public abstract class ACharacterGO : SerializedMonoBehaviour
 	[SerializeField] private IZone _deathZone;
     [SerializeField] private SpriteRenderer _spriteRenderer;
 	[SerializeField] private Rigidbody2D _rigidbody;
+    [SerializeField] private DeathMaskAnimatorController _deathMaskPrefab;
 
     public ACharacter Character { get; private set; }
     public SpriteRenderer SpriteRenderer => _spriteRenderer;
@@ -25,11 +26,10 @@ public abstract class ACharacterGO : SerializedMonoBehaviour
 	protected virtual void OnDie()
 	{
 		Character.Health.OnDie -= OnDie;
-
 		ZoneManager.Instance.AddZone(_deathZone);
-
-        // Maybe play a death animation or something like that.
-        GameObject.Destroy(gameObject, .3f);
+        DeathMaskAnimatorController deathMask = Instantiate(_deathMaskPrefab, transform.position, Quaternion.identity);
+		deathMask.StartIn(.3f);
+        Destroy(gameObject, .3f);
 	}
 
 	protected void TriggerOnSetup() => OnSetup?.Invoke();

@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2108793553
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 6741202298437556726, guid: 3a30aaefd478e3a4ba78f117643d323c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -164,6 +164,7 @@ MonoBehaviour:
       Data: 1
   _spriteRenderer: {fileID: 2150572542758624212}
   _rigidbody: {fileID: 7800500842652666766}
+  _deathMaskPrefab: {fileID: 7602200193259143599, guid: c8a6a5a4d2ff1e64081ace7c542271e6, type: 3}
 --- !u!114 &8358360567541710514
 MonoBehaviour:
   m_ObjectHideFlags: 0
