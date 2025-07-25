@@ -37,6 +37,6 @@ public class CircleZone : IZone
 
 	public bool Contains(Vector2 point)
 	{
-		return Vector2.Distance(point, GetCenter()) <= radius;
+		return Vector2.Distance(point, GetCenter()) <= radius + .1f;
 	}
 }
