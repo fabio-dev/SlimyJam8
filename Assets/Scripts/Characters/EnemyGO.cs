@@ -8,6 +8,8 @@ public class EnemyGO : ACharacterGO
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _health;
     [SerializeField] private float _basicAttackCooldown;
+    [SerializeField] private int _score = 10;
+
     private DropManager _dropManager;
     public Enemy Enemy => Character as Enemy;
 
@@ -19,17 +21,18 @@ public class EnemyGO : ACharacterGO
         character.SetHealth(_health);
         character.SetMoveSpeed(_moveSpeed);
         character.BasicAttackCooldown = _basicAttackCooldown;
+        ((Enemy)character).Score = _score;
         _animatorController.Setup(this);
         TriggerOnSetup();
     }
 
-    protected override void OnDie()
+    protected override void OnDie(ACharacter character)
     {
         if (_dropManager != null)
         {
             _dropManager.Drop(transform.position);
         }
-        base.OnDie();
+        base.OnDie(character);
     }
 
     public void SetDropManager(DropManager dropManager)

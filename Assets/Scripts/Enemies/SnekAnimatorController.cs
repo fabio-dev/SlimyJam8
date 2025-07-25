@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Domain;
+using System;
 using UnityEngine;
 using UnityEngine.Rendering.UI;
 
@@ -214,7 +215,7 @@ public class SnekAnimatorController : MonoBehaviour, IAnimatorController
         }
     }
 
-    private void PlayDieAnimation()
+    private void PlayDieAnimation(ACharacter character)
     {
         switch (_orientation)
         {

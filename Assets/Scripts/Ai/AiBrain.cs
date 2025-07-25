@@ -1,3 +1,4 @@
+using Assets.Scripts.Domain;
 using UnityEngine;
 
 public class AiBrain : MonoBehaviour
@@ -56,7 +57,7 @@ public class AiBrain : MonoBehaviour
         _owner.Enemy.OnDie += OnDie;
     }
 
-    private void OnDie()
+    private void OnDie(ACharacter character)
     {
 		_isDead = true;
     }

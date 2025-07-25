@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Domain;
+using UnityEngine;
 
 public class DuzeAnimatorController : MonoBehaviour, IAnimatorController
 {
@@ -39,7 +40,7 @@ public class DuzeAnimatorController : MonoBehaviour, IAnimatorController
         }
 
         _enemyGO.Enemy.OnDamaged -= PlayDamagedAnimation;
-        _enemyGO.Enemy.OnDie -= PLayDieAnimation;
+        _enemyGO.Enemy.OnDie -= PlayDieAnimation;
     }
 
     private void RegisterEvents()
@@ -50,7 +51,7 @@ public class DuzeAnimatorController : MonoBehaviour, IAnimatorController
         }
 
         _enemyGO.Enemy.OnDamaged += PlayDamagedAnimation;
-        _enemyGO.Enemy.OnDie += PLayDieAnimation;
+        _enemyGO.Enemy.OnDie += PlayDieAnimation;
     }
 
     private void PlayIdleAnimation()
@@ -64,7 +65,7 @@ public class DuzeAnimatorController : MonoBehaviour, IAnimatorController
         _damagedAnimator.Replay();
     }
 
-    private void PLayDieAnimation()
+    private void PlayDieAnimation(ACharacter character)
     {
         _dieAnimator.Play();
     }

@@ -10,7 +10,7 @@ namespace Assets.Scripts.Domain
 		}
 
         public event Action<float> OnDamaged;
-		public event Action OnDie;
+		public event Action<ACharacter> OnDie;
 
 		public void SetHealth(float health)
 		{
@@ -46,7 +46,7 @@ namespace Assets.Scripts.Domain
 
         private void TriggerOnDie()
         {
-            OnDie?.Invoke();
+            OnDie?.Invoke(this);
         }
 
         private void TriggerOnDamaged(float damage)

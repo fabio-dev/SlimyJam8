@@ -11,7 +11,6 @@ public class PowerUpManager : MonoBehaviour
     [SerializeField] private PowerUpsUI _powerUpsUI;
     private Player _player;
     private LevelManager _levelManager;
-    private bool _selectingPowerUps = false;
 
     public event Action OnSelecting;
     public event Action OnSelected;
@@ -40,7 +39,6 @@ public class PowerUpManager : MonoBehaviour
 
         OnSelecting?.Invoke();
 
-        _selectingPowerUps = true;
         _powerUpsUI.Show();
         List<APowerUp> powerUps = GetRandomPowerUps(3);
 
@@ -60,7 +58,6 @@ public class PowerUpManager : MonoBehaviour
         powerUp.Use(_player);
         _powerUpsUI.ClearPowerUps();
         _powerUpsUI.Hide();
-        _selectingPowerUps = false;
 
         OnSelected?.Invoke();
     }

@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private HealthUI _healthUI;
 	[SerializeField] private DropManager _dropManager;
 	[SerializeField] private ExperienceUI _experienceUI;
+	[SerializeField] private ScoreManager _scoreManager;
 
 	private bool _firstUpdate = false;
 	private Player _player;
@@ -52,8 +53,7 @@ public class GameManager : MonoBehaviour
 		_player.SetMoveSpeed(3f);
 		_playerGO.Setup(_player);
 
-        _enemySpawner.Setup(_playerGO);
-		_enemySpawner.SetDropManager(_dropManager);
+        _enemySpawner.Setup(_playerGO, _dropManager, _scoreManager);
 
 		_healthUI.Setup(_player);
 
@@ -63,7 +63,10 @@ public class GameManager : MonoBehaviour
 		_powerUpManager.Setup(_player, _levelManager);
 		_powerUpManager.OnSelecting += () => Pause();
 		_powerUpManager.OnSelected += () => Resume();
-	}
+
+        _scoreManager.Setup(_player);
+        _scoreManager.Run();
+    }
 
 	private void Pause()
 	{

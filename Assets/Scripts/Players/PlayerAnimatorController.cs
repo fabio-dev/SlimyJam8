@@ -67,7 +67,7 @@ public class PlayerAnimatorController : MonoBehaviour
         _damagedAnimator.OnComplete -= DamagedAnimatorComplete;
     }
 
-    private void PlayerDying()
+    private void PlayerDying(ACharacter character)
     {
         if (_currentAnimator != null)
         {

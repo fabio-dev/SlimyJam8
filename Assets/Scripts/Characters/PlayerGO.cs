@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Domain;
 using DG.Tweening;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerGO : ACharacterGO
@@ -54,11 +55,11 @@ public class PlayerGO : ACharacterGO
 		TriggerOnSetup();
 	}
 
-	protected override void OnDie()
+	protected override void OnDie(ACharacter character)
 	{
 		UnregisterEvents();
 
-		base.OnDie();
+		base.OnDie(character);
 	}
 
 	public void Pause()
@@ -85,7 +86,7 @@ public class PlayerGO : ACharacterGO
         Player.OnDie += Dying;
 	}
 
-    private void Dying()
+    private void Dying(ACharacter character)
     {
 		Pause();
     }

@@ -11,15 +11,14 @@ public class EnemySpawner : MonoBehaviour
 
     private PlayerGO _player;
     private DropManager _dropManager;
+    private ScoreManager _scoreManager;
 
-    public void SetDropManager(DropManager dropManager)
-    {
-        _dropManager = dropManager;
-    }
-
-    public void Setup(PlayerGO player)
+    public void Setup(PlayerGO player, DropManager dropManager, ScoreManager scoreManager)
     {
         _player = player;
+        _dropManager = dropManager;
+        _scoreManager = scoreManager;
+
         StartCoroutine(SpawnLoop());
     }
 
@@ -49,6 +48,13 @@ public class EnemySpawner : MonoBehaviour
         Enemy enemy = new Enemy();
         enemyGO.Setup(enemy);
         enemyGO.SetDropManager(_dropManager);
+        enemy.OnDie += UpdateScore;
+    }
+
+    private void UpdateScore(ACharacter enemy)
+    {
+        _scoreManager.AddScore(((Enemy)enemy).Score);
+        enemy.OnDie -= UpdateScore;
     }
 
     private EnemyGO RandomEnemy()

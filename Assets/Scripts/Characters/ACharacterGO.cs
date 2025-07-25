@@ -23,7 +23,7 @@ public abstract class ACharacterGO : SerializedMonoBehaviour
 		IsSetup = true;
     }
 
-	protected virtual void OnDie()
+	protected virtual void OnDie(ACharacter character)
 	{
 		Character.OnDie -= OnDie;
 		ZoneManager.Instance.AddZone(_deathZone);
