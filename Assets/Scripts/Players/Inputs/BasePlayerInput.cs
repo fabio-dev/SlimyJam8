@@ -11,16 +11,4 @@ public class BasePlayerInput : MonoBehaviour
     }
 
     protected Player Player => _playerGO.Player;
-
-    protected void SetOrientation(float xPosition)
-    {
-        if (xPosition > 0)
-        {
-            transform.rotation = Quaternion.identity;
-        }
-        else if (xPosition < 0)
-        {
-            transform.rotation = Quaternion.Euler(0, -180, 0);
-        }
-    }
 }

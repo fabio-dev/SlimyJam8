@@ -1,14 +1,17 @@
 ﻿using Assets.Scripts.Domain;
 using DG.Tweening;
-using UnityEditor;
 using UnityEngine;
 
 public class PlayerGO : ACharacterGO
 {
 	[SerializeField] private SpriteRenderer _shadowSpriteRenderer;
 	[SerializeField] private Transform _center;
+    [SerializeField] private Transform _gun;
+    [SerializeField] private Transform _gunSprite;
+	[SerializeField] private Camera _camera;
+	[SerializeField] private Transform _gunShotPosition;
 
-	private Cooldown _invulnerableCooldown;
+    private Cooldown _invulnerableCooldown;
 	private bool _invulnerableCooldownStarted;
 	private PlayerAnimatorController _animatorController;
 	private BasePlayerInput[] _inputs;
@@ -19,6 +22,18 @@ public class PlayerGO : ACharacterGO
 
     public PlayerState State => Player.State;
 
+	public Vector3 GunShotPosition => _gunShotPosition.position;
+
+	public void ShowGun()
+	{
+		_gunSprite.gameObject.SetActive(true);
+	}
+
+	public void HideGun()
+	{
+		_gunSprite.gameObject.SetActive(false);
+	}
+
     private void Start()
 	{
 		_inputs = GetComponents<BasePlayerInput>();
@@ -28,14 +43,37 @@ public class PlayerGO : ACharacterGO
     private void Update()
     {
         if (_invulnerableCooldownStarted && !_invulnerableCooldown.IsRunning())
-		{
-			_invulnerableCooldownStarted = false;
-			_invulnerableCooldown.Stop();
-			Player.Health.Vulnerable();
-		}
-	}
+        {
+            _invulnerableCooldownStarted = false;
+            _invulnerableCooldown.Stop();
+            Player.Health.Vulnerable();
+        }
 
-	public override void Setup(ACharacter character)
+        Vector2 mouseScreenPos = InputManager.Instance.Player.Value.Look.ReadValue<Vector2>();
+
+        HandlePlayerOrientation(mouseScreenPos);
+        HandleGunOrientation(mouseScreenPos);
+    }
+
+    private void HandlePlayerOrientation(Vector2 mouseScreenPos)
+    {
+        SpriteRenderer.transform.localScale = mouseScreenPos.x < Screen.width / 2f ? new Vector3(-1f, 1f, 1f) : Vector3.one;
+    }
+
+    private void HandleGunOrientation(Vector2 mouseScreenPos)
+    {
+        Vector3 mouseWorldPos = _camera.ScreenToWorldPoint(mouseScreenPos);
+        mouseWorldPos.z = 0;
+
+        Vector2 direction = mouseWorldPos - _gun.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        _gun.rotation = Quaternion.Euler(0, 0, angle);
+
+        _gunSprite.localScale = mouseScreenPos.x < Screen.width / 2f ? new Vector3(1f, -1f, 1f) : Vector3.one;
+    }
+
+    public override void Setup(ACharacter character)
 	{
 		if (Character != null)
 		{
@@ -57,6 +95,7 @@ public class PlayerGO : ACharacterGO
 
 	protected override void OnDie(ACharacter character)
 	{
+		HideGun();
 		UnregisterEvents();
 
 		base.OnDie(character);

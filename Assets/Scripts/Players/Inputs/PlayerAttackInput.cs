@@ -34,6 +34,8 @@ public class PlayerAttackInput : BasePlayerInput
 			return;
 		}
 
+		GameManager.Instance.PlayerGO.ShowGun();
+
 		CancellationTokenSource cancellationTokenSource = new();
 		_attackCancellationTokenSource = cancellationTokenSource;
 		_ = AttackLoop(cancellationTokenSource.Token);
@@ -41,7 +43,9 @@ public class PlayerAttackInput : BasePlayerInput
 
 	private void AttackCanceled(InputAction.CallbackContext obj)
 	{
-		_attackCancellationTokenSource?.Cancel();
+        GameManager.Instance.PlayerGO.HideGun();
+
+        _attackCancellationTokenSource?.Cancel();
 		_attackCancellationTokenSource = null;
 	}
 
@@ -77,7 +81,7 @@ public class PlayerAttackInput : BasePlayerInput
 
 		Vector2 shootDirection = (pointerWorldPosition - transform.position).normalized;
 
-		ProjectileGO projectile = Instantiate(_projectilePrefab, transform.position, Quaternion.identity);
+        ProjectileGO projectile = Instantiate(_projectilePrefab, GameManager.Instance.PlayerGO.GunShotPosition, Quaternion.identity);
 		projectile.transform.right = shootDirection;
 		projectile.Launch(shootDirection, GameManager.Instance.PlayerGO.Player.AttackDamages, 0f);
 	}

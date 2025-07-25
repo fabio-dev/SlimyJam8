@@ -52,8 +52,6 @@ public class PlayerDashInput : BasePlayerInput
         float interval = Player.DashZoneInterval;
         float speed = Player.DashMoveSpeed;
 
-        SetOrientation(direction.x);
-
         while (dashTimer < duration)
         {
             float deltaTime = Time.fixedDeltaTime;

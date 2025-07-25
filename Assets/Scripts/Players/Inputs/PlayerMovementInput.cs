@@ -50,7 +50,6 @@ public class PlayerMovementInput : BasePlayerInput
         if (CanMoveTo(targetPosition))
         {
             _rigidbody.MovePosition(targetPosition);
-            SetOrientation(moveInput.x);
             Player.Move(_moveInput);
         }
         else

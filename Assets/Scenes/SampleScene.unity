@@ -176,6 +176,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7946201230523200164, guid: d44a52fea652d05428622b90b2734348, type: 3}
+      propertyPath: _camera
+      value: 
+      objectReference: {fileID: 519420031}
+    - target: {fileID: 7946201230523200164, guid: d44a52fea652d05428622b90b2734348, type: 3}
       propertyPath: _idleSprites.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -290,22 +294,6 @@ PrefabInstance:
     - target: {fileID: 7946201230523200164, guid: d44a52fea652d05428622b90b2734348, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016817896487577540, guid: d44a52fea652d05428622b90b2734348, type: 3}
-      propertyPath: m_Size.x
-      value: 0.2801563
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016817896487577540, guid: d44a52fea652d05428622b90b2734348, type: 3}
-      propertyPath: m_Size.y
-      value: 0.69436353
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016817896487577540, guid: d44a52fea652d05428622b90b2734348, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.008043021
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016817896487577540, guid: d44a52fea652d05428622b90b2734348, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.38874796
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
