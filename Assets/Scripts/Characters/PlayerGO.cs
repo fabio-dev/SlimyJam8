@@ -116,5 +116,10 @@ public class PlayerGO : ACharacterGO
     private void JumpEnd()
 	{
 		_shadowSpriteRenderer.gameObject.SetActive(false);
+
+		if (!ZoneManager.Instance.IsInsideAnyZone(transform.position))
+		{
+			Player.Health.TakeDamage(1f);
+		}
     }
 }
