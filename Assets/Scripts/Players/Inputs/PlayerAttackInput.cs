@@ -52,9 +52,9 @@ public class PlayerAttackInput : BasePlayerInput
 	private async Task AttackLoop(CancellationToken token)
 	{
 		float timeSinceLastAttack = Time.time - _lastAttackTime;
-		if (timeSinceLastAttack < Player.BasicAttackCooldown)
+		if (timeSinceLastAttack < Player.AttackCooldown)
 		{
-			await Task.Delay(Mathf.RoundToInt((Player.BasicAttackCooldown - timeSinceLastAttack) * 1000), token);
+			await Task.Delay(Mathf.RoundToInt((Player.AttackCooldown - timeSinceLastAttack) * 1000), token);
 		}
 
 		try
@@ -63,7 +63,7 @@ public class PlayerAttackInput : BasePlayerInput
 			{
 				Shoot(_pointerScreenPosition);
 				_lastAttackTime = Time.time;
-				await Task.Delay(Mathf.RoundToInt(Player.BasicAttackCooldown * 1000));
+				await Task.Delay(Mathf.RoundToInt(Player.AttackCooldown * 1000));
 			}
 		}
 		catch (TaskCanceledException)

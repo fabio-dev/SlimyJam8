@@ -20,7 +20,7 @@ public class EnemyGO : ACharacterGO
         base.Setup(character);
         character.SetHealth(_health);
         character.SetMoveSpeed(_moveSpeed);
-        character.BasicAttackCooldown = _basicAttackCooldown;
+        character.SetAttackCooldown(_basicAttackCooldown);
         ((Enemy)character).Score = _score;
         _animatorController.Setup(this);
         TriggerOnSetup();

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Domain
 {
-	public class Player : ACharacter
+    public class Player : ACharacter
 	{
 		private PlayerState _state;
         private bool _isJumping;
@@ -42,13 +42,17 @@ namespace Assets.Scripts.Domain
 
 		public Player()
 		{
+			BaseSplashRadius = 1.7f;
 			SplashRadius = 1.7f;
+            BaseDashRadius = .5f;
 			DashRadius = .5f;
-			DashDuration = .2f;
+            DashDuration = .2f;
 			DashSpeedMultiplier = 6f;
 			DashZoneInterval = .015f;
 			JumpDuration = 1f;
             InvulnerabilityDuration = 1f;
+			BaseAttackDamages = 1f;
+			AttackDamages = 1f;
 
             DashAbility = new Ability(2f);
 			SplashAbility = new Ability(1f);
@@ -57,18 +61,24 @@ namespace Assets.Scripts.Domain
 			State = PlayerState.Idle;
 		}
 
+		public float BaseSplashRadius { get; private set; }
         public float SplashRadius { get; private set; }
+
+        public float BaseDashRadius { get; private set; }
 		public float DashRadius { get; private set; }
-		public float DashDuration { get; private set; }
+
+        public float DashDuration { get; private set; }
 		public float DashSpeedMultiplier { get; private set; }
+
 		public float JumpDuration { get; private set; }
 		public float DashMoveSpeed => MoveSpeed * DashSpeedMultiplier;
+
 		public float DashZoneInterval { get; private set; }
 		public float InvulnerabilityDuration { get; private set; }
+        public float BaseAttackDamages { get; private set; }
+        public float AttackDamages { get; private set; }
 
-		public bool CanMakeAction => State == PlayerState.Idle || State == PlayerState.Moving;
-
-		public float AttackDamages { get; set; } = 1f;
+        public bool CanMakeAction => State == PlayerState.Idle || State == PlayerState.Moving;
 
         public override void Move(Vector2 lastMove)
 		{
@@ -122,10 +132,34 @@ namespace Assets.Scripts.Domain
 		public void Invulnerable() => Health.Invulnerable();
 		public void Vulnerable() => Health.Vulnerable();
 
-		internal void DecreaseDashCooldownInPercentage(float baseCooldownReductionInPercentage)
-		{
-			float amountToReduce = DashAbility.BaseCooldown * baseCooldownReductionInPercentage;
-			DashAbility.DecreaseCooldown(amountToReduce);
-		}
-	}
+        internal void DecreaseDashCooldownInPercentage(float downPercentage)
+        {
+            float amountToReduce = DashAbility.BaseCooldown * downPercentage;
+            DashAbility.DecreaseCooldown(amountToReduce);
+        }
+
+        internal void DecreashAttackCooldown(float downPercentage)
+        {
+            float amountToReduce = BasicAttackCooldown * downPercentage;
+			AttackCooldown = Math.Max(.1f, AttackCooldown - amountToReduce);
+        }
+
+        internal void IncreaseDamage(float upPercentage)
+        {
+            float amount = BaseAttackDamages * upPercentage;
+            AttackDamages += amount;
+        }
+
+        internal void IncreaseDashRadius(float upPercentage)
+        {
+            float amount = BaseDashRadius * upPercentage;
+            DashRadius += amount;
+        }
+
+        internal void IncreaseSplashRadius(float upPercentage)
+        {
+            float amount = BaseSplashRadius * upPercentage;
+			SplashRadius += amount;
+        }
+    }
 }

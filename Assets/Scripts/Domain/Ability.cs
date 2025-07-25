@@ -26,7 +26,7 @@ namespace Assets.Scripts.Domain
 
         internal void DecreaseCooldown(float reduction)
         {
-            _cooldown.SetDuration(Math.Max(Cooldown - reduction, 0f));
+            _cooldown.SetDuration(Math.Max(Cooldown - reduction, .5f));
         }
     }
 }

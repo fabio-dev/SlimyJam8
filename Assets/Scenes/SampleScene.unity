@@ -28822,7 +28822,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2834426640982458229, guid: 2ced9d3fcb9ff314391d07bb1fa05114, type: 3}
       propertyPath: _availablePowerUps.Array.size
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2834426640982458229, guid: 2ced9d3fcb9ff314391d07bb1fa05114, type: 3}
       propertyPath: '_availablePowerUps.Array.data[0]'
@@ -28835,7 +28835,19 @@ PrefabInstance:
     - target: {fileID: 2834426640982458229, guid: 2ced9d3fcb9ff314391d07bb1fa05114, type: 3}
       propertyPath: '_availablePowerUps.Array.data[2]'
       value: 
-      objectReference: {fileID: 11400000, guid: 4efa277e278cbf645ab44cf6ce6a962e, type: 2}
+      objectReference: {fileID: 11400000, guid: 1db2051400ec2f9459d44ba508faf9a2, type: 2}
+    - target: {fileID: 2834426640982458229, guid: 2ced9d3fcb9ff314391d07bb1fa05114, type: 3}
+      propertyPath: '_availablePowerUps.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 4add183b960eeef4f8826414b495e4ba, type: 2}
+    - target: {fileID: 2834426640982458229, guid: 2ced9d3fcb9ff314391d07bb1fa05114, type: 3}
+      propertyPath: '_availablePowerUps.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c8f67b91b398c6b4da8e89e3b155f711, type: 2}
+    - target: {fileID: 2834426640982458229, guid: 2ced9d3fcb9ff314391d07bb1fa05114, type: 3}
+      propertyPath: '_availablePowerUps.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0cb49912b7e62854695b076a9d3d60ae, type: 2}
     - target: {fileID: 5183369182192173937, guid: 2ced9d3fcb9ff314391d07bb1fa05114, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

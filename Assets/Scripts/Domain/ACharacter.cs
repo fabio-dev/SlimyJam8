@@ -20,11 +20,19 @@ namespace Assets.Scripts.Domain
         }
 
 		public float MoveSpeed { get; private set; }
-		public float BasicAttackCooldown { get; set; }
+
+        public float AttackCooldown { get; protected set; }
+		public float BasicAttackCooldown { get; protected set; }
 		public bool IsMoving { get; private set; }
 		public Vector2 LastMove { get; private set; }
 
 		public HealthComponent Health { get; private set; }
+
+        internal void SetAttackCooldown(float amount)
+        {
+			AttackCooldown = amount;
+			BasicAttackCooldown = amount;
+        }
 
         public virtual void Move(Vector2 lastMove)
 		{

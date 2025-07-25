@@ -49,8 +49,8 @@ public class GameManager : MonoBehaviour
 
         _player = new Player();
 		_player.SetHealth(5f);
-		_player.BasicAttackCooldown = .5f;
-		_player.SetMoveSpeed(3f);
+		_player.SetAttackCooldown(.5f);
+        _player.SetMoveSpeed(3f);
 		_playerGO.Setup(_player);
 
         _enemySpawner.Setup(_playerGO, _dropManager, _scoreManager);
