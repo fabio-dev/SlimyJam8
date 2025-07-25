@@ -52,7 +52,7 @@ namespace Assets.Scripts.Domain
 
             DashAbility = new Ability(2f);
 			SplashAbility = new Ability(1f);
-			JumpAbility = new Ability(2f);
+			JumpAbility = new Ability(1f);
 
 			State = PlayerState.Idle;
 		}

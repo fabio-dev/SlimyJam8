@@ -1150,17 +1150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce12264754bf2b947aa273979838affd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1827836236 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6816307852886563758, guid: 56e88abc57dc2bb408e5fe5f18313e70, type: 3}
-  m_PrefabInstance: {fileID: 8481500027406674210}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce12264754bf2b947aa273979838affd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1872787006
 GameObject:
   m_ObjectHideFlags: 0
@@ -28469,6 +28458,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1338647876}
     m_Modifications:
+    - target: {fileID: 1239237510529816074, guid: e75705ca054542a49adef10a94a79e00, type: 3}
+      propertyPath: m_ChildAlignment
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2511866286340048497, guid: e75705ca054542a49adef10a94a79e00, type: 3}
       propertyPath: m_Name
       value: HealthUI
@@ -28491,31 +28484,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7777417491009370911, guid: e75705ca054542a49adef10a94a79e00, type: 3}
       propertyPath: m_Pivot.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7777417491009370911, guid: e75705ca054542a49adef10a94a79e00, type: 3}
       propertyPath: m_Pivot.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7777417491009370911, guid: e75705ca054542a49adef10a94a79e00, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7777417491009370911, guid: e75705ca054542a49adef10a94a79e00, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7777417491009370911, guid: e75705ca054542a49adef10a94a79e00, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7777417491009370911, guid: e75705ca054542a49adef10a94a79e00, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7777417491009370911, guid: e75705ca054542a49adef10a94a79e00, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 1920
       objectReference: {fileID: 0}
     - target: {fileID: 7777417491009370911, guid: e75705ca054542a49adef10a94a79e00, type: 3}
       propertyPath: m_SizeDelta.y
@@ -28551,7 +28544,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7777417491009370911, guid: e75705ca054542a49adef10a94a79e00, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 360
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7777417491009370911, guid: e75705ca054542a49adef10a94a79e00, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -28590,6 +28583,10 @@ PrefabInstance:
     - target: {fileID: 3566452318194680767, guid: 4417d537b12c9fe4c9cdd43b099a1156, type: 3}
       propertyPath: _volume
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3566452318194680767, guid: 4417d537b12c9fe4c9cdd43b099a1156, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3748969942754143983, guid: 4417d537b12c9fe4c9cdd43b099a1156, type: 3}
       propertyPath: m_LocalPosition.x
@@ -28877,7 +28874,7 @@ PrefabInstance:
     - target: {fileID: 2857551207110166237, guid: 85566a60ca1312d46bbffd6892a31390, type: 3}
       propertyPath: _jumpAbility
       value: 
-      objectReference: {fileID: 1827836236}
+      objectReference: {fileID: 0}
     - target: {fileID: 2857551207110166237, guid: 85566a60ca1312d46bbffd6892a31390, type: 3}
       propertyPath: _enemySpawner
       value: 
@@ -29052,7 +29049,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7576045005679946745, guid: 56e88abc57dc2bb408e5fe5f18313e70, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56e88abc57dc2bb408e5fe5f18313e70, type: 3}

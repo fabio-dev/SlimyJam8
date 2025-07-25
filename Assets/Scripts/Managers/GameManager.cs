@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private EnemySpawner _enemySpawner;
 	[SerializeField] private AbilityUI _dashAbility;
 	[SerializeField] private AbilityUI _splashAbility;
-	[SerializeField] private AbilityUI _jumpAbility;
 	[SerializeField] private PowerUpManager _powerUpManager;
 	[SerializeField] private CameraFollow _camera;
 	[SerializeField] private HealthUI _healthUI;
@@ -54,7 +53,6 @@ public class GameManager : MonoBehaviour
 
         _dashAbility.SetAbility(_player.DashAbility);
 		_splashAbility.SetAbility(_player.SplashAbility);
-		_jumpAbility.SetAbility(_player.JumpAbility);
 
 		_powerUpManager.Setup(_player);
 		_powerUpManager.OnSelecting += () => Pause();

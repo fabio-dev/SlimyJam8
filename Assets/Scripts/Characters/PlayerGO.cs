@@ -111,12 +111,10 @@ public class PlayerGO : ACharacterGO
 	private void JumpStart()
 	{
         _shadowSpriteRenderer.gameObject.SetActive(true);
-		gameObject.layer = LayerMask.NameToLayer("PlayerJumping");
     }
 
     private void JumpEnd()
 	{
 		_shadowSpriteRenderer.gameObject.SetActive(false);
-		gameObject.layer = LayerMask.NameToLayer("Player");
     }
 }
