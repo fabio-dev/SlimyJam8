@@ -8,7 +8,7 @@ public class ZoneManager : MonoBehaviour
 
 	private List<IZone> zones = new List<IZone>();
 
-	[SerializeField] private GameObject circleZoneVisualPrefab;
+	[SerializeField] private SplashGO circleZoneVisualPrefab;
 
 	private void Awake()
 	{
@@ -50,8 +50,9 @@ public class ZoneManager : MonoBehaviour
 			return;
 		}
 
-		GameObject visual = Instantiate(circleZoneVisualPrefab, center, Quaternion.identity);
-		visual.transform.localScale = Vector2.zero;
-		visual.transform.DOScale(radius * 2f, .15f);
+		SplashGO splash = Instantiate(circleZoneVisualPrefab, center, Quaternion.identity);
+		splash.transform.localScale = Vector2.zero;
+		splash.transform.DOScale(radius * 2f, .15f)
+			.OnComplete(() => splash.DisableDamages());
 	}
 }

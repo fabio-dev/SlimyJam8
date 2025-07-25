@@ -66,6 +66,8 @@ public class GameManager : MonoBehaviour
 
         _scoreManager.Setup(_player);
         _scoreManager.Run();
+
+		ZoneManager.Instance.AddZone(new CircleZone(PlayerGO.transform.position, 2f));
     }
 
 	private void Pause()

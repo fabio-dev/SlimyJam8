@@ -79,7 +79,7 @@ public class PlayerAttackInput : BasePlayerInput
 
 		ProjectileGO projectile = Instantiate(_projectilePrefab, transform.position, Quaternion.identity);
 		projectile.transform.right = shootDirection;
-		projectile.Launch(shootDirection, 1.0f, 0f);
+		projectile.Launch(shootDirection, GameManager.Instance.PlayerGO.Player.AttackDamages, 0f);
 	}
 
 	private void OnDestroy()

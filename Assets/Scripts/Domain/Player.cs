@@ -68,7 +68,9 @@ namespace Assets.Scripts.Domain
 
 		public bool CanMakeAction => State == PlayerState.Idle || State == PlayerState.Moving;
 
-		public override void Move(Vector2 lastMove)
+		public float AttackDamages { get; set; } = 1f;
+
+        public override void Move(Vector2 lastMove)
 		{
 			State = PlayerState.Moving;
 			base.Move(lastMove);
