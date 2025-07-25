@@ -8,6 +8,10 @@ public class EnemyGO : ACharacterGO
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _health;
     [SerializeField] private float _basicAttackCooldown;
+    private DropManager _dropManager;
+    public Enemy Enemy => Character as Enemy;
+
+    public event Action OnAttack;
 
     public override void Setup(ACharacter character)
     {
@@ -19,9 +23,19 @@ public class EnemyGO : ACharacterGO
         TriggerOnSetup();
     }
 
-    public Enemy Enemy => Character as Enemy;
+    protected override void OnDie()
+    {
+        if (_dropManager != null)
+        {
+            _dropManager.Drop(transform.position);
+        }
+        base.OnDie();
+    }
 
-    public event Action OnAttack;
+    public void SetDropManager(DropManager dropManager)
+    {
+        _dropManager = dropManager;
+    }
 
     public void TriggerAttack()
     {

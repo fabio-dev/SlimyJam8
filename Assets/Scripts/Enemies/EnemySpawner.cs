@@ -10,6 +10,12 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float _spawnRadiusMax = 12f;
 
     private PlayerGO _player;
+    private DropManager _dropManager;
+
+    public void SetDropManager(DropManager dropManager)
+    {
+        _dropManager = dropManager;
+    }
 
     public void Setup(PlayerGO player)
     {
@@ -42,6 +48,7 @@ public class EnemySpawner : MonoBehaviour
 
         Enemy enemy = new Enemy();
         enemyGO.Setup(enemy);
+        enemyGO.SetDropManager(_dropManager);
     }
 
     private EnemyGO RandomEnemy()

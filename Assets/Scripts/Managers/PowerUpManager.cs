@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Domain;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,9 +9,8 @@ public class PowerUpManager : MonoBehaviour
 {
     [SerializeField] private APowerUp[] _availablePowerUps;
     [SerializeField] private PowerUpsUI _powerUpsUI;
-    [SerializeField] private float _powerUpSpawnCooldown = 10f;
     private Player _player;
-    private float _lastTimeSincePowerUpSpawned = float.MinValue;
+    private LevelManager _levelManager;
     private bool _selectingPowerUps = false;
 
     public event Action OnSelecting;
@@ -22,26 +22,22 @@ public class PowerUpManager : MonoBehaviour
         _powerUpsUI.Hide();
     }
 
-    public void Setup(Player player)
+    public void Setup(Player player, LevelManager levelManager)
     {
         _player = player;
-        _lastTimeSincePowerUpSpawned = Time.time;
+        _levelManager = levelManager;
+        _levelManager.OnLevelUp += LevelUp;
     }
 
-    private void Update()
+    private void LevelUp()
     {
-        if (_player == null
-            || Time.time <= _lastTimeSincePowerUpSpawned + _powerUpSpawnCooldown
-            || _selectingPowerUps)
-        {
-            return;
-        }
-
-        ShowPowerUpsUI();
+        StartCoroutine(ShowPowerUpsUI());
     }
 
-    private void ShowPowerUpsUI()
+    private IEnumerator ShowPowerUpsUI()
     {
+        yield return new WaitForSeconds(1f);
+
         OnSelecting?.Invoke();
 
         _selectingPowerUps = true;
@@ -65,7 +61,6 @@ public class PowerUpManager : MonoBehaviour
         _powerUpsUI.ClearPowerUps();
         _powerUpsUI.Hide();
         _selectingPowerUps = false;
-        _lastTimeSincePowerUpSpawned = Time.time;
 
         OnSelected?.Invoke();
     }
@@ -94,5 +89,10 @@ public class PowerUpManager : MonoBehaviour
         }
 
         return selectedPowerUps;
+    }
+
+    private void OnDestroy()
+    {
+        _levelManager.OnLevelUp -= LevelUp;
     }
 }

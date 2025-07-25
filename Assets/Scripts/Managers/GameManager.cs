@@ -1,5 +1,4 @@
 using Assets.Scripts.Domain;
-using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -11,10 +10,12 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private PowerUpManager _powerUpManager;
 	[SerializeField] private CameraFollow _camera;
 	[SerializeField] private HealthUI _healthUI;
+	[SerializeField] private DropManager _dropManager;
+	[SerializeField] private ExperienceUI _experienceUI;
 
 	private bool _firstUpdate = false;
 	private Player _player;
-
+	private LevelManager _levelManager;
 	public PlayerGO PlayerGO { get { return _playerGO; } }
 	public static GameManager Instance { get; private set; }
 
@@ -41,20 +42,25 @@ public class GameManager : MonoBehaviour
 
 	private void FirstUpdate()
 	{
-		_player = new Player();
+        _levelManager = new LevelManager();
+		_dropManager.Setup(_levelManager);
+        _experienceUI.Setup(_levelManager);
+
+        _player = new Player();
 		_player.SetHealth(5f);
 		_player.BasicAttackCooldown = .5f;
 		_player.SetMoveSpeed(3f);
 		_playerGO.Setup(_player);
 
         _enemySpawner.Setup(_playerGO);
+		_enemySpawner.SetDropManager(_dropManager);
 
 		_healthUI.Setup(_player);
 
         _dashAbility.SetAbility(_player.DashAbility);
 		_splashAbility.SetAbility(_player.SplashAbility);
 
-		_powerUpManager.Setup(_player);
+		_powerUpManager.Setup(_player, _levelManager);
 		_powerUpManager.OnSelecting += () => Pause();
 		_powerUpManager.OnSelected += () => Resume();
 	}

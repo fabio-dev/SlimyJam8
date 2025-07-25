@@ -50,6 +50,9 @@ TagManager:
   - name: Splash
     uniqueID: 3867113009
     locked: 0
+  - name: Items
+    uniqueID: 627006253
+    locked: 0
   - name: Units
     uniqueID: 2186173743
     locked: 0
