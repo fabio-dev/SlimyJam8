@@ -30177,6 +30177,18 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
+      propertyPath: _phases.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
+      propertyPath: '_phases.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 5983dd2feb7a4e84892f9ac0aeb13f59, type: 2}
+    - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
+      propertyPath: '_phases.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 32da48de9c514f9408297463dc00f420, type: 2}
+    - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
       propertyPath: _enemyPrefabs.Array.size
       value: 2
       objectReference: {fileID: 0}
