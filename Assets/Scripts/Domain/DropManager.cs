@@ -7,10 +7,10 @@ namespace Assets.Scripts.Domain
     {
         [SerializeField] private CollectibleGO _collectiblePrefab;
 
-        private int _gemSDropWeight = 44;
-        private int _gemMDropWeight = 5;
-        private int _gemLDropWeight = 1;
-        private int _heartDropWeight = 100;
+        private int _gemSDropWeight = 88;
+        private int _gemMDropWeight = 8;
+        private int _gemLDropWeight = 3;
+        private int _heartDropWeight = 1;
 
         private LevelManager _levelManager;
         private PlayerGO _player;
