@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleZoneVisualPrefab: {fileID: 1227300049262366289, guid: b8fd237d1c6032d4482d2a2ac338724e, type: 3}
+  _splashParticles: {fileID: 1203741516527364076, guid: 760c3d4a2f181da42ba009bfb57d2561, type: 3}

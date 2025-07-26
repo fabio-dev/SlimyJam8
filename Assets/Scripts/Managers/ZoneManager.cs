@@ -9,7 +9,7 @@ public class ZoneManager : MonoBehaviour
 	private List<IZone> zones = new List<IZone>();
 
 	[SerializeField] private SplashGO circleZoneVisualPrefab;
-
+	[SerializeField] private GameObject _splashParticles;
 	private void Awake()
 	{
 		if (Instance != null && Instance != this)
@@ -54,5 +54,8 @@ public class ZoneManager : MonoBehaviour
 		splash.transform.localScale = Vector2.zero;
 		splash.transform.DOScale(radius * 2f, .15f)
 			.OnComplete(() => splash.DisableDamages());
-	}
+
+        GameObject particles = Instantiate(_splashParticles, splash.transform.position, Quaternion.identity);
+        Destroy(particles, 1f);
+    }
 }

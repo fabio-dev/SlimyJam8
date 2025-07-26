@@ -176,6 +176,7 @@ MonoBehaviour:
   _gunShotPosition: {fileID: 7531282495160690201}
   _animatorController: {fileID: 0}
   _inputs: []
+  _splashParticles: {fileID: 1203741516527364076, guid: 760c3d4a2f181da42ba009bfb57d2561, type: 3}
 --- !u!114 &8632900487272391373
 MonoBehaviour:
   m_ObjectHideFlags: 0

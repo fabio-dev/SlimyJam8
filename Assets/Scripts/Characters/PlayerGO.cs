@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Domain;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class PlayerGO : ACharacterGO
 {
@@ -12,8 +11,9 @@ public class PlayerGO : ACharacterGO
     [SerializeField] private Transform _body;
     [SerializeField] private Camera _camera;
 	[SerializeField] private Transform _gunShotPosition;
-	[SerializeField] private PlayerAnimatorController _animatorController;
-	[SerializeField] private BasePlayerInput[] _inputs;
+	[SerializeField] private GameObject _splashParticles;
+    private PlayerAnimatorController _animatorController;
+    private BasePlayerInput[] _inputs;
 
     private Cooldown _invulnerableCooldown;
 	private bool _invulnerableCooldownStarted;
@@ -162,5 +162,8 @@ public class PlayerGO : ACharacterGO
 		{
 			Player.Health.TakeDamage(1f);
 		}
+
+		GameObject particles = Instantiate(_splashParticles, transform.position, Quaternion.identity);
+		Destroy(particles, 1f);
     }
 }
