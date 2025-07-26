@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Domain;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerGO : ACharacterGO
 {
@@ -10,11 +11,11 @@ public class PlayerGO : ACharacterGO
     [SerializeField] private Transform _gunSprite;
 	[SerializeField] private Camera _camera;
 	[SerializeField] private Transform _gunShotPosition;
+	[SerializeField] private PlayerAnimatorController _animatorController;
+	[SerializeField] private BasePlayerInput[] _inputs;
 
     private Cooldown _invulnerableCooldown;
 	private bool _invulnerableCooldownStarted;
-	private PlayerAnimatorController _animatorController;
-	private BasePlayerInput[] _inputs;
 
 	public Player Player => Character as Player;
 
@@ -32,12 +33,6 @@ public class PlayerGO : ACharacterGO
 	public void HideGun()
 	{
 		_gunSprite.gameObject.SetActive(false);
-	}
-
-    private void Start()
-	{
-		_inputs = GetComponents<BasePlayerInput>();
-		_animatorController = GetComponent<PlayerAnimatorController>();
 	}
 
     private void Update()
@@ -74,8 +69,11 @@ public class PlayerGO : ACharacterGO
     }
 
     public override void Setup(ACharacter character)
-	{
-		if (Character != null)
+    {
+        _inputs = GetComponents<BasePlayerInput>();
+        _animatorController = GetComponent<PlayerAnimatorController>();
+
+        if (Character != null)
 		{
 			UnregisterEvents();
 		}

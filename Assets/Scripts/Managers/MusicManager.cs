@@ -1,4 +1,6 @@
 using UnityEngine;
+using DG.Tweening;
+using System;
 
 public class MusicManager : MonoBehaviour
 {
@@ -26,8 +28,16 @@ public class MusicManager : MonoBehaviour
         _audioSource.volume = _volume;
         _audioSource.loop = _loop;
         _audioSource.playOnAwake = false;
+    }
 
-        PlayMusic();
+    public void ChangeClip(AudioClip clip)
+    {
+        StopMusic(() =>
+        {
+            _audioSource.clip = clip;
+            _audioSource.volume = _volume;
+            PlayMusic();
+        });
     }
 
     public void PlayMusic()
@@ -38,11 +48,19 @@ public class MusicManager : MonoBehaviour
         }
     }
 
-    public void StopMusic()
+    public void StopMusic(Action onComplete = null)
     {
         if (_audioSource != null && _audioSource.isPlaying)
         {
-            _audioSource.Stop();
+            _audioSource.DOFade(0f, 1f).OnComplete(() =>
+            {
+                _audioSource.Stop();
+                onComplete?.Invoke();
+            });
+        }
+        else
+        {
+            onComplete?.Invoke();
         }
     }
 
