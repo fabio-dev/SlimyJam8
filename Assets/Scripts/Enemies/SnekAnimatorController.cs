@@ -35,6 +35,7 @@ public class SnekAnimatorController : MonoBehaviour, IAnimatorController
     private EnemyGO _enemyGO;
     private Vector2 _lastPosition;
     private SpriteOrientation _orientation;
+    private float _scale;
 
     private event Action<SpriteOrientation> _onOrientationChanged;
 
@@ -71,6 +72,11 @@ public class SnekAnimatorController : MonoBehaviour, IAnimatorController
 
         RegisterEvents();
         PlayIdleAnimation();
+    }
+
+    private void Start()
+    {
+        _scale = transform.localScale.x;
     }
 
     private void FixedUpdate()
@@ -115,8 +121,8 @@ public class SnekAnimatorController : MonoBehaviour, IAnimatorController
         _onOrientationChanged?.Invoke(orientation);
     }
 
-    private void LookRight() => transform.localScale = Vector2.one;
-    private void LookLeft() => transform.localScale = new Vector2(-1, 1);
+    private void LookRight() => transform.localScale = new Vector2(_scale, _scale);
+    private void LookLeft() => transform.localScale = new Vector2(-_scale, _scale);
 
     private void UnregisterEvents()
     {

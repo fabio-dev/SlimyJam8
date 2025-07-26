@@ -80,7 +80,6 @@ public class PlayerAnimatorController : MonoBehaviour
 
     private void OneTimeAnimatorComplete()
     {
-        Debug.Log("one time animator complete with state " + _playerGO.Player.State);
         PlayerStateChanged(_playerGO.Player.State);
     }
 

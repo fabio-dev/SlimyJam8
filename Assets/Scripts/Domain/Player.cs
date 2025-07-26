@@ -62,8 +62,8 @@ namespace Assets.Scripts.Domain
 			BaseAttackDamages = 1f;
 			AttackDamages = 1f;
 
-            DashAbility = new Ability(2f);
-			SplashAbility = new Ability(1f);
+            DashAbility = new Ability(2.5f);
+			SplashAbility = new Ability(8f);
 			JumpAbility = new Ability(1f);
 
 			State = PlayerState.Idle;

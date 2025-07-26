@@ -9,6 +9,7 @@ public class EnemyGO : ACharacterGO
     [SerializeField] private float _health;
     [SerializeField] private float _basicAttackCooldown;
     [SerializeField] private int _score = 10;
+    [SerializeField] private int _numberOfDrops = 1;
 
     private DropManager _dropManager;
     public Enemy Enemy => Character as Enemy;
@@ -36,7 +37,21 @@ public class EnemyGO : ACharacterGO
     {
         if (_dropManager != null)
         {
-            _dropManager.Drop(transform.position);
+            if (_numberOfDrops == 1)
+            {
+                _dropManager.Drop(transform.position);
+            }
+            else
+            {
+                for (int i = 0; i < _numberOfDrops; i++)
+                {
+                    float rngX = UnityEngine.Random.Range(transform.position.x - 1f, transform.position.x + 1f);
+                    float rngY = UnityEngine.Random.Range(transform.position.y - 1f, transform.position.y + 1f);
+                    Vector2 dropPosition = new Vector2(rngX, rngY);
+
+                    _dropManager.Drop(dropPosition);
+                }
+            }
         }
 
         SFXPlayer.Instance.PlayEnemyDie();

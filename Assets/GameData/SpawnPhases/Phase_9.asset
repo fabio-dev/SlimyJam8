@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f0f92fb8d7a29c40b6c47378f8a18a3, type: 3}
+  m_Name: Phase_9
+  m_EditorClassIdentifier: 
+  Enemies:
+  - {fileID: 11400000, guid: c2d4ae883baed1142a6283b1784142ba, type: 2}
+  - {fileID: 11400000, guid: c2d4ae883baed1142a6283b1784142ba, type: 2}
+  - {fileID: 11400000, guid: 2768db46313233a48a29eac530bfb42b, type: 2}
+  - {fileID: 11400000, guid: 2768db46313233a48a29eac530bfb42b, type: 2}
+  - {fileID: 11400000, guid: 601dc52db6fb487448a3b1186a98f336, type: 2}
+  - {fileID: 11400000, guid: 601dc52db6fb487448a3b1186a98f336, type: 2}
+  - {fileID: 11400000, guid: 264decc2bb888054d8dad6c5f747e94c, type: 2}
+  - {fileID: 11400000, guid: 264decc2bb888054d8dad6c5f747e94c, type: 2}
+  - {fileID: 11400000, guid: b58942f5d713913439409ed2e07eb865, type: 2}
+  - {fileID: 11400000, guid: b58942f5d713913439409ed2e07eb865, type: 2}
+  - {fileID: 11400000, guid: 4f441c48aa86c5d4b945c0c5fc095261, type: 2}
+  - {fileID: 11400000, guid: 4f441c48aa86c5d4b945c0c5fc095261, type: 2}
+  - {fileID: 11400000, guid: 989f0ef22739ec44faba747eda4b7821, type: 2}
+  PhaseDurationInSeconds: 60
+  MinDelayToSpawnInSeconds: 0.8
+  MaxDelayToSpawnInSeconds: 1.8
