@@ -1,50 +1,58 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Domain.Collectibles;
+using UnityEngine;
 
 namespace Assets.Scripts.Domain
 {
     public class DropManager : MonoBehaviour
     {
-        [SerializeField] private GemGO _gemSPrefab;
-        [SerializeField] private GemGO _gemMPrefab;
-        [SerializeField] private GemGO _gemLPrefab;
+        [SerializeField] private CollectibleGO _collectiblePrefab;
 
         private int _gemSDropWeight = 44;
         private int _gemMDropWeight = 5;
         private int _gemLDropWeight = 1;
-        private LevelManager _levelManager;
+        private int _heartDropWeight = 100;
 
-        public void Setup(LevelManager levelManager)
+        private LevelManager _levelManager;
+        private PlayerGO _player;
+
+        private Gem _gemS = new Gem(1);
+        private Gem _gemM = new Gem(5);
+        private Gem _gemL = new Gem(10);
+        private Heart _heart = new Heart();
+
+        public void Setup(PlayerGO player, LevelManager levelManager)
         {
+            _player = player;
             _levelManager = levelManager;
         }
 
         public void Drop(Vector2 position)
         {
-            GemGO prefab = RandomGemPrefab();
-            GemGO gem = Instantiate(prefab, position, Quaternion.identity);
-            gem.OnCollected += GainXP;
+            CollectibleGO collectibleGO = Instantiate(_collectiblePrefab, position, Quaternion.identity);
+            ACollectible collectible = RandomCollectible();
+            collectibleGO.Setup(collectible, _player, _levelManager);
         }
 
-        private void GainXP(int xp)
+        private ACollectible RandomCollectible()
         {
-            _levelManager.AddXP(xp);
-        }
-
-        private GemGO RandomGemPrefab()
-        {
-            int rng = Random.Range(0, _gemLDropWeight + _gemMDropWeight + _gemSDropWeight);
+            int rng = Random.Range(0, _gemLDropWeight + _gemMDropWeight + _gemSDropWeight + _heartDropWeight);
 
             if (rng < _gemSDropWeight)
             {
-                return _gemSPrefab;
+                return _gemS;
             }
 
             if (rng < _gemSDropWeight + _gemMDropWeight)
             {
-                return _gemMPrefab;
+                return _gemM;
             }
 
-            return _gemLPrefab;
+            if (rng < _gemSDropWeight + _gemMDropWeight + _gemLDropWeight)
+            {
+                return _gemL;
+            }
+
+            return _heart;
         }
     }
 }

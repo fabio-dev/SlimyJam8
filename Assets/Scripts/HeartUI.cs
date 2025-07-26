@@ -10,6 +10,9 @@ public class HeartUI : MonoBehaviour
 
     public void Fill()
     {
+        Sequence fillAnimation = DOTween.Sequence();
+        fillAnimation.Append(transform.DOScale(1.2f, .5f));
+        fillAnimation.Append(transform.DOScale(1f, .5f));
         _image.sprite = _filled;
     }
 

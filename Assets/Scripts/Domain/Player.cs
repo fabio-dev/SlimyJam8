@@ -15,7 +15,10 @@ namespace Assets.Scripts.Domain
 		public Ability DashAbility { get; private set; }
 		public Ability SplashAbility { get; private set; }
 		public Ability JumpAbility { get; private set; }
-		public PlayerState State
+
+        private bool _isSplashing;
+
+        public PlayerState State
 		{
 			get => _state;
 			set
@@ -26,6 +29,11 @@ namespace Assets.Scripts.Domain
 				}
 
 				if (_isJumping && value != PlayerState.Jumping)
+				{
+					return;
+				}
+
+				if (_isSplashing && value != PlayerState.Splashing)
 				{
 					return;
 				}
@@ -120,13 +128,15 @@ namespace Assets.Scripts.Domain
 
 		public void Splash()
 		{
-			State = PlayerState.Splashing;
+			_isSplashing = true;
+            State = PlayerState.Splashing;
 			SplashAbility?.Cast();
 		}
 
 		public void EndSplash()
 		{
-			State = PlayerState.Idle;
+            _isSplashing = false;
+            State = PlayerState.Idle;
 		}
 
 		public void Invulnerable() => Health.Invulnerable();

@@ -44,6 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372e2f3d05d08d743b1a4e99b786fcfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gemSPrefab: {fileID: 4108332376819407912, guid: a39505af0d104e74ebe39add51eb4832, type: 3}
-  _gemMPrefab: {fileID: 1522377908539982041, guid: 9452077549ad0224f842a0cf47d1e0aa, type: 3}
-  _gemLPrefab: {fileID: 6145163173571062073, guid: 93b985a66408db94bac11849f5bf54d4, type: 3}
+  _collectiblePrefab: {fileID: 7733787611984277913, guid: 692391792a58b114481328e12cbd8eeb, type: 3}

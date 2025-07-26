@@ -141,6 +141,8 @@ public class PlayerGO : ACharacterGO
           .DOFade(0f, .1f)
           .SetLoops(5, LoopType.Yoyo)
           .OnComplete(() => SpriteRenderer.DOFade(1f, 0f));
+
+		SFXPlayer.Instance.PlayPlayerHurt();
     }
 
     private void UnregisterEvents()
@@ -161,6 +163,7 @@ public class PlayerGO : ACharacterGO
 		if (!ZoneManager.Instance.IsInsideAnyZone(transform.position))
 		{
 			Player.Health.TakeDamage(1f);
+			ZoneManager.Instance.AddZone(new CircleZone(transform.position, 1f));
 		}
 
 		GameObject particles = Instantiate(_splashParticles, transform.position, Quaternion.identity);

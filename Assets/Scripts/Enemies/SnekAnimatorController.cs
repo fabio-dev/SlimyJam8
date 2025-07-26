@@ -171,7 +171,6 @@ public class SnekAnimatorController : MonoBehaviour, IAnimatorController
             || _currentAnimator == _idleAnimatorFace
             || _currentAnimator == _idleAnimatorSide)
         {
-        Debug.Log("Replaying idle");
             PlayIdleAnimation();
         }
     }

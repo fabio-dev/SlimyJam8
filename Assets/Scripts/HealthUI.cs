@@ -22,6 +22,7 @@ public class HealthUI : MonoBehaviour
         _healthMarker = (int)player.Health.BaseValue - 1;
 
         _player.OnDamaged += OnDamaged;
+        _player.OnHealed += OnHealed;
     }
 
     private void OnDamaged(float damages)
@@ -33,5 +34,21 @@ public class HealthUI : MonoBehaviour
             _healthMarker--;
             damagesAsInt--;
         }
+    }
+
+    private void OnHealed(float heal)
+    {
+        int healAsInt = (int)heal;
+        while (_healthMarker < _hearts.Count && healAsInt > 0)
+        {
+            _healthMarker++;
+            _hearts[_healthMarker].Fill();
+            healAsInt--;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        _player.OnDamaged -= OnDamaged;
     }
 }

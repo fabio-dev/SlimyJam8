@@ -10,16 +10,18 @@ namespace Assets.Scripts.Domain
 		}
 
         public event Action<float> OnDamaged;
-		public event Action<ACharacter> OnDie;
+        public event Action<float> OnHealed;
+        public event Action<ACharacter> OnDie;
 
 		public void SetHealth(float health)
 		{
 			Health = new HealthComponent(health);
             Health.OnDamaged += TriggerOnDamaged;
             Health.OnDie += TriggerOnDie;
+            Health.OnHealed += TriggerOnHealed;
         }
 
-		public float MoveSpeed { get; private set; }
+        public float MoveSpeed { get; private set; }
 
         public float AttackCooldown { get; protected set; }
 		public float BasicAttackCooldown { get; protected set; }
@@ -60,6 +62,11 @@ namespace Assets.Scripts.Domain
         private void TriggerOnDamaged(float damage)
         {
             OnDamaged?.Invoke(damage);
+        }
+
+        private void TriggerOnHealed(float heal)
+        {
+			OnHealed?.Invoke(heal);
         }
     }
 }

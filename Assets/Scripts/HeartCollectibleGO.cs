@@ -2,7 +2,7 @@ using DG.Tweening;
 using System;
 using UnityEngine;
 
-public class GemGO : MonoBehaviour
+public class HeartCollectibleGO : MonoBehaviour
 {
     private Sequence _idleAnimation;
     [SerializeField] private int _value;
@@ -22,11 +22,11 @@ public class GemGO : MonoBehaviour
     {
         if (collider.gameObject.TryGetComponent(out PlayerGO playerGO))
         {
-            CollectGem();
+            CollectHeart();
         }
     }
 
-    private void CollectGem()
+    private void CollectHeart()
     {
         SFXPlayer.Instance.PlayLoot();
         _idleAnimation.Kill();

@@ -83,15 +83,15 @@ public class GameManager : MonoBehaviour
 		_playerGO.gameObject.SetActive(true);
         _playerSpawning.gameObject.SetActive(false);
 
-        _levelManager = new LevelManager();
-        _dropManager.Setup(_levelManager);
-        _experienceUI.Setup(_levelManager);
-
         _player = new Player();
         _player.SetHealth(5f);
         _player.SetAttackCooldown(.5f);
         _player.SetMoveSpeed(3f);
         _player.OnDie += LostGame;
+
+        _levelManager = new LevelManager();
+        _dropManager.Setup(_playerGO, _levelManager);
+        _experienceUI.Setup(_levelManager);
 
         _playerGO.Setup(_player);
 

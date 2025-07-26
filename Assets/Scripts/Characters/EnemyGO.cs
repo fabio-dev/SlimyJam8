@@ -21,9 +21,15 @@ public class EnemyGO : ACharacterGO
         character.SetHealth(_health);
         character.SetMoveSpeed(_moveSpeed);
         character.SetAttackCooldown(_basicAttackCooldown);
+        character.OnDamaged += PlayDamagedSound;
         ((Enemy)character).Score = _score;
         _animatorController.Setup(this);
         TriggerOnSetup();
+    }
+
+    private void PlayDamagedSound(float damaged)
+    {
+        SFXPlayer.Instance.PlayEnemyHurt();
     }
 
     protected override void OnDie(ACharacter character)
@@ -54,5 +60,6 @@ public class EnemyGO : ACharacterGO
     private void OnDestroy()
     {
         _animatorController.Kill();
+        Enemy.OnDamaged -= PlayDamagedSound;
     }
 }

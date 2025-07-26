@@ -13,6 +13,7 @@ namespace Assets.Scripts.Domain
 		}
 
 		public event Action<float> OnDamaged;
+		public event Action<float> OnHealed;
         public event Action OnDie;
 
 		public float BaseValue { get; private set; }
@@ -46,5 +47,14 @@ namespace Assets.Scripts.Domain
 
         internal void Invulnerable() => _invulnerable = true;
 		internal void Vulnerable() => _invulnerable = false;
+
+        internal void Increase(float value)
+        {
+			if (DamageTaken > 0)
+			{
+				DamageTaken -= value;
+				OnHealed?.Invoke(value);
+			}
+        }
     }
 }

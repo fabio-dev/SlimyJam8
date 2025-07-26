@@ -51,7 +51,7 @@ public class PlayerAnimatorController : MonoBehaviour
         _playerGO.Player.OnStateChanged += PlayerStateChanged;
         _playerGO.Player.Health.OnDamaged += PlayerDamaged;
         _playerGO.Player.OnDie += PlayerDying;
-        _damagedAnimator.OnComplete += DamagedAnimatorComplete;
+        _damagedAnimator.OnComplete += OneTimeAnimatorComplete;
     }
 
     private void UnregisterEvents()
@@ -64,7 +64,7 @@ public class PlayerAnimatorController : MonoBehaviour
         _playerGO.Player.OnStateChanged -= PlayerStateChanged;
         _playerGO.Player.Health.OnDamaged -= PlayerDamaged;
         _playerGO.Player.OnDie -= PlayerDying;
-        _damagedAnimator.OnComplete -= DamagedAnimatorComplete;
+        _damagedAnimator.OnComplete -= OneTimeAnimatorComplete;
     }
 
     private void PlayerDying(ACharacter character)
@@ -78,8 +78,9 @@ public class PlayerAnimatorController : MonoBehaviour
         _currentAnimator.Play();
     }
 
-    private void DamagedAnimatorComplete()
+    private void OneTimeAnimatorComplete()
     {
+        Debug.Log("one time animator complete with state " + _playerGO.Player.State);
         PlayerStateChanged(_playerGO.Player.State);
     }
 
