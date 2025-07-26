@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class SFXPlayer : MonoBehaviour
 {
-    public static SFXPlayer Instance { get; private set; }
+    [SerializeField] private AudioSource _audioSource;
 
-    private Camera _camera;
+    public static SFXPlayer Instance { get; private set; }
 
     [BoxGroup("Enemy")]
     [SerializeField] private AudioClip _enemyDie;
@@ -20,6 +20,10 @@ public class SFXPlayer : MonoBehaviour
     [SerializeField] private AudioClip _feshFallground;
     [BoxGroup("Player")]
     [SerializeField] private AudioClip _feshLevelUp;
+    [BoxGroup("Player")]
+    [SerializeField] private AudioClip _feshFalling;
+    [BoxGroup("Player")]
+    [SerializeField] private AudioClip _feshDashing;
     [BoxGroup("Player")]
     [SerializeField] private AudioClip[] _feshShoots;
     [BoxGroup("Player")]
@@ -50,10 +54,12 @@ public class SFXPlayer : MonoBehaviour
     public void PlayPlayerHurt() => Play(_feshHurt);
     public void PlayPlayerFallground() => Play(_feshFallground);
     public void PlayPlayerLevelUp() => Play(_feshLevelUp);
+    public void PlayPlayerFalling() => Play(_feshFalling);
+    public void PlayPlayerDashing() => Play(_feshDashing);
     public void PlayPlayerShoot() => PlayAny(_feshShoots);
     public void PlayPlayerJump() => PlayAny(_feshJumps);
     public void PlayPlayerSplash() => PlayAny(_feshFallsplashes);
-    public void PlayGameover() => Play(_gameover);
+    public void PlayGameOver() => Play(_gameover);
     public void PlayLoot() => PlayAny(_loots);
 
     public void PlayAny(AudioClip[] clip)
@@ -64,19 +70,6 @@ public class SFXPlayer : MonoBehaviour
 
     public void Play(AudioClip clip)
     {
-        AudioSource.PlayClipAtPoint(clip, CameraPosition);
-    }
-
-    private Vector3 CameraPosition
-    {
-        get
-        {
-            if (_camera == null)
-            {
-                _camera = FindFirstObjectByType<Camera>();
-            }
-
-            return _camera?.transform?.position ?? Vector3.zero;
-        }
+        _audioSource.PlayOneShot(clip);
     }
 }

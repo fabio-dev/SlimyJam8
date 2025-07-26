@@ -28,6 +28,7 @@ public class GemGO : MonoBehaviour
 
     private void CollectGem()
     {
+        SFXPlayer.Instance.PlayLoot();
         _idleAnimation.Kill();
         OnCollected?.Invoke(_value);
         Destroy(gameObject);

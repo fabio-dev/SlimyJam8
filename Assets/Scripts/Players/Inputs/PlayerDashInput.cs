@@ -44,6 +44,7 @@ public class PlayerDashInput : BasePlayerInput
 
     private IEnumerator DashCoroutine(Vector2 direction)
     {
+		SFXPlayer.Instance.PlayPlayerDashing();
         Player.Dash();
 
         float dashTimer = 0f;

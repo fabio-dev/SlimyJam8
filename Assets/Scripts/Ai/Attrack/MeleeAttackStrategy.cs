@@ -43,7 +43,7 @@ public class MeleeAttackStrategy : IAttackStrategy
 			{
 				_targetHealthComponent.TakeDamage(_attackDamage);
 				_cooldown.Start();
-				_owner.TriggerAttack();
+				_owner.TriggerAttack(true);
             }
         }
 	}

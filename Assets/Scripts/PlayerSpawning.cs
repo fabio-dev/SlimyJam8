@@ -15,6 +15,9 @@ public class PlayerSpawning : MonoBehaviour
 
     public void RunAnimation()
     {
+        SFXPlayer.Instance.PlayPlayerFalling();
+        _shadowSprite.transform.DOScale(1f, 1f).SetEase(Ease.OutCubic);
+
         Sequence animation = DOTween.Sequence();
         animation.Append(_feshSprite.transform.DOLocalMoveY(_feshSprite.transform.localPosition.y - 10f, 1f).SetEase(Ease.Linear));
         animation.AppendCallback(() =>

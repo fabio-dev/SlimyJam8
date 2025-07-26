@@ -15,13 +15,25 @@ public class PlayerJumpInput : BasePlayerInput
 		if (_jumpAnimation == null)
 		{
 			_jumpAnimation = _playerGO
-				.SpriteRenderer
+				.Body
 				.transform
 				.DOLocalMoveY(1f, Player.JumpDuration / 2)
 				.SetEase(Ease.OutQuad)
 				.SetLoops(2, LoopType.Yoyo)
 				.SetAutoKill(false)
-				.OnComplete(() => Player.EndJump());
+				.OnComplete(() =>
+				{
+					Player.EndJump();
+
+					if (ZoneManager.Instance.IsInsideAnyZone(transform.position))
+					{
+                        SFXPlayer.Instance.PlayPlayerSplash();
+                    }
+                    else
+					{
+                        SFXPlayer.Instance.PlayPlayerFallground();
+                    }
+                });
 			_jumpAnimation.Pause();
 		}
 

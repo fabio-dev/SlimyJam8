@@ -27,12 +27,14 @@ public class PlayerSplashInput : BasePlayerInput
 
 	private async Task MakeSplashAsync()
 	{
+		SFXPlayer.Instance.PlayPlayerJump();
 		Player?.Splash();
 		await Task.Delay(400);
 
 		var zone = new CircleZone(transform.position, Player.SplashRadius);
 		ZoneManager.Instance.AddZone(zone);
 
+		SFXPlayer.Instance.PlayPlayerSplash();
 		Player?.EndSplash();
 	}
 

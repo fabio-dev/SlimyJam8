@@ -32,6 +32,8 @@ public class EnemyGO : ACharacterGO
         {
             _dropManager.Drop(transform.position);
         }
+
+        SFXPlayer.Instance.PlayEnemyDie();
         base.OnDie(character);
     }
 
@@ -40,8 +42,12 @@ public class EnemyGO : ACharacterGO
         _dropManager = dropManager;
     }
 
-    public void TriggerAttack()
+    public void TriggerAttack(bool isMelee)
     {
+        if (!isMelee)
+        {
+            SFXPlayer.Instance.PlayEnemyShoot();
+        }
         OnAttack?.Invoke();
     }
 

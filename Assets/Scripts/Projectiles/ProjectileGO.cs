@@ -36,6 +36,16 @@ public class ProjectileGO : MonoBehaviour
         }
 
         characterGO.Character.Health.TakeDamage(_damageAmount);
+
+        if (characterGO is EnemyGO)
+        {
+            SFXPlayer.Instance.PlayEnemyHurt();
+        }
+        else
+        {
+            SFXPlayer.Instance.PlayPlayerHurt();
+        }
+
         Destroy(gameObject, 0f);
     }
 }

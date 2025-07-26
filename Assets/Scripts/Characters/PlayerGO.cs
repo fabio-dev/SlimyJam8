@@ -9,7 +9,8 @@ public class PlayerGO : ACharacterGO
 	[SerializeField] private Transform _center;
     [SerializeField] private Transform _gun;
     [SerializeField] private Transform _gunSprite;
-	[SerializeField] private Camera _camera;
+    [SerializeField] private Transform _body;
+    [SerializeField] private Camera _camera;
 	[SerializeField] private Transform _gunShotPosition;
 	[SerializeField] private PlayerAnimatorController _animatorController;
 	[SerializeField] private BasePlayerInput[] _inputs;
@@ -20,6 +21,8 @@ public class PlayerGO : ACharacterGO
 	public Player Player => Character as Player;
 
 	public Transform Center => _center;
+
+	public Transform Body => _body;
 
     public PlayerState State => Player.State;
 

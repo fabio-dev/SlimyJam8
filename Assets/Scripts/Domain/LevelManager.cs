@@ -39,6 +39,7 @@ namespace Assets.Scripts.Domain
             CurrentLevelMaxXP += XPStepByLevel;
             CurrentLevelXP = 0;
             OnLevelUp?.Invoke();
+            SFXPlayer.Instance.PlayPlayerLevelUp();
         }
     }
 }

@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
 		_playerSpawning.OnGroundTouched += () =>
         {
             ZoneManager.Instance.AddZone(new CircleZone(_playerSpawning.transform.position, 2f));
+			SFXPlayer.Instance.PlayPlayerSplash();
         };
 		_playerSpawning.OnReady += InitAndStart;
 		_playerSpawning.RunAnimation();
@@ -111,6 +112,8 @@ public class GameManager : MonoBehaviour
 
     private void LostGame(ACharacter player)
     {
+		SFXPlayer.Instance.PlayGameOver();
+		MusicManager.Instance.StopMusic();
 		_gameOver.gameObject.SetActive(true);
 		_gameOver.SetScore(_scoreManager.Score);
 		_powerUpManager.gameObject.SetActive(false);

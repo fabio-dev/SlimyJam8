@@ -48,6 +48,11 @@ public class MusicManager : MonoBehaviour
         }
     }
 
+    public void StopInstant()
+    {
+        _audioSource.Stop();
+    }
+
     public void StopMusic(Action onComplete = null)
     {
         if (_audioSource != null && _audioSource.isPlaying)
