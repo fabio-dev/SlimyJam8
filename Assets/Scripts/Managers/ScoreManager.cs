@@ -10,6 +10,8 @@ public class ScoreManager : MonoBehaviour
     private int _score;
     private Player _player;
 
+    public int Score => _score;
+
     public void Setup(Player player)
     {
         _player = player;

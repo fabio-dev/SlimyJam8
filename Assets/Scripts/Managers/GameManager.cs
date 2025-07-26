@@ -1,5 +1,6 @@
 using Assets.Scripts.Domain;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,12 +17,27 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private AudioClip _music;
 	[SerializeField] private SceneTransition _sceneTransition;
 	[SerializeField] private PlayerSpawning _playerSpawning;
+	[SerializeField] private GameOverUI _gameOver;
 
 	private bool _firstUpdate = false;
 	private Player _player;
 	private LevelManager _levelManager;
 	public PlayerGO PlayerGO { get { return _playerGO; } }
 	public static GameManager Instance { get; private set; }
+
+	public void Quit()
+	{
+		MusicManager.Instance.StopMusic();
+		_sceneTransition.HideScreen();
+		_sceneTransition.OnHidden += () => SceneManager.LoadScene(0);
+	}
+
+	public void Replay()
+    {
+		MusicManager.Instance.StopMusic();
+        _sceneTransition.HideScreen();
+        _sceneTransition.OnHidden += () => SceneManager.LoadScene(1);
+    }
 
     private void Awake()
 	{
@@ -74,6 +90,8 @@ public class GameManager : MonoBehaviour
         _player.SetHealth(5f);
         _player.SetAttackCooldown(.5f);
         _player.SetMoveSpeed(3f);
+        _player.OnDie += LostGame;
+
         _playerGO.Setup(_player);
 
         _enemySpawner.Setup(_playerGO, _dropManager, _scoreManager);
@@ -89,6 +107,13 @@ public class GameManager : MonoBehaviour
 
         _scoreManager.Setup(_player);
         _scoreManager.Run();
+    }
+
+    private void LostGame(ACharacter player)
+    {
+		_gameOver.gameObject.SetActive(true);
+		_gameOver.SetScore(_scoreManager.Score);
+		_powerUpManager.gameObject.SetActive(false);
     }
 
     private void Pause()
