@@ -41,6 +41,7 @@ public class PlayerJumpInput : BasePlayerInput
 		}
 
 		Player.Jump();
+		SFXPlayer.Instance.PlayPlayerJump();
 		GetAnimation()?.Restart();
 	}
 
