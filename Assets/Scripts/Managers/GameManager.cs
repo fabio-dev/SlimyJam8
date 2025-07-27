@@ -1,7 +1,9 @@
 using Assets.Scripts.Domain;
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,6 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private SceneTransition _sceneTransition;
 	[SerializeField] private PlayerSpawning _playerSpawning;
 	[SerializeField] private GameOverUI _gameOver;
+	[SerializeField] private Image _redImage;
 
 	private bool _firstUpdate = false;
 	private Player _player;
@@ -116,16 +119,17 @@ public class GameManager : MonoBehaviour
     {
 		SFXPlayer.Instance.PlayGameOver();
 		MusicManager.Instance.StopInstant();
-		StartCoroutine(PlayGameOverMusic());
+		StartCoroutine(EasterEgg());
 		_gameOver.gameObject.SetActive(true);
 		_gameOver.SetScore(_scoreManager.Score);
 		_powerUpManager.gameObject.SetActive(false);
     }
 
-	private IEnumerator PlayGameOverMusic()
+	private IEnumerator EasterEgg()
 	{
 		yield return new WaitForSeconds(5f);
 		MusicManager.Instance.ChangeClip(_gameOverMusic);
+		_redImage.DOFade(1f, 66f);
     }
 
     private void Pause()
