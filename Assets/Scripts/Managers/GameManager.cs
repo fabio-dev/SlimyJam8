@@ -1,4 +1,5 @@
 using Assets.Scripts.Domain;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,7 +16,8 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private ExperienceUI _experienceUI;
 	[SerializeField] private ScoreManager _scoreManager;
 	[SerializeField] private AudioClip _music;
-	[SerializeField] private SceneTransition _sceneTransition;
+	[SerializeField] private AudioClip _gameOverMusic;
+    [SerializeField] private SceneTransition _sceneTransition;
 	[SerializeField] private PlayerSpawning _playerSpawning;
 	[SerializeField] private GameOverUI _gameOver;
 
@@ -113,10 +115,17 @@ public class GameManager : MonoBehaviour
     private void LostGame(ACharacter player)
     {
 		SFXPlayer.Instance.PlayGameOver();
-		MusicManager.Instance.StopMusic();
+		MusicManager.Instance.StopInstant();
+		StartCoroutine(PlayGameOverMusic());
 		_gameOver.gameObject.SetActive(true);
 		_gameOver.SetScore(_scoreManager.Score);
 		_powerUpManager.gameObject.SetActive(false);
+    }
+
+	private IEnumerator PlayGameOverMusic()
+	{
+		yield return new WaitForSeconds(5f);
+		MusicManager.Instance.ChangeClip(_gameOverMusic);
     }
 
     private void Pause()

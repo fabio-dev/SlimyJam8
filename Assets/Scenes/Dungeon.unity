@@ -30230,7 +30230,7 @@ PrefabInstance:
     - target: {fileID: 2857551207110166237, guid: 85566a60ca1312d46bbffd6892a31390, type: 3}
       propertyPath: _music
       value: 
-      objectReference: {fileID: 8300000, guid: b5ff5b3b357118246bbc7c8271e9a797, type: 3}
+      objectReference: {fileID: 8300000, guid: 8b93a85895f2c6945b1b20d8efdaa5b1, type: 3}
     - target: {fileID: 2857551207110166237, guid: 85566a60ca1312d46bbffd6892a31390, type: 3}
       propertyPath: _camera
       value: 
@@ -30279,6 +30279,10 @@ PrefabInstance:
       propertyPath: _scoreManager
       value: 
       objectReference: {fileID: 730429778}
+    - target: {fileID: 2857551207110166237, guid: 85566a60ca1312d46bbffd6892a31390, type: 3}
+      propertyPath: _gameOverMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 91c2952a3d841b944adafdaaaffde582, type: 3}
     - target: {fileID: 2857551207110166237, guid: 85566a60ca1312d46bbffd6892a31390, type: 3}
       propertyPath: _splashAbility
       value: 
