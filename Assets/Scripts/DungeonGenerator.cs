@@ -12,6 +12,11 @@ public class DungeonGenerator : MonoBehaviour
 
     void Update()
     {
+        if (_player == null)
+        {
+            return;
+        }
+
         Vector2Int currentChunkCoord = GetChunkCoord(_player.position);
 
         // Génère le chunk courant + tous les voisins

@@ -48,7 +48,7 @@ MonoBehaviour:
       Data: 1.4
     - Name: _stopRangeSettings
       Entry: 4
-      Data: 3.2
+      Data: 3
     - Name: _obstacleCheckDistanceSettings
       Entry: 4
       Data: 0.5

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FollowTargetStrategy : IMovementStrategy
 {
@@ -15,6 +15,8 @@ public class FollowTargetStrategy : IMovementStrategy
     private const float _knockbackRecoverySpeed = 1f;
     private float _obstacleCheckDistance = 0.5f;
     private LayerMask _obstacleMask;
+
+    private static readonly RaycastHit2D[] _hitsBuffer = new RaycastHit2D[2]; // petite alloc réutilisable
 
     public Transform Target => _target;
 
@@ -35,53 +37,149 @@ public class FollowTargetStrategy : IMovementStrategy
         return strategy;
     }
 
+    private Vector2? _temporaryTarget = null;
+
     public void Update()
     {
         if (_owner == null || _target == null) return;
 
         Vector2 currentPos = _owner.transform.position;
-        Vector2 targetPos = _target.position;
-        Vector2 dirToTarget = (targetPos - currentPos);
+        Vector2 realTarget = _target.position;
+        Vector2 targetPos = _temporaryTarget ?? realTarget;
+        Vector2 dirToTarget = targetPos - currentPos;
         float distanceToTarget = dirToTarget.magnitude;
-
         Vector2 move = Vector2.zero;
 
         if (distanceToTarget > _stopRange)
         {
             Vector2 desiredMove = dirToTarget.normalized * _moveSpeed * Time.fixedDeltaTime;
 
-            // Raycast dans la direction de d�placement
-            RaycastHit2D hit = Physics2D.Raycast(currentPos, dirToTarget.normalized, _obstacleCheckDistance, _obstacleMask);
-            Debug.DrawRay(_owner.transform.position, dirToTarget, Color.red);
-            Debug.DrawRay(_owner.transform.position, dirToTarget.normalized, Color.cyan);
+            // Création du filtre collision
+            ContactFilter2D filter = new ContactFilter2D();
+            filter.SetLayerMask(_obstacleMask);
+            filter.useTriggers = false;
 
-            if (hit.collider != null)
+            // Test collision dans la direction désirée
+            int hitCount = _owner.Rigidbody.Cast(desiredMove.normalized, filter, _hitsBuffer, desiredMove.magnitude);
+
+            if (hitCount == 0)
             {
-                // Obstacle d�tect�, on tente un d�placement lat�ral
-                Vector2 perp = Vector2.Perpendicular(dirToTarget.normalized); // perpendiculaire (gauche/droite)
-                Vector2 left = currentPos + perp * _obstacleCheckDistance;
-                Vector2 right = currentPos - perp * _obstacleCheckDistance;
+                // Pas d'obstacle, on avance normalement vers la cible
+                move = desiredMove + _knockback;
 
-                // Check � gauche
-                bool canMoveLeft = !Physics2D.Raycast(currentPos, perp, _obstacleCheckDistance, _obstacleMask);
-                bool canMoveRight = !Physics2D.Raycast(currentPos, -perp, _obstacleCheckDistance, _obstacleMask);
-
-                if (canMoveLeft)
-                    desiredMove = perp.normalized * _moveSpeed * Time.fixedDeltaTime;
-                else if (canMoveRight)
-                    desiredMove = -perp.normalized * _moveSpeed * Time.fixedDeltaTime;
-                else
-                    desiredMove = Vector2.zero; // bloqu�
+                // Si on était en train de contourner et qu'on peut maintenant aller vers la cible réelle
+                if (_temporaryTarget != null && CanReachTarget(currentPos, realTarget, filter))
+                {
+                    _temporaryTarget = null;
+                }
             }
-
-            move = desiredMove + _knockback;
+            else
+            {
+                // Obstacle détecté : système de contournement amélioré
+                move = HandleObstacleAvoidance(currentPos, realTarget, desiredMove, filter) + _knockback;
+            }
         }
         else
         {
+            // Proche de la cible (temporaire ou réelle)
+            if (_temporaryTarget != null)
+            {
+                // On a atteint la cible temporaire
+                _temporaryTarget = null;
+            }
             move = _knockback.normalized * _moveSpeed * Time.fixedDeltaTime;
         }
 
         _owner.Rigidbody.MovePosition(currentPos + move);
         _knockback = Vector2.Lerp(_knockback, Vector2.zero, Time.fixedDeltaTime * _knockbackRecoverySpeed);
+    }
+
+    private Vector2 HandleObstacleAvoidance(Vector2 currentPos, Vector2 realTarget, Vector2 desiredMove, ContactFilter2D filter)
+    {
+        Vector2 obstacleNormal = _hitsBuffer[0].normal;
+
+        // Calculer les deux directions possibles de contournement
+        Vector2 rightDirection = Vector2.Perpendicular(obstacleNormal);
+        Vector2 leftDirection = -rightDirection;
+
+        // Déterminer quelle direction nous rapproche le plus de la cible réelle
+        Vector2 toRealTarget = (realTarget - currentPos).normalized;
+        float rightDot = Vector2.Dot(rightDirection, toRealTarget);
+        float leftDot = Vector2.Dot(leftDirection, toRealTarget);
+
+        // Choisir la meilleure direction
+        Vector2 preferredDirection = rightDot > leftDot ? rightDirection : leftDirection;
+        Vector2 alternateDirection = rightDot > leftDot ? leftDirection : rightDirection;
+
+        // Tester d'abord la direction préférée
+        Vector2 moveAttempt = TryMoveInDirection(currentPos, preferredDirection, filter);
+        if (moveAttempt != Vector2.zero)
+        {
+            // Définir une cible temporaire dans cette direction
+            SetTemporaryTarget(currentPos, preferredDirection, realTarget, filter);
+            return moveAttempt;
+        }
+
+        // Si la direction préférée est bloquée, essayer l'autre
+        moveAttempt = TryMoveInDirection(currentPos, alternateDirection, filter);
+        if (moveAttempt != Vector2.zero)
+        {
+            SetTemporaryTarget(currentPos, alternateDirection, realTarget, filter);
+            return moveAttempt;
+        }
+
+        // Si les deux directions sont bloquées, essayer de glisser le long de l'obstacle
+        Vector2 slideDirection = Vector2.Perpendicular(obstacleNormal);
+        if (Vector2.Dot(slideDirection, desiredMove) < 0)
+            slideDirection = -slideDirection;
+
+        return TryMoveInDirection(currentPos, slideDirection, filter);
+    }
+
+    private Vector2 TryMoveInDirection(Vector2 currentPos, Vector2 direction, ContactFilter2D filter)
+    {
+        Vector2 moveVector = direction.normalized * _moveSpeed * Time.fixedDeltaTime;
+        int hitCount = _owner.Rigidbody.Cast(moveVector.normalized, filter, _hitsBuffer, moveVector.magnitude);
+
+        if (hitCount == 0)
+        {
+            return moveVector;
+        }
+
+        return Vector2.zero;
+    }
+
+    private void SetTemporaryTarget(Vector2 currentPos, Vector2 direction, Vector2 realTarget, ContactFilter2D filter)
+    {
+        // Projeter un rayon dans la direction choisie pour trouver un point de contournement
+        float maxDistance = 10f; // Distance maximale pour chercher un point de contournement
+        float stepDistance = 1f; // Distance entre chaque test
+
+        for (float distance = stepDistance; distance <= maxDistance; distance += stepDistance)
+        {
+            Vector2 testPoint = currentPos + direction.normalized * distance;
+
+            // Vérifier si depuis ce point on peut voir la cible réelle
+            if (CanReachTarget(testPoint, realTarget, filter))
+            {
+                _temporaryTarget = testPoint;
+                return;
+            }
+        }
+
+        // Si aucun point optimal n'est trouvé, utiliser une distance fixe
+        _temporaryTarget = currentPos + direction.normalized * 3f;
+    }
+
+    private bool CanReachTarget(Vector2 from, Vector2 to, ContactFilter2D filter)
+    {
+        Vector2 directionToTarget = to - from;
+        float distanceToTarget = directionToTarget.magnitude;
+
+        if (distanceToTarget < 0.1f) return true;
+
+        // Utiliser un raycast pour vérifier s'il y a des obstacles
+        int hitCount = _owner.Rigidbody.Cast(directionToTarget.normalized, filter, _hitsBuffer, distanceToTarget);
+        return hitCount == 0;
     }
 }
