@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour
 
 	private IEnumerator EasterEgg()
 	{
-		yield return new WaitForSeconds(5f);
+		yield return new WaitForSeconds(10f);
 		MusicManager.Instance.ChangeClip(_gameOverMusic);
 		_redImage.DOFade(1f, 66f);
     }

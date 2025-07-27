@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6123863340551820976}
   - component: {fileID: 2182470848201741572}
   - component: {fileID: 7049757379906013984}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Empty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 520787225046358785}
   - component: {fileID: 5341176211046790999}
   - component: {fileID: 4679402036319691600}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Objects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -257,7 +257,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 2
-      m_TileSpriteIndex: 2
+      m_TileSpriteIndex: 7
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -458,8 +458,8 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1
-    m_Data: {fileID: 1055984619, guid: fa928c9e04699924db303b7acb612cdc, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 8
     m_Data: {fileID: -1008315411, guid: fa928c9e04699924db303b7acb612cdc, type: 3}
   - m_RefCount: 6
@@ -468,8 +468,8 @@ Tilemap:
     m_Data: {fileID: -8106771517027072699, guid: fa928c9e04699924db303b7acb612cdc, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: 456968158, guid: fa928c9e04699924db303b7acb612cdc, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 1055984619, guid: fa928c9e04699924db303b7acb612cdc, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 4778029999934097138, guid: fa928c9e04699924db303b7acb612cdc, type: 3}
   m_TileMatrixArray:
@@ -581,7 +581,7 @@ GameObject:
   - component: {fileID: 3545375011554211291}
   - component: {fileID: 6088173317674822778}
   - component: {fileID: 1658940019829231870}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4751,7 +4751,7 @@ GameObject:
   - component: {fileID: 5409241173654553492}
   - component: {fileID: 9063766450295955578}
   - component: {fileID: 5534498610053911367}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Walls
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -5102,7 +5102,7 @@ GameObject:
   - component: {fileID: 7974043734711548844}
   - component: {fileID: 8605290491872442725}
   - component: {fileID: 2624917258591318373}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Map2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

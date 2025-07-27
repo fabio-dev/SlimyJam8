@@ -49,6 +49,18 @@ MonoBehaviour:
     - Name: _stopRangeSettings
       Entry: 4
       Data: 3.2
+    - Name: _obstacleCheckDistanceSettings
+      Entry: 4
+      Data: 0.5
+    - Name: _obstacleMaskSettings
+      Entry: 7
+      Data: UnityEngine.LayerMask, UnityEngine.CoreModule
+    - Name: 
+      Entry: 3
+      Data: 2048
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
