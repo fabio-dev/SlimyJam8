@@ -36,6 +36,11 @@ public class ProjectileGO : MonoBehaviour
         }
 
         characterGO.Character.Health.TakeDamage(_damageAmount);
+        if (characterGO.gameObject.TryGetComponent(out AiBrain brain))
+        {
+            Vector2 knockbackDir = _direction.normalized;
+            brain.ApplyKnockback(knockbackDir);
+        }
 
         Destroy(gameObject, 0f);
     }

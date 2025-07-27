@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Phase_Test
   m_EditorClassIdentifier: 
   Enemies:
-  - {fileID: 11400000, guid: 989f0ef22739ec44faba747eda4b7821, type: 2}
+  - {fileID: 11400000, guid: fe83466f5b2888d4aa64ef26c8d67fab, type: 2}
   PhaseDurationInSeconds: 200
   MinDelayToSpawnInSeconds: 1
   MaxDelayToSpawnInSeconds: 10

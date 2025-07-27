@@ -9,6 +9,15 @@ public class FollowTargetStrategy : IMovementStrategy
     private Transform _target = null;
     private float _moveSpeed;
     private float _stopRange;
+    private Vector2 _knockback;
+    private const float _knockbackRecoverySpeed = 1f;
+
+    public Transform Target => _target;
+
+    public void ApplyKnockback(Vector2 force)
+    {
+        _knockback += force;
+    }
 
     public IMovementStrategy Init(EnemyGO owner, Transform target)
     {
@@ -36,7 +45,16 @@ public class FollowTargetStrategy : IMovementStrategy
         if (distanceToTarget > _stopRange)
         {
             Vector2 move = dirToTarget.normalized * _moveSpeed * Time.fixedDeltaTime;
+            move += _knockback;
+
             _owner.Rigidbody.MovePosition(currentPos + move);
         }
+        else
+        {
+            Vector2 move = _knockback.normalized * _moveSpeed * Time.fixedDeltaTime;
+            _owner.Rigidbody.MovePosition(currentPos + move);
+        }
+
+        _knockback = Vector2.Lerp(_knockback, Vector2.zero, Time.fixedDeltaTime * _knockbackRecoverySpeed);
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Domain;
 using System;
 using UnityEngine;
-using UnityEngine.Rendering.UI;
 
 public class SnekAnimatorController : MonoBehaviour, IAnimatorController
 {
@@ -33,7 +32,8 @@ public class SnekAnimatorController : MonoBehaviour, IAnimatorController
     private ASpriteAnimator _currentAnimator;
 
     private EnemyGO _enemyGO;
-    private Vector2 _lastPosition;
+    private IMovementStrategy _movementStrategy;
+
     private SpriteOrientation _orientation;
     private float _scale;
 
@@ -43,7 +43,7 @@ public class SnekAnimatorController : MonoBehaviour, IAnimatorController
     {
         UnregisterEvents();
         _enemyGO = enemyGO;
-
+        _movementStrategy = _enemyGO.MovementStrategy;
         _idleAnimatorFace.SetSpriteRenderer(_enemyGO.SpriteRenderer);
         _idleAnimatorSide.SetSpriteRenderer(_enemyGO.SpriteRenderer);
         _idleAnimatorBack.SetSpriteRenderer(_enemyGO.SpriteRenderer);
@@ -82,13 +82,14 @@ public class SnekAnimatorController : MonoBehaviour, IAnimatorController
     private void FixedUpdate()
     {
         Vector2 currentPosition = transform.position;
-        if (currentPosition - _lastPosition == Vector2.zero)
+
+        if (_movementStrategy?.Target == null)
         {
             return;
         }
 
-        double xDiff = currentPosition.x - _lastPosition.x;
-        double yDiff =  currentPosition.y - _lastPosition.y;
+        double xDiff = _movementStrategy.Target.position.x - currentPosition.x;
+        double yDiff = _movementStrategy.Target.position.y - currentPosition.y;
 
         if (xDiff >= 0)
         {
@@ -107,8 +108,6 @@ public class SnekAnimatorController : MonoBehaviour, IAnimatorController
         {
             SetOrientation(yDiff >= 0 ? SpriteOrientation.Back : SpriteOrientation.Face);
         }
-
-        _lastPosition = currentPosition;
     }
 
     private void SetOrientation(SpriteOrientation orientation)

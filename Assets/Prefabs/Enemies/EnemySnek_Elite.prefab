@@ -170,6 +170,7 @@ MonoBehaviour:
   _basicAttackCooldown: 0.8
   _score: 50
   _numberOfDrops: 3
+  _aiBrain: {fileID: 8358360567541710514}
 --- !u!114 &8358360567541710514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _settings: {fileID: 11400000, guid: 60787399802722c44a889e8af95ea3fe, type: 2}
   _owner: {fileID: 955137538411816529}
+  _weight: 12
 --- !u!114 &-5587328150898125283
 MonoBehaviour:
   m_ObjectHideFlags: 0

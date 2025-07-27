@@ -5,21 +5,17 @@ public class AiBrain : MonoBehaviour
 {
 	[SerializeField] private AiBrainSettings _settings = null;
 	[SerializeField] private EnemyGO _owner = null;
+    [SerializeField] private float _weight = 10f;
 
-	private IMovementStrategy _movementStrategy = null;
+    private IMovementStrategy _movementStrategy = null;
 	private IAttackStrategy _attackStrategy = null;
 	private bool _isDead = false;
 
-    private void Start()
+	public IMovementStrategy MovementStrategy => _movementStrategy;
+
+    public void ApplyKnockback(Vector2 force)
     {
-		if (_owner.IsSetup)
-		{
-			Setup();
-		}
-		else
-		{
-			_owner.OnSetup += Setup;
-        }
+		_movementStrategy.ApplyKnockback(force / _weight);
     }
 
     private void OnDestroy()
@@ -44,7 +40,7 @@ public class AiBrain : MonoBehaviour
 		}
 	}
 
-	private void Setup()
+	public void Setup()
 	{
 		if (_settings == null)
 		{

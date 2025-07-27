@@ -10,15 +10,19 @@ public class EnemyGO : ACharacterGO
     [SerializeField] private float _basicAttackCooldown;
     [SerializeField] private int _score = 10;
     [SerializeField] private int _numberOfDrops = 1;
+    [SerializeField] private AiBrain _aiBrain;
 
     private DropManager _dropManager;
     public Enemy Enemy => Character as Enemy;
+
+    public IMovementStrategy MovementStrategy => _aiBrain.MovementStrategy;
 
     public event Action OnAttack;
 
     public override void Setup(ACharacter character)
     {
         base.Setup(character);
+        _aiBrain.Setup();
         character.SetHealth(_health);
         character.SetMoveSpeed(_moveSpeed);
         character.SetAttackCooldown(_basicAttackCooldown);
