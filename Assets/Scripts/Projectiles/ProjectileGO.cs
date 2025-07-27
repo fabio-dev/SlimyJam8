@@ -1,4 +1,5 @@
 using Assets.Scripts.Domain;
+using UnityEditor;
 using UnityEngine;
 
 public class ProjectileGO : MonoBehaviour
@@ -30,6 +31,12 @@ public class ProjectileGO : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
+        if (collider.gameObject.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         if (collider.gameObject.TryGetComponent(out ACharacterGO characterGO) == false)
         {
             return;
@@ -42,6 +49,6 @@ public class ProjectileGO : MonoBehaviour
             brain.ApplyKnockback(knockbackDir);
         }
 
-        Destroy(gameObject, 0f);
+        Destroy(gameObject);
     }
 }

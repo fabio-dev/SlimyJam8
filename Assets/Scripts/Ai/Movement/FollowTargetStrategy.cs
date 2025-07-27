@@ -35,18 +35,18 @@ public class FollowTargetStrategy : IMovementStrategy
         {
             return;
         }
-
+    
         Vector2 currentPos = _owner.transform.position;
         Vector2 targetPos = _target.position;
-
+    
         Vector2 dirToTarget = (targetPos - currentPos);
         float distanceToTarget = dirToTarget.magnitude;
-
+    
         if (distanceToTarget > _stopRange)
         {
             Vector2 move = dirToTarget.normalized * _moveSpeed * Time.fixedDeltaTime;
             move += _knockback;
-
+    
             _owner.Rigidbody.MovePosition(currentPos + move);
         }
         else
@@ -54,7 +54,7 @@ public class FollowTargetStrategy : IMovementStrategy
             Vector2 move = _knockback.normalized * _moveSpeed * Time.fixedDeltaTime;
             _owner.Rigidbody.MovePosition(currentPos + move);
         }
-
+    
         _knockback = Vector2.Lerp(_knockback, Vector2.zero, Time.fixedDeltaTime * _knockbackRecoverySpeed);
     }
 }
