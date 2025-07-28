@@ -1,6 +1,8 @@
-﻿using DG.Tweening;
+﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using DG.Tweening;
+using System;
 
 public class ZoneManager : MonoBehaviour
 {
@@ -31,7 +33,19 @@ public class ZoneManager : MonoBehaviour
 		}
 	}
 
-	public bool IsInsideAnyZone(Vector2 point)
+	public void AddZoneDelayed(IZone zone, float delay, Action onAdding)
+	{
+		StartCoroutine(AddZoneDelayedInternal(zone, delay, onAdding));
+	}
+
+    private IEnumerator AddZoneDelayedInternal(IZone zone, float delay, Action onAdding)
+    {
+		yield return new WaitForSeconds(delay);
+		AddZone(zone);
+		onAdding?.Invoke();
+    }
+
+    public bool IsInsideAnyZone(Vector2 point)
 	{
 		foreach (IZone zone in zones)
 		{

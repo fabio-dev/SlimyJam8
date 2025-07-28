@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93e169fea8f16a748abc7eda7d055bae, type: 3}
-  m_Name: DashRadiusUp_20%
+  m_Script: {fileID: 11500000, guid: 460a4be6882dd5844b29199c2d417a8b, type: 3}
+  m_Name: SplashRadiusUp_15%
   m_EditorClassIdentifier: 
   DropWeight: 1
-  Title: Flaque dash +
-  Description: 
-  Sprite: {fileID: 0}
-  BaseRadiusUpPercentage: 0.2
+  Title: 'Splash : Flaque +15%'
+  PowerUpType: 2
+  BaseRadiusUpPercentage: 0.15

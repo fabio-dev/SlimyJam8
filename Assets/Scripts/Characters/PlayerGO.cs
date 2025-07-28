@@ -12,11 +12,15 @@ public class PlayerGO : ACharacterGO
     [SerializeField] private Camera _camera;
 	[SerializeField] private Transform _gunShotPosition;
 	[SerializeField] private GameObject _splashParticles;
+	[SerializeField] private GameObject _shield;
+
     private PlayerAnimatorController _animatorController;
     private BasePlayerInput[] _inputs;
 
     private Cooldown _invulnerableCooldown;
+	private Cooldown _shieldCooldown = new Cooldown(1f);
 	private bool _invulnerableCooldownStarted;
+	private bool _shielded;
 
 	public Player Player => Character as Player;
 
@@ -45,6 +49,14 @@ public class PlayerGO : ACharacterGO
             _invulnerableCooldownStarted = false;
             _invulnerableCooldown.Stop();
             Player.Health.Vulnerable();
+        }
+
+		if (_shielded && !_shieldCooldown.IsRunning())
+		{
+			_shieldCooldown.Stop();
+			_shielded = false;
+			_shield.SetActive(false);
+            Player.Vulnerable();
         }
 
         Vector2 mouseScreenPos = InputManager.Instance.Player.Value.Look.ReadValue<Vector2>();
@@ -124,7 +136,17 @@ public class PlayerGO : ACharacterGO
 		Player.OnJumpEnd += JumpEnd;
         Player.OnDamaged += OnDamaged;
         Player.OnDie += Dying;
+        Player.OnShielded += OnShielded;
 	}
+
+    private void OnShielded(float duration)
+    {
+		_shieldCooldown = new Cooldown(duration);
+		_shieldCooldown.Start();
+		_shield.SetActive(true);
+		_shielded = true;
+        Player.Invulnerable();
+    }
 
     private void Dying(ACharacter character)
     {

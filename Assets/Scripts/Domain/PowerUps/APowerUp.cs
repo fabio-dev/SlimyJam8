@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Domain.PowerUps;
+using UnityEngine;
 
 namespace Assets.Scripts.Domain
 {
@@ -7,8 +8,7 @@ namespace Assets.Scripts.Domain
         [Min(1)]
         public int DropWeight = 1;
         public string Title;
-        public string Description;
-        public Sprite Sprite;
+        public PowerUpType PowerUpType;
 
         public abstract void Use(Player player);
     }

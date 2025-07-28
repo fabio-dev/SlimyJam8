@@ -2675,7 +2675,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2834426640982458229, guid: 2ced9d3fcb9ff314391d07bb1fa05114, type: 3}
       propertyPath: _availablePowerUps.Array.size
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2834426640982458229, guid: 2ced9d3fcb9ff314391d07bb1fa05114, type: 3}
       propertyPath: '_availablePowerUps.Array.data[0]'
@@ -2700,7 +2700,11 @@ PrefabInstance:
     - target: {fileID: 2834426640982458229, guid: 2ced9d3fcb9ff314391d07bb1fa05114, type: 3}
       propertyPath: '_availablePowerUps.Array.data[5]'
       value: 
-      objectReference: {fileID: 11400000, guid: 0cb49912b7e62854695b076a9d3d60ae, type: 2}
+      objectReference: {fileID: 11400000, guid: 7e2f279ae09a8d541960fdeb069002d4, type: 2}
+    - target: {fileID: 2834426640982458229, guid: 2ced9d3fcb9ff314391d07bb1fa05114, type: 3}
+      propertyPath: '_availablePowerUps.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 245c938e35646dc44b816df941785dcc, type: 2}
     - target: {fileID: 5183369182192173937, guid: 2ced9d3fcb9ff314391d07bb1fa05114, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2958,7 +2962,7 @@ PrefabInstance:
     - target: {fileID: 2857551207110166237, guid: 85566a60ca1312d46bbffd6892a31390, type: 3}
       propertyPath: _gameOverMusic
       value: 
-      objectReference: {fileID: 8300000, guid: 91c2952a3d841b944adafdaaaffde582, type: 3}
+      objectReference: {fileID: 8300000, guid: 154a5024177448b4a857c66d7d22ca5f, type: 3}
     - target: {fileID: 2857551207110166237, guid: 85566a60ca1312d46bbffd6892a31390, type: 3}
       propertyPath: _splashAbility
       value: 

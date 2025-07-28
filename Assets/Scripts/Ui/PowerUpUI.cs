@@ -1,4 +1,5 @@
 using Assets.Scripts.Domain;
+using Assets.Scripts.Domain.PowerUps;
 using System;
 using TMPro;
 using UnityEngine;
@@ -9,7 +10,9 @@ public class PowerUpUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
 {
     [SerializeField] private Image _image;
     [SerializeField] private TextMeshProUGUI _title;
-    [SerializeField] private TextMeshProUGUI _description;
+    [SerializeField] private Sprite _damageSprite;
+    [SerializeField] private Sprite _supportSprite;
+    [SerializeField] private Sprite _flaskSprite;
 
     private Color _baseColor;
     private APowerUp _powerUp;
@@ -30,8 +33,19 @@ public class PowerUpUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
     {
         _powerUp = powerUp;
         _title.text = _powerUp.Title;
-        _description.text = _powerUp.Description;
-        _image.sprite = _powerUp.Sprite;
+
+        if (_powerUp.PowerUpType == PowerUpType.Damage)
+        {
+            _image.sprite = _damageSprite;
+        }
+        else if (_powerUp.PowerUpType == PowerUpType.Support)
+        {
+            _image.sprite = _supportSprite;
+        }
+        else
+        {
+            _image.sprite = _flaskSprite;
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DamageUp_50%
   m_EditorClassIdentifier: 
   DropWeight: 1
-  Title: "D\xE9g\xE2ts +50%"
-  Description: 
+  Title: Degats +50%
   Sprite: {fileID: 0}
+  PowerUpType: 0
   BaseDamageUpPercentage: 0.5

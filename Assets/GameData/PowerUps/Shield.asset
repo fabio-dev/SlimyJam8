@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5748b3c600cd6247ba0a23805752583, type: 3}
-  m_Name: AttackCooldown_5%
+  m_Script: {fileID: 11500000, guid: 93e5edfaac1f780478fd3d9678ca5158, type: 3}
+  m_Name: Shield
   m_EditorClassIdentifier: 
   DropWeight: 1
-  Title: Cadence de tir +5%
-  Sprite: {fileID: 0}
-  PowerUpType: 0
-  BaseCooldownReductionInPercentage: 0.05
+  Title: Bouclier 10 secondes
+  PowerUpType: 1
+  ShieldDuration: 10

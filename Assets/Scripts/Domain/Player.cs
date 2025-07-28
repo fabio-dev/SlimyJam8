@@ -11,6 +11,7 @@ namespace Assets.Scripts.Domain
         public event Action OnJumpStart;
 		public event Action OnJumpEnd;
 		public event Action<PlayerState> OnStateChanged;
+		public event Action<float> OnShielded;
 
 		public Ability DashAbility { get; private set; }
 		public Ability SplashAbility { get; private set; }
@@ -62,7 +63,7 @@ namespace Assets.Scripts.Domain
 			BaseAttackDamages = 1f;
 			AttackDamages = 1f;
 
-            DashAbility = new Ability(2.5f);
+            DashAbility = new Ability(2f);
 			SplashAbility = new Ability(8f);
 			JumpAbility = new Ability(1f);
 
@@ -170,6 +171,11 @@ namespace Assets.Scripts.Domain
         {
             float amount = BaseSplashRadius * upPercentage;
 			SplashRadius += amount;
+        }
+
+        internal void Shield(float shieldDuration)
+        {
+			OnShielded?.Invoke(shieldDuration);
         }
     }
 }
