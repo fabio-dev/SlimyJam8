@@ -71,6 +71,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d00e1f670000faa47b2d1e98f4fab332, type: 3}
   - {fileID: 8300000, guid: c24c9b0d89114d141b3395a9ee856794, type: 3}
   - {fileID: 8300000, guid: 13374f8305302e64da25ee0d4c849d68, type: 3}
+  _potDamages:
+  - {fileID: 8300000, guid: 3375f7930a3a56844ae7a67a7e3935ce, type: 3}
+  - {fileID: 8300000, guid: 408f8ecb53cf9cf4eaeb7b8f5ac20c85, type: 3}
+  - {fileID: 8300000, guid: 840ee42c0a9aff8428d8365660850f18, type: 3}
+  _potBreak: {fileID: 8300000, guid: b1a611c1b97a2bb48a7cae27fbe2e718, type: 3}
 --- !u!82 &4836310990880873883
 AudioSource:
   m_ObjectHideFlags: 0

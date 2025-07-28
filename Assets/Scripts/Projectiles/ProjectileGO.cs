@@ -1,5 +1,4 @@
 using Assets.Scripts.Domain;
-using UnityEditor;
 using UnityEngine;
 
 public class ProjectileGO : MonoBehaviour
@@ -37,7 +36,14 @@ public class ProjectileGO : MonoBehaviour
             return;
         }
 
-        if (collider.gameObject.TryGetComponent(out ACharacterGO characterGO) == false)
+        if (collider.gameObject.TryGetComponent(out PotGO pot))
+        {
+            pot.Damage();
+            Destroy(gameObject);
+            return;
+        }
+
+        if (!collider.gameObject.TryGetComponent(out ACharacterGO characterGO))
         {
             return;
         }

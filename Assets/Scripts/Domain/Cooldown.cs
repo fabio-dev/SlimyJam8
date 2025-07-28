@@ -1,3 +1,5 @@
+using System;
+
 namespace Assets.Scripts.Domain
 {
 	public class Cooldown
@@ -19,8 +21,7 @@ namespace Assets.Scripts.Domain
 
 		public bool IsRunning()
 		{
-			float timeSinceLastStart = UnityEngine.Time.time - _lastStartTime;
-			return timeSinceLastStart <= Duration;
+			return ElapsedSeconds() <= Duration;
 		}
 
 		public void Stop()
@@ -31,6 +32,11 @@ namespace Assets.Scripts.Domain
         public void SetDuration(float duration)
         {
 			Duration = duration;
+        }
+
+        internal float ElapsedSeconds()
+        {
+			return UnityEngine.Time.time - _lastStartTime;
         }
     }
 }

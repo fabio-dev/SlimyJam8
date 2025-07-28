@@ -42,7 +42,6 @@ public class MeleeAttackStrategy : IAttackStrategy
 			if (distanceToTarget <= _attackRange && !_cooldown.IsRunning())
 			{
 				_targetHealthComponent.TakeDamage(_attackDamage);
-				Debug.Log("damages" + _attackDamage + _attackDamageSettings);
 				_cooldown.Start();
 				_owner.TriggerAttack(true);
             }

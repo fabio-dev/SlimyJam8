@@ -12,15 +12,13 @@ public class PlayerGO : ACharacterGO
     [SerializeField] private Camera _camera;
 	[SerializeField] private Transform _gunShotPosition;
 	[SerializeField] private GameObject _splashParticles;
-	[SerializeField] private GameObject _shield;
+	[SerializeField] private ShieldGO _shield;
 
     private PlayerAnimatorController _animatorController;
     private BasePlayerInput[] _inputs;
 
     private Cooldown _invulnerableCooldown;
-	private Cooldown _shieldCooldown = new Cooldown(1f);
 	private bool _invulnerableCooldownStarted;
-	private bool _shielded;
 
 	public Player Player => Character as Player;
 
@@ -51,14 +49,6 @@ public class PlayerGO : ACharacterGO
             Player.Health.Vulnerable();
         }
 
-		if (_shielded && !_shieldCooldown.IsRunning())
-		{
-			_shieldCooldown.Stop();
-			_shielded = false;
-			_shield.SetActive(false);
-            Player.Vulnerable();
-        }
-
         Vector2 mouseScreenPos = InputManager.Instance.Player.Value.Look.ReadValue<Vector2>();
 
         HandlePlayerOrientation(mouseScreenPos);
@@ -87,6 +77,7 @@ public class PlayerGO : ACharacterGO
     {
         _inputs = GetComponents<BasePlayerInput>();
         _animatorController = GetComponent<PlayerAnimatorController>();
+        _shield.OnBreak += BreakShield;
 
         if (Character != null)
 		{
@@ -106,7 +97,7 @@ public class PlayerGO : ACharacterGO
 		TriggerOnSetup();
 	}
 
-	protected override void OnDie(ACharacter character)
+    protected override void OnDie(ACharacter character)
 	{
 		HideGun();
 		UnregisterEvents();
@@ -141,11 +132,13 @@ public class PlayerGO : ACharacterGO
 
     private void OnShielded(float duration)
     {
-		_shieldCooldown = new Cooldown(duration);
-		_shieldCooldown.Start();
-		_shield.SetActive(true);
-		_shielded = true;
+		_shield.Begin(duration);
         Player.Invulnerable();
+    }
+
+    private void BreakShield()
+    {
+        Player.Vulnerable();
     }
 
     private void Dying(ACharacter character)

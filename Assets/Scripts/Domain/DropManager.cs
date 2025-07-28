@@ -6,11 +6,10 @@ namespace Assets.Scripts.Domain
     public class DropManager : MonoBehaviour
     {
         [SerializeField] private CollectibleGO _collectiblePrefab;
-
-        private int _gemSDropWeight = 88;
-        private int _gemMDropWeight = 8;
-        private int _gemLDropWeight = 3;
-        private int _heartDropWeight = 1;
+        [SerializeField] private int _gemSDropWeight = 88;
+        [SerializeField] private int _gemMDropWeight = 8;
+        [SerializeField] private int _gemLDropWeight = 3;
+        [SerializeField] private int _heartDropWeight = 1;
 
         private LevelManager _levelManager;
         private PlayerGO _player;

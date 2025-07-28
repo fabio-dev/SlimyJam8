@@ -1,3 +1,4 @@
+using Assets.Scripts.Domain;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,6 +6,9 @@ public class DungeonGenerator : MonoBehaviour
 {
     [SerializeField] private ChunkGO[] _chunks;
     [SerializeField] private Transform _player;
+    [SerializeField] private DropManager _potDropManager;
+    [SerializeField] private PotGO _potPrefab;
+    [Range(0f, 1f), SerializeField] private float _potChanceToSpawn;
 
     private const int ChunkSize = 20;
 
@@ -45,7 +49,23 @@ public class DungeonGenerator : MonoBehaviour
         ChunkGO chunk = Instantiate(RandomChunk());
         chunk.Init(coords, ChunkSize);
 
+        float rng = Random.Range(0f, 1f);
+        if (rng <= _potChanceToSpawn)
+        {
+            SpawnPot(coords);
+        }
         generatedChunks[coords] = chunk;
+    }
+
+    private void SpawnPot(Vector2Int coords)
+    {
+        int x = coords.x * ChunkSize + Random.Range(-ChunkSize / 2, ChunkSize / 2);
+        int y = coords.y * ChunkSize + Random.Range(-ChunkSize, ChunkSize / 2);
+
+        PotGO pot = Instantiate(_potPrefab, new Vector2(x, y), Quaternion.identity);
+        pot.SetDropManager(_potDropManager);
+
+        Debug.Log("Pot spawned around " + coords);
     }
 
     private ChunkGO RandomChunk()

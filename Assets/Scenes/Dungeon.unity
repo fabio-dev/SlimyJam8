@@ -824,6 +824,90 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada47fec28ffbc0439e066bc5ded9af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &816344874
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 933984921926687788, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.0128245
+      objectReference: {fileID: 0}
+    - target: {fileID: 933984921926687788, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.6349372
+      objectReference: {fileID: 0}
+    - target: {fileID: 933984921926687788, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0034641954
+      objectReference: {fileID: 0}
+    - target: {fileID: 933984921926687788, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 933984921926687788, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 933984921926687788, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 933984921926687788, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 933984921926687788, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 933984921926687788, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 933984921926687788, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3519647490825868170, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
+      propertyPath: m_Name
+      value: PotDropManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884982004266244590, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
+      propertyPath: _gemLDropWeight
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884982004266244590, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
+      propertyPath: _gemMDropWeight
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884982004266244590, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
+      propertyPath: _gemSDropWeight
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884982004266244590, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
+      propertyPath: _heartDropWeight
+      value: 6
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
+--- !u!114 &816344875 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8884982004266244590, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
+  m_PrefabInstance: {fileID: 816344874}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 372e2f3d05d08d743b1a4e99b786fcfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &998941885
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2135,7 +2219,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3519647490825868170, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
       propertyPath: m_Name
-      value: DropManager
+      value: EnemyDropManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2446,6 +2530,18 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 1112096649}
+    - target: {fileID: 5371748706957349288, guid: 61bf6feecc3d3984f88caf07ae5a22b5, type: 3}
+      propertyPath: _potPrefab
+      value: 
+      objectReference: {fileID: 8346839959316571129, guid: 5ed0c88a0c88d2542b5fa53156dd7a8e, type: 3}
+    - target: {fileID: 5371748706957349288, guid: 61bf6feecc3d3984f88caf07ae5a22b5, type: 3}
+      propertyPath: _potDropManager
+      value: 
+      objectReference: {fileID: 816344875}
+    - target: {fileID: 5371748706957349288, guid: 61bf6feecc3d3984f88caf07ae5a22b5, type: 3}
+      propertyPath: _potChanceToSpawn
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5371748706957349288, guid: 61bf6feecc3d3984f88caf07ae5a22b5, type: 3}
       propertyPath: _chunks.Array.size
       value: 3
@@ -2972,6 +3068,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 365083302}
     - target: {fileID: 2857551207110166237, guid: 85566a60ca1312d46bbffd6892a31390, type: 3}
+      propertyPath: _potDropManager
+      value: 
+      objectReference: {fileID: 816344875}
+    - target: {fileID: 2857551207110166237, guid: 85566a60ca1312d46bbffd6892a31390, type: 3}
       propertyPath: _powerUpManager
       value: 
       objectReference: {fileID: 1027698456}
@@ -2987,6 +3087,10 @@ PrefabInstance:
       propertyPath: _sceneTransition
       value: 
       objectReference: {fileID: 1727191651}
+    - target: {fileID: 2857551207110166237, guid: 85566a60ca1312d46bbffd6892a31390, type: 3}
+      propertyPath: _enemyDropManager
+      value: 
+      objectReference: {fileID: 1374583321}
     - target: {fileID: 6007601766156984641, guid: 85566a60ca1312d46bbffd6892a31390, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -3373,6 +3477,7 @@ SceneRoots:
   - {fileID: 4501399323352166937}
   - {fileID: 4824933396795279547}
   - {fileID: 353018103206421238}
+  - {fileID: 816344874}
   - {fileID: 1727191650}
   - {fileID: 633562277602342415}
   - {fileID: 5292468211138107608}
