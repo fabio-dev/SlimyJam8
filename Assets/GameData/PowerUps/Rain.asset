@@ -15,8 +15,8 @@ MonoBehaviour:
   DropWeight: 1
   Title: Pluie de flaques
   PowerUpType: 2
-  MinFlaskSize: 0.5
+  MinFlaskSize: 1
   MaxFlaskSize: 2
-  NumberOfFlasks: 12
+  NumberOfFlasks: 15
   FlaskPositionVariance: 4
-  DelayBetweenFlask: 0.2
+  DelayBetweenFlask: 0.15

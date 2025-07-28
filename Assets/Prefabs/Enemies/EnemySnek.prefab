@@ -185,7 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _settings: {fileID: 11400000, guid: 8ecfb106ec6c85943ac7d9e8536dec7d, type: 2}
   _owner: {fileID: 955137538411816529}
-  _weight: 8
+  _weight: 24
 --- !u!114 &-5587328150898125283
 MonoBehaviour:
   m_ObjectHideFlags: 0

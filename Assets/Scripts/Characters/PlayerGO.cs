@@ -46,7 +46,11 @@ public class PlayerGO : ACharacterGO
         {
             _invulnerableCooldownStarted = false;
             _invulnerableCooldown.Stop();
-            Player.Health.Vulnerable();
+
+            if (!_shield.IsShielded())
+			{
+                Player.Vulnerable();
+            }
         }
 
         Vector2 mouseScreenPos = InputManager.Instance.Player.Value.Look.ReadValue<Vector2>();

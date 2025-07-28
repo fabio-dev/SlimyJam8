@@ -23,7 +23,7 @@ public class AiBrain : MonoBehaviour
         _owner.OnSetup -= Setup;
     }
 
-    private void Update()
+    private void FixedUpdate()
 	{
 		if (_isDead)
 		{

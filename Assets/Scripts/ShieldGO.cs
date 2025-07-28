@@ -108,4 +108,6 @@ public class ShieldGO : MonoBehaviour
 
         _shieldEnabled = true;
     }
+
+    internal bool IsShielded() => _shieldEnabled;
 }
