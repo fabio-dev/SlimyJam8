@@ -2544,7 +2544,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5371748706957349288, guid: 61bf6feecc3d3984f88caf07ae5a22b5, type: 3}
       propertyPath: _chunks.Array.size
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5371748706957349288, guid: 61bf6feecc3d3984f88caf07ae5a22b5, type: 3}
       propertyPath: '_chunks.Array.data[0]'
@@ -2558,6 +2558,22 @@ PrefabInstance:
       propertyPath: '_chunks.Array.data[2]'
       value: 
       objectReference: {fileID: 2624917258591318373, guid: b73b57c5bbbaa0f468f60c79437df287, type: 3}
+    - target: {fileID: 5371748706957349288, guid: 61bf6feecc3d3984f88caf07ae5a22b5, type: 3}
+      propertyPath: '_chunks.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2624917258591318373, guid: 242029d23cee49643bc4a5cb68664c7c, type: 3}
+    - target: {fileID: 5371748706957349288, guid: 61bf6feecc3d3984f88caf07ae5a22b5, type: 3}
+      propertyPath: '_chunks.Array.data[4]'
+      value: 
+      objectReference: {fileID: 2624917258591318373, guid: 035e7154a3a213044a633b4370f2edbe, type: 3}
+    - target: {fileID: 5371748706957349288, guid: 61bf6feecc3d3984f88caf07ae5a22b5, type: 3}
+      propertyPath: '_chunks.Array.data[5]'
+      value: 
+      objectReference: {fileID: 2624917258591318373, guid: 86f6b461567798a4a9b98438dfa53b32, type: 3}
+    - target: {fileID: 5371748706957349288, guid: 61bf6feecc3d3984f88caf07ae5a22b5, type: 3}
+      propertyPath: '_chunks.Array.data[6]'
+      value: 
+      objectReference: {fileID: 2624917258591318373, guid: a9cf5bd8626c0314dad8b9d1a4929429, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
