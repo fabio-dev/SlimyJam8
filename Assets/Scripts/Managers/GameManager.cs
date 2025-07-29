@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private CameraFollow _camera;
 	[SerializeField] private HealthUI _healthUI;
 	[SerializeField] private DropManager _enemyDropManager;
-	[SerializeField] private DropManager _potDropManager;
+	[SerializeField] private DropManager _itemDropManager;
 	[SerializeField] private ExperienceUI _experienceUI;
 	[SerializeField] private ScoreManager _scoreManager;
 	[SerializeField] private AudioClip _music;
@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
 
         _levelManager = new LevelManager();
         _enemyDropManager.Setup(_playerGO, _levelManager);
-		_potDropManager.Setup(_playerGO, _levelManager);
+		_itemDropManager.Setup(_playerGO, _levelManager);
         _experienceUI.Setup(_levelManager);
 
         _playerGO.Setup(_player);

@@ -43,6 +43,13 @@ public class ProjectileGO : MonoBehaviour
             return;
         }
 
+        if (collider.gameObject.TryGetComponent(out ChestGO chest))
+        {
+            chest.Damage();
+            Destroy(gameObject);
+            return;
+        }
+
         if (!collider.gameObject.TryGetComponent(out ACharacterGO characterGO))
         {
             return;

@@ -25,7 +25,7 @@ public class ChestGO : MonoBehaviour
         }
         else
         {
-            SFXPlayer.Instance.PlayPotDamage();
+            SFXPlayer.Instance.PlayChestDamage();
         }
     }
 
@@ -36,25 +36,26 @@ public class ChestGO : MonoBehaviour
 
     private void Break()
     {
-        SFXPlayer.Instance.PlayPotDamage();
-        Instantiate(_breakMask, transform.position, Quaternion.identity);
+        SFXPlayer.Instance.PlayChestBreak();
         GetComponent<Collider2D>().enabled = false;
         Drop();
     }
 
     private void Drop()
     {
-        if (_dropManager != null)
+        if (_dropManager == null)
         {
             return;
         }
 
-        int rngDrop = UnityEngine.Random.Range(_minLoot, _maxLoot);
+        int rngDrop = UnityEngine.Random.Range(_minLoot, _maxLoot + 1);
 
         for (int i = 0; i < rngDrop; i++)
         {
             float rngX = transform.position.x + UnityEngine.Random.Range(-1f, 1f);
-            _dropManager.Drop(transform.position);
+            Vector2 dropPosition = new Vector2(rngX, transform.position.y);
+            Instantiate(_breakMask, dropPosition, Quaternion.identity);
+            _dropManager.Drop(dropPosition);
         }
     }
 

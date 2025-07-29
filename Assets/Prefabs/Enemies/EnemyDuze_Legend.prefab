@@ -166,7 +166,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 7800500842652666766}
   _deathMaskPrefab: {fileID: 7602200193259143599, guid: c8a6a5a4d2ff1e64081ace7c542271e6, type: 3}
   _moveSpeed: 1.2
-  _health: 50
+  _health: 40
   _basicAttackCooldown: 1
   _score: 200
   _numberOfDrops: 8

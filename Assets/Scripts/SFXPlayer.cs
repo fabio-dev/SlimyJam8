@@ -39,6 +39,10 @@ public class SFXPlayer : MonoBehaviour
     [SerializeField] private AudioClip[] _potDamages;
     [BoxGroup("Misc")]
     [SerializeField] private AudioClip _potBreak;
+    [BoxGroup("Misc")]
+    [SerializeField] private AudioClip[] _chestDamages;
+    [BoxGroup("Misc")]
+    [SerializeField] private AudioClip _chestBreak;
 
     void Awake()
     {
@@ -67,6 +71,8 @@ public class SFXPlayer : MonoBehaviour
     public void PlayLoot() => PlayAny(_loots);
     public void PlayPotDamage() => PlayAny(_potDamages);
     public void PlayPotBreak() => Play(_potBreak);
+    public void PlayChestDamage() => PlayAny(_chestDamages);
+    public void PlayChestBreak() => Play(_chestBreak);
 
     public void PlayAny(AudioClip[] clip)
     {

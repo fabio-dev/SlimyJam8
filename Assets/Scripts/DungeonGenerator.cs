@@ -6,9 +6,11 @@ public class DungeonGenerator : MonoBehaviour
 {
     [SerializeField] private ChunkGO[] _chunks;
     [SerializeField] private Transform _player;
-    [SerializeField] private DropManager _potDropManager;
+    [SerializeField] private DropManager _dropManager;
     [SerializeField] private PotGO _potPrefab;
+    [SerializeField] private ChestGO _chestPrefab;
     [Range(0f, 1f), SerializeField] private float _potChanceToSpawn;
+    [Range(0f, 1f), SerializeField] private float _chestChanceToSpawn;
 
     private const int ChunkSize = 20;
 
@@ -49,11 +51,18 @@ public class DungeonGenerator : MonoBehaviour
         ChunkGO chunk = Instantiate(RandomChunk());
         chunk.Init(coords, ChunkSize);
 
-        float rng = Random.Range(0f, 1f);
-        if (rng <= _potChanceToSpawn)
+        float rngPot = Random.Range(0f, 1f);
+        if (rngPot <= _potChanceToSpawn)
         {
             SpawnPot(coords);
         }
+
+        float rngChest =  Random.Range(0f, 1f);
+        if (rngChest <= _chestChanceToSpawn)
+        {
+            SpawnChest(coords);
+        }
+
         generatedChunks[coords] = chunk;
     }
 
@@ -63,9 +72,16 @@ public class DungeonGenerator : MonoBehaviour
         int y = coords.y * ChunkSize + Random.Range(-ChunkSize, ChunkSize / 2);
 
         PotGO pot = Instantiate(_potPrefab, new Vector2(x, y), Quaternion.identity);
-        pot.SetDropManager(_potDropManager);
+        pot.SetDropManager(_dropManager);
+    }
 
-        Debug.Log("Pot spawned around " + coords);
+    private void SpawnChest(Vector2Int coords)
+    {
+        int x = coords.x * ChunkSize + Random.Range(-ChunkSize / 2, ChunkSize / 2);
+        int y = coords.y * ChunkSize + Random.Range(-ChunkSize, ChunkSize / 2);
+
+        ChestGO chest = Instantiate(_chestPrefab, new Vector2(x, y), Quaternion.identity);
+        chest.SetDropManager(_dropManager);
     }
 
     private ChunkGO RandomChunk()

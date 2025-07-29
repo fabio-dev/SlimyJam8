@@ -76,6 +76,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 408f8ecb53cf9cf4eaeb7b8f5ac20c85, type: 3}
   - {fileID: 8300000, guid: 840ee42c0a9aff8428d8365660850f18, type: 3}
   _potBreak: {fileID: 8300000, guid: b1a611c1b97a2bb48a7cae27fbe2e718, type: 3}
+  _chestDamages:
+  - {fileID: 8300000, guid: 1802297814b2a7b41820f994ead1da55, type: 3}
+  - {fileID: 8300000, guid: b7607ac4d972f334f88774fa54edafe5, type: 3}
+  _chestBreak: {fileID: 8300000, guid: aaaaa580878518f4aa0bdff2c10044d5, type: 3}
 --- !u!82 &4836310990880873883
 AudioSource:
   m_ObjectHideFlags: 0
