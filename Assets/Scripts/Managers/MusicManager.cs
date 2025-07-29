@@ -32,6 +32,11 @@ public class MusicManager : MonoBehaviour
 
     public void ChangeClip(AudioClip clip)
     {
+        if (_audioSource.clip == clip)
+        {
+            return;
+        }
+
         StopMusic(() =>
         {
             _audioSource.clip = clip;

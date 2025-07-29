@@ -1,6 +1,5 @@
 using Assets.Scripts.Domain;
 using System.Collections;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,7 +12,6 @@ public class PlayerDashInput : BasePlayerInput
 		Init();
 		InputManager.Instance.Player.Value.Dash.performed += DashPerformed;
         _rigidBody = GetComponent<Rigidbody2D>();
-
     }
 
 	private void DashPerformed(InputAction.CallbackContext context)
@@ -33,9 +31,15 @@ public class PlayerDashInput : BasePlayerInput
 			return;
 		}
 
-		Vector3 direction = Player.LastMove;
-		if (direction == Vector3.zero)
-		{
+        Vector3 direction = Player.LastMove;
+        direction = InputManager.Instance.Player.Value.Look.ReadValue<Vector2>();
+		direction = Camera.main.ScreenToWorldPoint(direction);
+        direction.z = 0;
+
+        direction = (direction - transform.position).normalized;
+
+        if (direction == Vector3.zero)
+        {
 			direction = Vector3.right;
 		}
 
