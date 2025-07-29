@@ -51,8 +51,8 @@ MonoBehaviour:
   _breakMask: {fileID: 6771713513104434964, guid: c8a6a5a4d2ff1e64081ace7c542271e6, type: 3}
   _health: 2
   _damageSprites:
-  - {fileID: -6834524911116659543, guid: 360017576d15c3947b486ded6eaf4feb, type: 3}
-  - {fileID: -6834524911116659543, guid: 360017576d15c3947b486ded6eaf4feb, type: 3}
+  - {fileID: 5045073161074915229, guid: f0bf630b67931c342a733baa77d83eb5, type: 3}
+  - {fileID: -1089752354001653685, guid: f0bf630b67931c342a733baa77d83eb5, type: 3}
   _minLoot: 3
   _maxLoot: 5
 --- !u!50 &6526090421876062402
@@ -126,7 +126,7 @@ SpriteRenderer:
   m_SortingLayerID: -2108793553
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6834524911116659543, guid: 360017576d15c3947b486ded6eaf4feb, type: 3}
+  m_Sprite: {fileID: -6834524911116659543, guid: f0bf630b67931c342a733baa77d83eb5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -171,15 +171,15 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.15547991}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.45}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.64, y: 0.45}
+  m_Size: {x: 1, y: 0.6890402}
   m_EdgeRadius: 0

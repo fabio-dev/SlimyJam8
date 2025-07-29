@@ -17,6 +17,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c2d4ae883baed1142a6283b1784142ba, type: 2}
   - {fileID: 11400000, guid: 264decc2bb888054d8dad6c5f747e94c, type: 2}
   - {fileID: 11400000, guid: 8f6c4d20ffbc9a841be9d2e321965ef8, type: 2}
-  PhaseDurationInSeconds: 20
-  MinDelayToSpawnInSeconds: 1.8
-  MaxDelayToSpawnInSeconds: 2.8
+  PhaseDurationInSeconds: 30
+  MinDelayToSpawnInSeconds: 2
+  MaxDelayToSpawnInSeconds: 3
