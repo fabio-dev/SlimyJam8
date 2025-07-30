@@ -878,7 +878,7 @@ MonoBehaviour:
 
 
     E
-    : splash - Fesh saute sur place et cree une grande flaque autour de lui, infligeant
+    : stomp - Fesh saute sur place et cree une grande flaque autour de lui, infligeant
     des degats aux ennemis proches
 
     C : dash - Fesh fonce dans la direction du
