@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 
 public class PowerUpManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class PowerUpManager : MonoBehaviour
     [SerializeField] private PowerUpsUI _powerUpsUI;
     private Player _player;
     private LevelManager _levelManager;
+    private int _powerUpsToChoose = 0;
+    private bool _isChoosing = false;
 
     public event Action OnSelecting;
     public event Action OnSelected;
@@ -30,13 +33,22 @@ public class PowerUpManager : MonoBehaviour
 
     private void LevelUp()
     {
+        _powerUpsToChoose++;
         StartCoroutine(ShowPowerUpsUI());
     }
 
     private IEnumerator ShowPowerUpsUI()
     {
-        yield return new WaitForSeconds(1f);
+        if (!_isChoosing)
+        {
+            _isChoosing = true;
+            yield return new WaitForSeconds(.2f);
+            SelectPowerUp();
+        }
+    }
 
+    private void SelectPowerUp()
+    {
         OnSelecting?.Invoke();
 
         _powerUpsUI.Show();
@@ -59,7 +71,17 @@ public class PowerUpManager : MonoBehaviour
         _powerUpsUI.ClearPowerUps();
         _powerUpsUI.Hide();
 
-        OnSelected?.Invoke();
+        _powerUpsToChoose--;
+
+        if (_powerUpsToChoose > 0)
+        {
+            SelectPowerUp();
+        }
+        else
+        {
+            OnSelected?.Invoke();
+            _isChoosing = false;
+        }
     }
 
     private List<APowerUp> GetRandomPowerUps(int count)

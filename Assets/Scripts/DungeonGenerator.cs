@@ -9,6 +9,7 @@ public class DungeonGenerator : MonoBehaviour
     [SerializeField] private DropManager _dropManager;
     [SerializeField] private PotGO _potPrefab;
     [SerializeField] private ChestGO _chestPrefab;
+
     [Range(0f, 1f), SerializeField] private float _potChanceToSpawn;
     [Range(0f, 1f), SerializeField] private float _chestChanceToSpawn;
 

@@ -46,3 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _chunks: []
   _player: {fileID: 7974043734711548844, guid: c15284bea429eae48830ea9bc4370fc1, type: 3}
+  _dropManager: {fileID: 0}
+  _potPrefab: {fileID: 0}
+  _chestPrefab: {fileID: 0}
+  _potChanceToSpawn: 0
+  _chestChanceToSpawn: 0
