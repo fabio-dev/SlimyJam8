@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1507039583
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2c444b21ecd350947a13e6faa3386350, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 8957668169113179623}
   - component: {fileID: -7919842605636054070}
   - component: {fileID: 1297402288563583131}
+  - component: {fileID: 8265729037707804393}
   m_Layer: 0
   m_Name: ProjectileBase
   m_TagString: Untagged
@@ -199,3 +200,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 10
   _lifeTime: 2
+--- !u!114 &8265729037707804393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2759366090439972403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e12768f8251975438a982964e6bb7d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _idleAnimations: {fileID: 11400000, guid: 382fd925b2329824eba8c6126435f1ad, type: 2}
+  _spriteRenderer: {fileID: 1146011727961546826}

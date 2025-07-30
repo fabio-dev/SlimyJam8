@@ -32,7 +32,7 @@ public class MusicManager : MonoBehaviour
 
     public void ChangeClip(AudioClip clip)
     {
-        if (_audioSource.clip == clip)
+        if (_audioSource.clip == clip && _audioSource.isPlaying)
         {
             return;
         }
