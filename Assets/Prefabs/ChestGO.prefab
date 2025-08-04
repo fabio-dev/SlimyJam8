@@ -53,8 +53,8 @@ MonoBehaviour:
   _damageSprites:
   - {fileID: 5045073161074915229, guid: f0bf630b67931c342a733baa77d83eb5, type: 3}
   - {fileID: -1089752354001653685, guid: f0bf630b67931c342a733baa77d83eb5, type: 3}
-  _minLoot: 3
-  _maxLoot: 5
+  _minLoot: 2
+  _maxLoot: 4
 --- !u!50 &6526090421876062402
 Rigidbody2D:
   serializedVersion: 5
@@ -124,7 +124,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2108793553
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -6834524911116659543, guid: f0bf630b67931c342a733baa77d83eb5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

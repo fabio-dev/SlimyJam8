@@ -882,11 +882,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8884982004266244590, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
       propertyPath: _gemMDropWeight
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8884982004266244590, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
       propertyPath: _gemSDropWeight
-      value: 55
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8884982004266244590, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
       propertyPath: _heartDropWeight
