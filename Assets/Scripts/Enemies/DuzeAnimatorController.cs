@@ -1,7 +1,7 @@
 ﻿using Assets.Scripts.Domain;
 using UnityEngine;
 
-public class DuzeAnimatorController : MonoBehaviour, IAnimatorController
+public class DuzeAnimatorController : AAnimatorController
 {
     [SerializeField] private SpriteAnimations _idleAnimations;
     [SerializeField] private SpriteAnimations _damagedAnimations;
@@ -12,7 +12,7 @@ public class DuzeAnimatorController : MonoBehaviour, IAnimatorController
     private OneTimeSpriteAnimator _dieAnimator = new();
     private EnemyGO _enemyGO;
 
-    public void Setup(EnemyGO enemyGO)
+    public override void Setup(EnemyGO enemyGO)
     {
         UnregisterEvents();
         _enemyGO = enemyGO;
@@ -70,7 +70,7 @@ public class DuzeAnimatorController : MonoBehaviour, IAnimatorController
         _dieAnimator.Play();
     }
 
-    public void Kill()
+    public override void Kill()
     {
         _idleAnimator.Kill();
         _damagedAnimator.Kill();

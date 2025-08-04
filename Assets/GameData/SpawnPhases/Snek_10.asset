@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc94001910ef73c4f97a623e4412ed17, type: 3}
   m_Name: Snek_10
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 955137538411816529, guid: 74fdfd7c6462ddb49b37a45e5491e799, type: 3}
+  Enemy: {fileID: 6129237727838509219, guid: 10e218c2acfc6e049abe53e090f24abf, type: 3}
   Weight: 5

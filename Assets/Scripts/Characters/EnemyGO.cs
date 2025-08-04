@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyGO : ACharacterGO
 {
-    [SerializeField] private IAnimatorController _animatorController;
+    [SerializeField] private AAnimatorController _animatorController;
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _health;
     [SerializeField] private float _basicAttackCooldown;

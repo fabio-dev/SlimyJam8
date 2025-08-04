@@ -74,9 +74,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2108793553
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 6741202298437556726, guid: 3a30aaefd478e3a4ba78f117643d323c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1468fa95bcd0ff84e8f05c6b95484923, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,11 +98,10 @@ GameObject:
   - component: {fileID: 6714619182592615071}
   - component: {fileID: 955137538411816529}
   - component: {fileID: 8358360567541710514}
-  - component: {fileID: -5587328150898125283}
   - component: {fileID: 7800500842652666766}
   - component: {fileID: 3087706663170808456}
   m_Layer: 6
-  m_Name: EnemySnek
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,7 +140,6 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 6714619182592615071}
-    - {fileID: -5587328150898125283}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -160,13 +158,13 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: _animatorController
-      Entry: 10
-      Data: 1
+      Entry: 6
+      Data: 
   _spriteRenderer: {fileID: 2150572542758624212}
   _rigidbody: {fileID: 7800500842652666766}
   _deathMaskPrefab: {fileID: 7602200193259143599, guid: c8a6a5a4d2ff1e64081ace7c542271e6, type: 3}
-  _moveSpeed: 1.2
-  _health: 2
+  _moveSpeed: 1.4
+  _health: 3
   _basicAttackCooldown: 1
   _score: 10
   _numberOfDrops: 1
@@ -183,33 +181,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42b8a6bb22e51a046ba1ac95d0ba4f7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: 8ecfb106ec6c85943ac7d9e8536dec7d, type: 2}
+  _settings: {fileID: 11400000, guid: f3b3d9ee823742b4d8c55853efe3fc43, type: 2}
   _owner: {fileID: 955137538411816529}
-  _weight: 24
---- !u!114 &-5587328150898125283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6963846044673964606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 556bd0467036fbf469c962b70c3d225e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _idleAnimationsFace: {fileID: 11400000, guid: 28f41e5f0c6c8984f948ea9ae1094b99, type: 2}
-  _idleAnimationsSide: {fileID: 11400000, guid: 4de0b3b8c7a469348aa229d4e15df19a, type: 2}
-  _idleAnimationsBack: {fileID: 11400000, guid: e79a881770880034d8d97afd406f0289, type: 2}
-  _damagedAnimationsFace: {fileID: 11400000, guid: f4514f618a84ed441bd3b366fef2b309, type: 2}
-  _damagedAnimationsSide: {fileID: 11400000, guid: 9e7e31a2607bf3f4ca18228839debb1b, type: 2}
-  _damagedAnimationsBack: {fileID: 11400000, guid: 0139556ff7c1ab0488d454789a0a6a9e, type: 2}
-  _dieAnimationsFace: {fileID: 11400000, guid: 8522e09fb79f9194d90866e1a1df23b8, type: 2}
-  _dieAnimationsSide: {fileID: 11400000, guid: b853bb2eca3d2dc42971d6972fecec60, type: 2}
-  _dieAnimationsBack: {fileID: 11400000, guid: a24e7812fa83e1a41b326c23f19f5596, type: 2}
-  _attackAnimationsFace: {fileID: 11400000, guid: 7de207d7e593dbe41b45f03aa3e4c445, type: 2}
-  _attackAnimationsSide: {fileID: 11400000, guid: 767cab2184be95b4c833ac59ebbbf58d, type: 2}
-  _attackAnimationsBack: {fileID: 11400000, guid: c239d9ff5ff724646b943fa37fcd1009, type: 2}
+  _weight: 30
 --- !u!50 &7800500842652666766
 Rigidbody2D:
   serializedVersion: 5
@@ -232,7 +206,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 576
+    m_Bits: 512
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0

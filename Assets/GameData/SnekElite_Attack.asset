@@ -30,7 +30,7 @@ MonoBehaviour:
       Data: 3.4
     - Name: _attackRateSettings
       Entry: 4
-      Data: 0.9
+      Data: 1.5
     - Name: _damageAmount
       Entry: 4
       Data: 1
@@ -45,7 +45,7 @@ MonoBehaviour:
       Data: 1|FollowTargetStrategy, Assembly-CSharp
     - Name: _moveSpeedSettings
       Entry: 4
-      Data: 1.4
+      Data: 1.5
     - Name: _stopRangeSettings
       Entry: 4
       Data: 3

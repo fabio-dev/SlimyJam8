@@ -2708,7 +2708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
       propertyPath: _phases.Array.size
-      value: 10
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
       propertyPath: '_phases.Array.data[0]'
@@ -2729,23 +2729,23 @@ PrefabInstance:
     - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
       propertyPath: '_phases.Array.data[4]'
       value: 
-      objectReference: {fileID: 11400000, guid: 27871e1ad73a30047a925906618cb128, type: 2}
+      objectReference: {fileID: 11400000, guid: cab28f71693dac9498e51300b0d02df2, type: 2}
     - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
       propertyPath: '_phases.Array.data[5]'
       value: 
-      objectReference: {fileID: 11400000, guid: 2a9fa59f2895ad64b9de0e9801cd821f, type: 2}
+      objectReference: {fileID: 11400000, guid: cab28f71693dac9498e51300b0d02df2, type: 2}
     - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
       propertyPath: '_phases.Array.data[6]'
       value: 
-      objectReference: {fileID: 11400000, guid: 17842ff2841e105408403777048026aa, type: 2}
+      objectReference: {fileID: 11400000, guid: cab28f71693dac9498e51300b0d02df2, type: 2}
     - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
       propertyPath: '_phases.Array.data[7]'
       value: 
-      objectReference: {fileID: 11400000, guid: 57f8d516af429bb45b2f4be603a7c8a7, type: 2}
+      objectReference: {fileID: 11400000, guid: cab28f71693dac9498e51300b0d02df2, type: 2}
     - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
       propertyPath: '_phases.Array.data[8]'
       value: 
-      objectReference: {fileID: 11400000, guid: 63bc8bac8a8a8104c8530ec19233ef26, type: 2}
+      objectReference: {fileID: 11400000, guid: cab28f71693dac9498e51300b0d02df2, type: 2}
     - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
       propertyPath: '_phases.Array.data[9]'
       value: 

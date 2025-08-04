@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc94001910ef73c4f97a623e4412ed17, type: 3}
   m_Name: Duze_10
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 955137538411816529, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
+  Enemy: {fileID: 586484903188510592, guid: 0447ab91301a47a428f550153a56124b, type: 3}
   Weight: 10

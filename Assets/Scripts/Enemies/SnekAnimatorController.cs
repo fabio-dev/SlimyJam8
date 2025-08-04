@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-public class SnekAnimatorController : MonoBehaviour, IAnimatorController
+public class SnekAnimatorController : AAnimatorController
 {
     [SerializeField] private SpriteAnimations _idleAnimationsFace;
     [SerializeField] private SpriteAnimations _idleAnimationsSide;
@@ -39,7 +39,7 @@ public class SnekAnimatorController : MonoBehaviour, IAnimatorController
 
     private event Action<SpriteOrientation> _onOrientationChanged;
 
-    public void Setup(EnemyGO enemyGO)
+    public override void Setup(EnemyGO enemyGO)
     {
         UnregisterEvents();
         _enemyGO = enemyGO;
@@ -269,7 +269,7 @@ public class SnekAnimatorController : MonoBehaviour, IAnimatorController
         _currentAnimator.Play();
     }
 
-    public void Kill()
+    public override void Kill()
     {
         _idleAnimatorFace.Kill();
         _idleAnimatorSide.Kill();
