@@ -30,7 +30,7 @@ MonoBehaviour:
       Data: 3.4
     - Name: _attackRateSettings
       Entry: 4
-      Data: 1
+      Data: 1.3
     - Name: _damageAmount
       Entry: 4
       Data: 1
@@ -49,9 +49,9 @@ MonoBehaviour:
     - Name: _stopRangeSettings
       Entry: 4
       Data: 3
-    - Name: _obstacleCheckDistanceSettings
+    - Name: _raycastDistanceSettings
       Entry: 4
-      Data: 0.5
+      Data: 4
     - Name: _obstacleMaskSettings
       Entry: 7
       Data: UnityEngine.LayerMask, UnityEngine.CoreModule
@@ -61,6 +61,15 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: _avoidanceForceSettings
+      Entry: 4
+      Data: 2
+    - Name: _raycastCountSettings
+      Entry: 3
+      Data: 7
+    - Name: _enemySizeMultiplierSettings
+      Entry: 4
+      Data: 1
     - Name: 
       Entry: 8
       Data: 

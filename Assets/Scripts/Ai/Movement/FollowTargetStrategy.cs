@@ -1,22 +1,39 @@
 ﻿using UnityEngine;
 
-public class FollowTargetStrategy : IMovementStrategy
+public partial class FollowTargetStrategy : IMovementStrategy
 {
     [SerializeField] private float _moveSpeedSettings = 1.0f;
     [SerializeField] private float _stopRangeSettings = 5f;
-    [SerializeField] private float _obstacleCheckDistanceSettings = 0.5f;
+    [SerializeField] private float _raycastDistanceSettings = 3f; // Augmenté pour ennemis plus grands
     [SerializeField] private LayerMask _obstacleMaskSettings;
+    [SerializeField] private float _avoidanceForceSettings = 2f;
+    [SerializeField] private int _raycastCountSettings = 7; // Plus de rayons pour 50 ennemis
+    [SerializeField] private float _enemySizeMultiplierSettings = 1.5f; // Facteur de taille pour collision
 
     private EnemyGO _owner = null;
     private Transform _target = null;
     private float _moveSpeed;
     private float _stopRange;
+    private float _raycastDistance;
+    private float _avoidanceForce;
+    private int _raycastCount;
+    private float _enemySizeMultiplier;
     private Vector2 _knockback;
-    private const float _knockbackRecoverySpeed = 1f;
-    private float _obstacleCheckDistance = 0.5f;
     private LayerMask _obstacleMask;
 
-    private static readonly RaycastHit2D[] _hitsBuffer = new RaycastHit2D[2]; // petite alloc réutilisable
+    // Système de waypoints pour éviter les boucles
+    private Vector2? _currentWaypoint = null;
+    private float _waypointTimeout = 0f;
+    private const float _maxWaypointTime = 3f;
+
+    // Cache pour éviter les recalculs
+    private float _lastPathfindingTime = 0f;
+    private const float _pathfindingCooldown = 0.2f; // Recalcul toutes les 0.2s seulement
+
+    private const float _knockbackRecoverySpeed = 2f;
+    private const float _stuckThreshold = 0.1f; // Seuil pour détecter si on est bloqué
+    private Vector2 _lastPosition;
+    private float _stuckTimer = 0f;
 
     public Transform Target => _target;
 
@@ -25,161 +42,129 @@ public class FollowTargetStrategy : IMovementStrategy
         _knockback += force;
     }
 
-    public IMovementStrategy Init(EnemyGO owner, Transform target)
-    {
-        FollowTargetStrategy strategy = new FollowTargetStrategy();
-        strategy._owner = owner;
-        strategy._target = target;
-        strategy._moveSpeed = _moveSpeedSettings;
-        strategy._stopRange = _stopRangeSettings;
-        strategy._obstacleMask = _obstacleMaskSettings;
-        strategy._obstacleCheckDistance = _obstacleCheckDistanceSettings;
-        return strategy;
-    }
-
-    private Vector2? _temporaryTarget = null;
-
     public void Update()
     {
         if (_owner == null || _target == null) return;
 
         Vector2 currentPos = _owner.transform.position;
-        Vector2 realTarget = _target.position;
-        Vector2 targetPos = _temporaryTarget ?? realTarget;
-        Vector2 dirToTarget = targetPos - currentPos;
-        float distanceToTarget = dirToTarget.magnitude;
-        Vector2 move = Vector2.zero;
+        Vector2 targetPos = _target.position;
+        float distanceToTarget = Vector2.Distance(currentPos, targetPos);
+
+        // Gestion du timeout des waypoints
+        if (_waypointTimeout > 0f)
+        {
+            _waypointTimeout -= Time.fixedDeltaTime;
+            if (_waypointTimeout <= 0f)
+            {
+                _currentWaypoint = null;
+            }
+        }
+
+        // Détection si on est bloqué
+        CheckIfStuck(currentPos);
+
+        Vector2 moveDirection = Vector2.zero;
 
         if (distanceToTarget > _stopRange)
         {
-            Vector2 desiredMove = dirToTarget.normalized * _moveSpeed * Time.fixedDeltaTime;
+            moveDirection = CalculateMovementDirection(currentPos, targetPos);
+        }
 
-            // Création du filtre collision
-            ContactFilter2D filter = new ContactFilter2D();
-            filter.SetLayerMask(_obstacleMask);
-            filter.useTriggers = false;
+        // Application du mouvement avec knockback
+        Vector2 finalMove = moveDirection * _moveSpeed * Time.fixedDeltaTime + _knockback;
+        _owner.Rigidbody.MovePosition(currentPos + finalMove);
 
-            // Test collision dans la direction désirée
-            int hitCount = _owner.Rigidbody.Cast(desiredMove.normalized, filter, _hitsBuffer, desiredMove.magnitude);
+        // Récupération du knockback
+        _knockback = Vector2.Lerp(_knockback, Vector2.zero, Time.fixedDeltaTime * _knockbackRecoverySpeed);
+        _lastPosition = currentPos;
+    }
 
-            if (hitCount == 0)
+    private Vector2 CalculateMovementDirection(Vector2 currentPos, Vector2 targetPos)
+    {
+        Vector2 directDirection = (targetPos - currentPos).normalized;
+
+        // Vérifier si le chemin direct est libre
+        if (IsPathClear(currentPos, targetPos))
+        {
+            _currentWaypoint = null; // Plus besoin de waypoint
+            return directDirection;
+        }
+
+        // Si on a un waypoint valide, aller vers lui
+        if (_currentWaypoint.HasValue)
+        {
+            float waypointDistance = Vector2.Distance(currentPos, _currentWaypoint.Value);
+            if (waypointDistance < 0.5f || IsPathClear(currentPos, targetPos))
             {
-                // Pas d'obstacle, on avance normalement vers la cible
-                move = desiredMove + _knockback;
-
-                // Si on était en train de contourner et qu'on peut maintenant aller vers la cible réelle
-                if (_temporaryTarget != null && CanReachTarget(currentPos, realTarget, filter))
-                {
-                    _temporaryTarget = null;
-                }
+                _currentWaypoint = null; // Waypoint atteint ou chemin direct libre
+                return directDirection;
             }
             else
             {
-                // Obstacle détecté : système de contournement amélioré
-                move = HandleObstacleAvoidance(currentPos, realTarget, desiredMove, filter) + _knockback;
+                return (_currentWaypoint.Value - currentPos).normalized;
+            }
+        }
+
+        // Calculer une nouvelle direction d'évitement
+        return CalculateAvoidanceDirection(currentPos, targetPos, directDirection);
+    }
+
+    private float EvaluateDirection(Vector2 currentPos, Vector2 targetPos, Vector2 direction)
+    {
+        // CircleCast pour tenir compte de la taille de l'ennemi
+        float checkRadius = _enemySizeMultiplier * 0.5f;
+        RaycastHit2D hit = Physics2D.CircleCast(currentPos, checkRadius, direction, _raycastDistance, _obstacleMask);
+
+        float clearDistance = hit.collider == null ? _raycastDistance : hit.distance;
+        if (clearDistance < checkRadius * 2) return -1f; // Direction bloquée
+
+        // Score basé sur : distance libre + alignement avec la cible
+        Vector2 directionToTarget = (targetPos - currentPos).normalized;
+        float alignment = Vector2.Dot(direction, directionToTarget);
+
+        return clearDistance * 0.5f + alignment * 0.5f;
+    }
+
+    private Vector2 FindWaypoint(Vector2 currentPos, Vector2 targetPos, Vector2 direction)
+    {
+        // Projeter un point dans la direction choisie
+        RaycastHit2D hit = Physics2D.Raycast(currentPos, direction, _raycastDistance, _obstacleMask);
+        float safeDistance = hit.collider == null ? _raycastDistance * 0.8f : hit.distance * 0.8f;
+
+        return currentPos + direction * safeDistance;
+    }
+
+    private bool IsPathClear(Vector2 from, Vector2 to)
+    {
+        Vector2 direction = to - from;
+        float distance = direction.magnitude;
+
+        if (distance < 0.1f) return true;
+
+        // Utiliser la taille de l'ennemi pour la détection
+        float checkRadius = _enemySizeMultiplier * 0.5f;
+        RaycastHit2D hit = Physics2D.CircleCast(from, checkRadius, direction.normalized, distance, _obstacleMask);
+        return hit.collider == null;
+    }
+
+    private void CheckIfStuck(Vector2 currentPos)
+    {
+        float movementThisFrame = Vector2.Distance(currentPos, _lastPosition);
+
+        if (movementThisFrame < _stuckThreshold)
+        {
+            _stuckTimer += Time.fixedDeltaTime;
+            if (_stuckTimer > 1f) // Bloqué depuis 1 seconde
+            {
+                // Forcer la recherche d'un nouveau chemin
+                _currentWaypoint = null;
+                _waypointTimeout = 0f;
+                _stuckTimer = 0f;
             }
         }
         else
         {
-            // Proche de la cible (temporaire ou réelle)
-            if (_temporaryTarget != null)
-            {
-                // On a atteint la cible temporaire
-                _temporaryTarget = null;
-            }
-            move = _knockback.normalized * _moveSpeed * Time.fixedDeltaTime;
+            _stuckTimer = 0f;
         }
-
-        _owner.Rigidbody.MovePosition(currentPos + move);
-        _knockback = Vector2.Lerp(_knockback, Vector2.zero, Time.fixedDeltaTime * _knockbackRecoverySpeed);
-    }
-
-    private Vector2 HandleObstacleAvoidance(Vector2 currentPos, Vector2 realTarget, Vector2 desiredMove, ContactFilter2D filter)
-    {
-        Vector2 obstacleNormal = _hitsBuffer[0].normal;
-
-        // Calculer les deux directions possibles de contournement
-        Vector2 rightDirection = Vector2.Perpendicular(obstacleNormal);
-        Vector2 leftDirection = -rightDirection;
-
-        // Déterminer quelle direction nous rapproche le plus de la cible réelle
-        Vector2 toRealTarget = (realTarget - currentPos).normalized;
-        float rightDot = Vector2.Dot(rightDirection, toRealTarget);
-        float leftDot = Vector2.Dot(leftDirection, toRealTarget);
-
-        // Choisir la meilleure direction
-        Vector2 preferredDirection = rightDot > leftDot ? rightDirection : leftDirection;
-        Vector2 alternateDirection = rightDot > leftDot ? leftDirection : rightDirection;
-
-        // Tester d'abord la direction préférée
-        Vector2 moveAttempt = TryMoveInDirection(currentPos, preferredDirection, filter);
-        if (moveAttempt != Vector2.zero)
-        {
-            // Définir une cible temporaire dans cette direction
-            SetTemporaryTarget(currentPos, preferredDirection, realTarget, filter);
-            return moveAttempt;
-        }
-
-        // Si la direction préférée est bloquée, essayer l'autre
-        moveAttempt = TryMoveInDirection(currentPos, alternateDirection, filter);
-        if (moveAttempt != Vector2.zero)
-        {
-            SetTemporaryTarget(currentPos, alternateDirection, realTarget, filter);
-            return moveAttempt;
-        }
-
-        // Si les deux directions sont bloquées, essayer de glisser le long de l'obstacle
-        Vector2 slideDirection = Vector2.Perpendicular(obstacleNormal);
-        if (Vector2.Dot(slideDirection, desiredMove) < 0)
-            slideDirection = -slideDirection;
-
-        return TryMoveInDirection(currentPos, slideDirection, filter);
-    }
-
-    private Vector2 TryMoveInDirection(Vector2 currentPos, Vector2 direction, ContactFilter2D filter)
-    {
-        Vector2 moveVector = direction.normalized * _moveSpeed * Time.fixedDeltaTime;
-        int hitCount = _owner.Rigidbody.Cast(moveVector.normalized, filter, _hitsBuffer, moveVector.magnitude);
-
-        if (hitCount == 0)
-        {
-            return moveVector;
-        }
-
-        return Vector2.zero;
-    }
-
-    private void SetTemporaryTarget(Vector2 currentPos, Vector2 direction, Vector2 realTarget, ContactFilter2D filter)
-    {
-        // Projeter un rayon dans la direction choisie pour trouver un point de contournement
-        float maxDistance = 10f; // Distance maximale pour chercher un point de contournement
-        float stepDistance = 1f; // Distance entre chaque test
-
-        for (float distance = stepDistance; distance <= maxDistance; distance += stepDistance)
-        {
-            Vector2 testPoint = currentPos + direction.normalized * distance;
-
-            // Vérifier si depuis ce point on peut voir la cible réelle
-            if (CanReachTarget(testPoint, realTarget, filter))
-            {
-                _temporaryTarget = testPoint;
-                return;
-            }
-        }
-
-        // Si aucun point optimal n'est trouvé, utiliser une distance fixe
-        _temporaryTarget = currentPos + direction.normalized * 3f;
-    }
-
-    private bool CanReachTarget(Vector2 from, Vector2 to, ContactFilter2D filter)
-    {
-        Vector2 directionToTarget = to - from;
-        float distanceToTarget = directionToTarget.magnitude;
-
-        if (distanceToTarget < 0.1f) return true;
-
-        // Utiliser un raycast pour vérifier s'il y a des obstacles
-        int hitCount = _owner.Rigidbody.Cast(directionToTarget.normalized, filter, _hitsBuffer, distanceToTarget);
-        return hitCount == 0;
     }
 }
