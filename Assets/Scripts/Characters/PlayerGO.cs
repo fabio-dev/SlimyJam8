@@ -13,10 +13,10 @@ public class PlayerGO : ACharacterGO
 	[SerializeField] private Transform _gunShotPosition;
 	[SerializeField] private GameObject _splashParticles;
 	[SerializeField] private ShieldGO _shield;
+    [SerializeField] private AWeapon _weapon;
 
     private PlayerAnimatorController _animatorController;
     private BasePlayerInput[] _inputs;
-
     private Cooldown _invulnerableCooldown;
 	private bool _invulnerableCooldownStarted;
 
@@ -187,5 +187,13 @@ public class PlayerGO : ACharacterGO
 
 		GameObject particles = Instantiate(_splashParticles, transform.position, Quaternion.identity);
 		Destroy(particles, 1f);
+    }
+
+    internal void Shoot(Vector2 shootDirection)
+    {
+        if (_weapon != null && !Player.Health.IsDead())
+        {
+            _weapon.Shoot(shootDirection);
+        }
     }
 }

@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerAttackInput : BasePlayerInput
 {
-	[SerializeField] private ProjectileGO _projectilePrefab;
 	private Vector2 _pointerScreenPosition;
 	private CancellationTokenSource _attackCancellationTokenSource;
 	private Camera _mainCamera;
@@ -82,9 +81,7 @@ public class PlayerAttackInput : BasePlayerInput
 
 		Vector2 shootDirection = (pointerWorldPosition - transform.position).normalized;
 
-        ProjectileGO projectile = Instantiate(_projectilePrefab, GameManager.Instance.PlayerGO.GunShotPosition, Quaternion.identity);
-		projectile.transform.right = shootDirection;
-		projectile.Launch(shootDirection, GameManager.Instance.PlayerGO.Player.AttackDamages, 0f);
+        GameManager.Instance.PlayerGO.Shoot(shootDirection);
 	}
 
 	private void OnDestroy()

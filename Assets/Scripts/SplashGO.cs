@@ -8,7 +8,7 @@ public class SplashGO : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out EnemyGO enemy))
         {
-            enemy.Enemy.Health.TakeDamage(GameManager.Instance.PlayerGO.Player.AttackDamages * 2);
+            enemy.Enemy.Health.TakeDamage(GameManager.Instance.PlayerGO.Player.AttackDamages);
         }
     }
 

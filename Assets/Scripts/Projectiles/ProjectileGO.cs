@@ -1,4 +1,5 @@
 using Assets.Scripts.Domain;
+using System;
 using UnityEngine;
 
 public class ProjectileGO : MonoBehaviour
@@ -9,6 +10,8 @@ public class ProjectileGO : MonoBehaviour
 	private Vector3 _direction;
 	private float _damageAmount = 0.0f;
     private Cooldown _launchDelay = new Cooldown(1f);
+
+    public event Action<ProjectileGO> OnCollide;
 
     internal void Launch(Vector3 directionToTaget, float damage, float delay)
     {
@@ -32,21 +35,21 @@ public class ProjectileGO : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Wall"))
         {
-            Destroy(gameObject);
+            Kill();
             return;
         }
 
         if (collider.gameObject.TryGetComponent(out PotGO pot))
         {
             pot.Damage();
-            Destroy(gameObject);
+            Kill();
             return;
         }
 
         if (collider.gameObject.TryGetComponent(out ChestGO chest))
         {
             chest.Damage();
-            Destroy(gameObject);
+            Kill();
             return;
         }
 
@@ -58,10 +61,15 @@ public class ProjectileGO : MonoBehaviour
         characterGO.Character.Health.TakeDamage(_damageAmount);
         if (characterGO.gameObject.TryGetComponent(out AiBrain brain))
         {
+            Kill();
             Vector2 knockbackDir = _direction.normalized;
             brain.ApplyKnockback(knockbackDir);
         }
+    }
 
+    private void Kill()
+    {
+        OnCollide?.Invoke(this);
         Destroy(gameObject);
     }
 }

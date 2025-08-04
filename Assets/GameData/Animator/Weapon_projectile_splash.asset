@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf99756fedacd6042bd9ea0fbf1c09c3, type: 3}
-  m_Name: Player_Projectile_idle
+  m_Name: Weapon_projectile_splash
   m_EditorClassIdentifier: 
   _sprites:
-  - _sprite: {fileID: 6317600740430409268, guid: 2f952cc6c7fb8754eb7bb5b264d94b5f, type: 3}
+  - _sprite: {fileID: 274778542984381035, guid: 7836fe598d43a7e48b0e7b48b1bf4ce8, type: 3}
     _duration: 0.1
-  - _sprite: {fileID: -6348251089273414097, guid: 2f952cc6c7fb8754eb7bb5b264d94b5f, type: 3}
+  - _sprite: {fileID: -3225146245871689439, guid: 7836fe598d43a7e48b0e7b48b1bf4ce8, type: 3}
     _duration: 0.1
-  - _sprite: {fileID: 6317600740430409268, guid: 2f952cc6c7fb8754eb7bb5b264d94b5f, type: 3}
+  - _sprite: {fileID: 4582146942564342192, guid: 7836fe598d43a7e48b0e7b48b1bf4ce8, type: 3}
     _duration: 0.1
-  - _sprite: {fileID: 5146063991432544360, guid: 2f952cc6c7fb8754eb7bb5b264d94b5f, type: 3}
+  - _sprite: {fileID: -3225146245871689439, guid: 7836fe598d43a7e48b0e7b48b1bf4ce8, type: 3}
     _duration: 0.1
