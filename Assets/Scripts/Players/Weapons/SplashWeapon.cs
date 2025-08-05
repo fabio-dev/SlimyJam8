@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
-public class SplashWeapon : AWeapon
+public class SplashWeapon : AWeaponGO
 {
     [SerializeField] private ProjectileGO _projectilePrefab;
     [SerializeField] private float _splashRadius = 1f;
 
-    public override void Shoot(Vector2 shootDirection)
+    protected override void ShootInner(Vector2 shootDirection)
     {
         ProjectileGO projectile = Instantiate(_projectilePrefab, GameManager.Instance.PlayerGO.GunShotPosition, Quaternion.identity);
         projectile.transform.right = shootDirection;

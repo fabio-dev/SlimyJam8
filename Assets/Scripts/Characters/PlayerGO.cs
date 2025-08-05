@@ -1,44 +1,51 @@
 ﻿using Assets.Scripts.Domain;
+using Assets.Scripts.Domain.Collectibles;
 using DG.Tweening;
+using System;
 using UnityEngine;
 
 public class PlayerGO : ACharacterGO
 {
-	[SerializeField] private SpriteRenderer _shadowSpriteRenderer;
-	[SerializeField] private Transform _center;
+    [SerializeField] private SpriteRenderer _shadowSpriteRenderer;
+    [SerializeField] private Transform _center;
     [SerializeField] private Transform _gun;
     [SerializeField] private Transform _gunSprite;
     [SerializeField] private Transform _body;
     [SerializeField] private Camera _camera;
-	[SerializeField] private Transform _gunShotPosition;
-	[SerializeField] private GameObject _splashParticles;
-	[SerializeField] private ShieldGO _shield;
-    [SerializeField] private AWeapon _weapon;
+    [SerializeField] private Transform _gunShotPosition;
+    [SerializeField] private GameObject _splashParticles;
+    [SerializeField] private ShieldGO _shield;
+    [SerializeField] private AWeaponGO _basicWeapon;
+    [SerializeField] private AWeaponGO _splashWeapon;
 
+    private AWeaponGO _currentWeapon;
     private PlayerAnimatorController _animatorController;
     private BasePlayerInput[] _inputs;
     private Cooldown _invulnerableCooldown;
-	private bool _invulnerableCooldownStarted;
+    private bool _invulnerableCooldownStarted;
 
-	public Player Player => Character as Player;
+    public event Action<AWeaponGO> OnWeaponChanged;
 
-	public Transform Center => _center;
+    public Player Player => Character as Player;
+    public AWeaponGO Weapon => _currentWeapon;
 
-	public Transform Body => _body;
+    public Transform Center => _center;
+
+    public Transform Body => _body;
 
     public PlayerState State => Player.State;
 
-	public Vector3 GunShotPosition => _gunShotPosition.position;
+    public Vector3 GunShotPosition => _gunShotPosition.position;
 
-	public void ShowGun()
-	{
-		_gunSprite.gameObject.SetActive(true);
-	}
+    public void ShowGun()
+    {
+        _gunSprite.gameObject.SetActive(true);
+    }
 
-	public void HideGun()
-	{
-		_gunSprite.gameObject.SetActive(false);
-	}
+    public void HideGun()
+    {
+        _gunSprite.gameObject.SetActive(false);
+    }
 
     private void Update()
     {
@@ -48,7 +55,7 @@ public class PlayerGO : ACharacterGO
             _invulnerableCooldown.Stop();
 
             if (!_shield.IsShielded())
-			{
+            {
                 Player.Vulnerable();
             }
         }
@@ -84,59 +91,85 @@ public class PlayerGO : ACharacterGO
         _shield.OnBreak += BreakShield;
 
         if (Character != null)
-		{
-			UnregisterEvents();
-		}
+        {
+            UnregisterEvents();
+        }
 
-		base.Setup(character);
+        base.Setup(character);
 
-		if (character is Player player)
-		{
-			_invulnerableCooldown = new Cooldown(player.InvulnerabilityDuration);
-		}
+        if (character is Player player)
+        {
+            _invulnerableCooldown = new Cooldown(player.InvulnerabilityDuration);
+        }
 
-		RegisterEvents();
-		_animatorController.Setup(this);
+        RegisterEvents();
+        _animatorController.Setup(this);
 
-		TriggerOnSetup();
-	}
+        ChangeWeapon(WeaponType.Basic);
+
+        TriggerOnSetup();
+    }
 
     protected override void OnDie(ACharacter character)
-	{
-		HideGun();
-		UnregisterEvents();
+    {
+        HideGun();
+        UnregisterEvents();
 
-		base.OnDie(character);
-	}
+        base.OnDie(character);
+    }
 
-	public void Pause()
-	{
-		foreach (BasePlayerInput input in _inputs)
-		{
-			input.enabled = false;
-		}
-	}
+    public void Pause()
+    {
+        foreach (BasePlayerInput input in _inputs)
+        {
+            input.enabled = false;
+        }
+    }
 
-	public void Resume()
-	{
-		foreach (BasePlayerInput input in _inputs)
-		{
-			input.enabled = true;
-		}
-	}
+    public void Resume()
+    {
+        foreach (BasePlayerInput input in _inputs)
+        {
+            input.enabled = true;
+        }
+    }
 
-	private void RegisterEvents()
-	{
-		Player.OnJumpStart += JumpStart;
-		Player.OnJumpEnd += JumpEnd;
+    private void RegisterEvents()
+    {
+        Player.OnJumpStart += JumpStart;
+        Player.OnJumpEnd += JumpEnd;
         Player.OnDamaged += OnDamaged;
         Player.OnDie += Dying;
         Player.OnShielded += OnShielded;
-	}
+        Player.OnWeaponChanged += ChangeWeapon;
+
+        _splashWeapon.OnEmptyAmmo += OnEmptyAmmo;
+    }
+
+    private void OnEmptyAmmo()
+    {
+        ChangeWeapon(WeaponType.Basic);
+    }
+
+    private void ChangeWeapon(WeaponType weapon)
+    {
+        switch (weapon)
+        {
+            case WeaponType.Splash:
+                _currentWeapon = _splashWeapon;
+                break;
+            default:
+                _currentWeapon = _basicWeapon;
+                break;
+        }
+
+        _currentWeapon.ResetAmmo();
+        OnWeaponChanged?.Invoke(_currentWeapon);
+    }
 
     private void OnShielded(float duration)
     {
-		_shield.Begin(duration);
+        _shield.Begin(duration);
         Player.Invulnerable();
     }
 
@@ -147,13 +180,13 @@ public class PlayerGO : ACharacterGO
 
     private void Dying(ACharacter character)
     {
-		Pause();
+        Pause();
     }
 
     private void OnDamaged(float obj)
     {
         Player.Invulnerable();
-		_invulnerableCooldownStarted = true;
+        _invulnerableCooldownStarted = true;
         _invulnerableCooldown.Start();
 
         SpriteRenderer
@@ -161,39 +194,45 @@ public class PlayerGO : ACharacterGO
           .SetLoops(5, LoopType.Yoyo)
           .OnComplete(() => SpriteRenderer.DOFade(1f, 0f));
 
-		SFXPlayer.Instance.PlayPlayerHurt();
+        SFXPlayer.Instance.PlayPlayerHurt();
     }
 
     private void UnregisterEvents()
-	{
-		Player.OnJumpStart -= JumpStart;
-		Player.OnJumpEnd -= JumpEnd;
-	}
+    {
+        Player.OnJumpStart -= JumpStart;
+        Player.OnJumpEnd -= JumpEnd;
+        Player.OnDamaged -= OnDamaged;
+        Player.OnDie -= Dying;
+        Player.OnShielded -= OnShielded;
+        Player.OnWeaponChanged -= ChangeWeapon;
 
-	private void JumpStart()
-	{
+        _splashWeapon.OnEmptyAmmo -= OnEmptyAmmo;
+    }
+
+    private void JumpStart()
+    {
         _shadowSpriteRenderer.gameObject.SetActive(true);
     }
 
     private void JumpEnd()
-	{
-		_shadowSpriteRenderer.gameObject.SetActive(false);
+    {
+        _shadowSpriteRenderer.gameObject.SetActive(false);
 
-		if (!ZoneManager.Instance.IsInsideAnyZone(transform.position))
-		{
-			Player.Health.TakeDamage(1f);
-			ZoneManager.Instance.AddZone(new CircleZone(transform.position, 1f));
-		}
+        if (!ZoneManager.Instance.IsInsideAnyZone(transform.position))
+        {
+            Player.Health.TakeDamage(1f);
+            ZoneManager.Instance.AddZone(new CircleZone(transform.position, 1f));
+        }
 
-		GameObject particles = Instantiate(_splashParticles, transform.position, Quaternion.identity);
-		Destroy(particles, 1f);
+        GameObject particles = Instantiate(_splashParticles, transform.position, Quaternion.identity);
+        Destroy(particles, 1f);
     }
 
     internal void Shoot(Vector2 shootDirection)
     {
-        if (_weapon != null && !Player.Health.IsDead())
+        if (_currentWeapon != null && !Player.Health.IsDead())
         {
-            _weapon.Shoot(shootDirection);
+            _currentWeapon.Shoot(shootDirection);
         }
     }
 }

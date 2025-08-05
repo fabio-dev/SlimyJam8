@@ -11,11 +11,13 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private EnemySpawner _enemySpawner;
 	[SerializeField] private AbilityUI _dashAbility;
 	[SerializeField] private AbilityUI _splashAbility;
-	[SerializeField] private PowerUpManager _powerUpManager;
+	[SerializeField] private WeaponUI _weaponUI;
+    [SerializeField] private PowerUpManager _powerUpManager;
 	[SerializeField] private CameraFollow _camera;
 	[SerializeField] private HealthUI _healthUI;
 	[SerializeField] private DropManager _enemyDropManager;
-	[SerializeField] private DropManager _itemDropManager;
+	[SerializeField] private DropManager _potDropManager;
+	[SerializeField] private DropManager _chestDropManager;
 	[SerializeField] private ExperienceUI _experienceUI;
 	[SerializeField] private ScoreManager _scoreManager;
 	[SerializeField] private AudioClip _music;
@@ -97,7 +99,8 @@ public class GameManager : MonoBehaviour
 
         _levelManager = new LevelManager();
         _enemyDropManager.Setup(_playerGO, _levelManager);
-		_itemDropManager.Setup(_playerGO, _levelManager);
+		_potDropManager.Setup(_playerGO, _levelManager);
+		_chestDropManager.Setup(_playerGO, _levelManager);
         _experienceUI.Setup(_levelManager);
 
         _playerGO.Setup(_player);
@@ -105,6 +108,7 @@ public class GameManager : MonoBehaviour
         _enemySpawner.Setup(_playerGO, _enemyDropManager, _scoreManager);
 
         _healthUI.Setup(_player);
+        _weaponUI.Setup(_playerGO);
 
         _dashAbility.SetAbility(_player.DashAbility);
         _splashAbility.SetAbility(_player.SplashAbility);

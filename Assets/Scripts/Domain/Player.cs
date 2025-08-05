@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Domain.Collectibles;
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Domain
@@ -12,6 +13,7 @@ namespace Assets.Scripts.Domain
 		public event Action OnJumpEnd;
 		public event Action<PlayerState> OnStateChanged;
 		public event Action<float> OnShielded;
+		public event Action<WeaponType> OnWeaponChanged;
 
 		public Ability DashAbility { get; private set; }
 		public Ability SplashAbility { get; private set; }
@@ -176,6 +178,11 @@ namespace Assets.Scripts.Domain
         internal void Shield(float shieldDuration)
         {
 			OnShielded?.Invoke(shieldDuration);
+        }
+
+        internal void ChangeWeapon(WeaponType weapon)
+        {
+			OnWeaponChanged?.Invoke(weapon);
         }
     }
 }

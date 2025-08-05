@@ -6,7 +6,8 @@ public class DungeonGenerator : MonoBehaviour
 {
     [SerializeField] private ChunkGO[] _chunks;
     [SerializeField] private Transform _player;
-    [SerializeField] private DropManager _dropManager;
+    [SerializeField] private DropManager _potDropManager;
+    [SerializeField] private DropManager _chestDropManager;
     [SerializeField] private PotGO _potPrefab;
     [SerializeField] private ChestGO _chestPrefab;
 
@@ -73,7 +74,7 @@ public class DungeonGenerator : MonoBehaviour
         int y = coords.y * ChunkSize + Random.Range(-ChunkSize, ChunkSize / 2);
 
         PotGO pot = Instantiate(_potPrefab, new Vector2(x, y), Quaternion.identity);
-        pot.SetDropManager(_dropManager);
+        pot.SetDropManager(_potDropManager);
     }
 
     private void SpawnChest(Vector2Int coords)
@@ -82,7 +83,7 @@ public class DungeonGenerator : MonoBehaviour
         int y = coords.y * ChunkSize + Random.Range(-ChunkSize, ChunkSize / 2);
 
         ChestGO chest = Instantiate(_chestPrefab, new Vector2(x, y), Quaternion.identity);
-        chest.SetDropManager(_dropManager);
+        chest.SetDropManager(_chestDropManager);
     }
 
     private ChunkGO RandomChunk()

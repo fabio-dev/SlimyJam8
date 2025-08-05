@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-public class BasicWeapon : AWeapon
+public class BasicWeapon : AWeaponGO
 {
     [SerializeField] private ProjectileGO _projectilePrefab;
 
-    public override void Shoot(Vector2 shootDirection)
+    protected override void ShootInner(Vector2 shootDirection)
     {
         ProjectileGO projectile = Instantiate(_projectilePrefab, GameManager.Instance.PlayerGO.GunShotPosition, Quaternion.identity);
         projectile.transform.right = shootDirection;
