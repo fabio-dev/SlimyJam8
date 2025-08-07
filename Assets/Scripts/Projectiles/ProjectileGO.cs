@@ -53,17 +53,17 @@ public class ProjectileGO : MonoBehaviour
             return;
         }
 
-        if (!collider.gameObject.TryGetComponent(out ACharacterGO characterGO))
+        if (collider.gameObject.TryGetComponent(out ACharacterGO characterGO))
         {
-            return;
-        }
+            characterGO.Character.Health.TakeDamage(_damageAmount);
 
-        characterGO.Character.Health.TakeDamage(_damageAmount);
-        if (characterGO.gameObject.TryGetComponent(out AiBrain brain))
-        {
+            if (characterGO.gameObject.TryGetComponent(out AiBrain brain))
+            {
+                Vector2 knockbackDir = _direction.normalized;
+                brain.ApplyKnockback(knockbackDir);
+            }
+
             Kill();
-            Vector2 knockbackDir = _direction.normalized;
-            brain.ApplyKnockback(knockbackDir);
         }
     }
 
