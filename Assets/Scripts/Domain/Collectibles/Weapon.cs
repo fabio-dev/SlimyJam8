@@ -21,7 +21,7 @@
 
         public override string GetSprite()
         {
-            return "World/weapon_collectible_splash";
+            return $"World/weapon_collectible_{WeaponType.ToString().ToLowerInvariant()}";
         }
     }
 
@@ -29,5 +29,6 @@
     {
         Basic,
         Splash,
+        Wave,
     }
 }

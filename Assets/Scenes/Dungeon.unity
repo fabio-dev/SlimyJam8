@@ -321,14 +321,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 519420031}
     - target: {fileID: 7946201230523200164, guid: d44a52fea652d05428622b90b2734348, type: 3}
-      propertyPath: _basicWeapon
-      value: 
-      objectReference: {fileID: 2941576980614907291, guid: 1c91b06f62f5a0c4083cd90139716ad4, type: 3}
-    - target: {fileID: 7946201230523200164, guid: d44a52fea652d05428622b90b2734348, type: 3}
-      propertyPath: _splashWeapon
-      value: 
-      objectReference: {fileID: -5995067410353574150, guid: 3416d63a1dce8914a98aaff1bd740d64, type: 3}
-    - target: {fileID: 7946201230523200164, guid: d44a52fea652d05428622b90b2734348, type: 3}
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 7946201230523200164, guid: d44a52fea652d05428622b90b2734348, type: 3}
@@ -2077,8 +2069,12 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8884982004266244590, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
+      propertyPath: _waveWeaponDropWeight
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884982004266244590, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
       propertyPath: _splashWeaponDropWeight
-      value: 500
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3327,6 +3323,10 @@ PrefabInstance:
       propertyPath: _enemyDropManager
       value: 
       objectReference: {fileID: 1374583321}
+    - target: {fileID: 2857551207110166237, guid: 85566a60ca1312d46bbffd6892a31390, type: 3}
+      propertyPath: _numberOfStartingDrops
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6007601766156984641, guid: 85566a60ca1312d46bbffd6892a31390, type: 3}
       propertyPath: m_Name
       value: GameManager

@@ -374,6 +374,7 @@ MonoBehaviour:
   _shield: {fileID: 3061698275465624857}
   _basicWeapon: {fileID: 2941576980614907291, guid: 1c91b06f62f5a0c4083cd90139716ad4, type: 3}
   _splashWeapon: {fileID: -5995067410353574150, guid: 3416d63a1dce8914a98aaff1bd740d64, type: 3}
+  _waveWeapon: {fileID: -5137800986400723736, guid: 776a736ffa7beca489ea168feb349d6d, type: 3}
   _weaponAmmoUI: {fileID: 5005674021640366686}
 --- !u!114 &6518619577239448494
 MonoBehaviour:

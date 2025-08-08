@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private PlayerSpawning _playerSpawning;
 	[SerializeField] private GameOverUI _gameOver;
 	[SerializeField] private Image _redImage;
+	[SerializeField] private int _numberOfStartingDrops;
 
 	private bool _firstUpdate = false;
 	private Player _player;
@@ -119,6 +120,12 @@ public class GameManager : MonoBehaviour
 
         _scoreManager.Setup(_player);
         _scoreManager.Run();
+
+		for (int i = 0; i < _numberOfStartingDrops; i++)
+		{
+			Vector2 startingDropPosition = new Vector2(i, -1);
+			_chestDropManager.Drop(startingDropPosition);
+        }
     }
 
     private void LostGame(ACharacter player)

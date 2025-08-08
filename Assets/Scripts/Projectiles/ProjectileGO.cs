@@ -1,5 +1,5 @@
-using Assets.Scripts.Domain;
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class ProjectileGO : MonoBehaviour
@@ -9,7 +9,7 @@ public class ProjectileGO : MonoBehaviour
 
 	private Vector3 _direction;
 	private float _damageAmount = 0.0f;
-    private Cooldown _launchDelay = new Cooldown(1f);
+    private Assets.Scripts.Domain.Cooldown _launchDelay = new Assets.Scripts.Domain.Cooldown(1f);
 
     public event Action<ProjectileGO> OnCollide;
 
@@ -71,5 +71,20 @@ public class ProjectileGO : MonoBehaviour
     {
         OnCollide?.Invoke(this);
         Destroy(gameObject);
+    }
+
+    internal void SplashEvery(float secondsBetweenWaves, float splashRadius)
+    {
+        StartCoroutine(Splash(secondsBetweenWaves, splashRadius));
+    }
+
+    private IEnumerator Splash(float secondsBetweenSplashes, float splashRadius)
+    {
+        while (gameObject != null)
+        {
+            ZoneManager.Instance.AddZone(new CircleZone(transform.position, splashRadius));
+            SFXPlayer.Instance.PlayPlayerSplash();
+            yield return new WaitForSeconds(secondsBetweenSplashes);
+        }
     }
 }
