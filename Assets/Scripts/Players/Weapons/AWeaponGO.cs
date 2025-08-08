@@ -6,8 +6,8 @@ public abstract class AWeaponGO : MonoBehaviour
     [SerializeField] private int _ammo;
     [SerializeField] public Sprite WeaponSprite;
 
-    public event Action OnEmptyAmmo;
-    public event Action OnShot;
+    public event Action<AWeaponGO> OnEmptyAmmo;
+    public event Action<AWeaponGO> OnShot;
 
     public int CurrentAmmo { get; protected set; }
     public int MaxAmmo => _ammo;
@@ -23,11 +23,11 @@ public abstract class AWeaponGO : MonoBehaviour
 
             if (CurrentAmmo <= 0)
             {
-                OnEmptyAmmo?.Invoke();
+                OnEmptyAmmo?.Invoke(this);
             }
         }
 
-        OnShot?.Invoke();
+        OnShot?.Invoke(this);
     }
 
     protected abstract void ShootInner(Vector2 shootDirection);

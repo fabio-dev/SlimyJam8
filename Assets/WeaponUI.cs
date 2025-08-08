@@ -43,11 +43,11 @@ public class WeaponUI : MonoBehaviour
         _weapon.OnShot += OnShot;
     }
 
-    private void OnShot()
+    private void OnShot(AWeaponGO weapon)
     {
-        if (_weapon.MaxAmmo > 0)
+        if (weapon.MaxAmmo > 0)
         {
-            _fillImage.DOFillAmount(_weapon.AmmoPercentage, .3f);
+            _fillImage.DOFillAmount(weapon.AmmoPercentage, .3f);
         }
     }
 }

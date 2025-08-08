@@ -17,6 +17,7 @@ public class PlayerGO : ACharacterGO
     [SerializeField] private ShieldGO _shield;
     [SerializeField] private AWeaponGO _basicWeapon;
     [SerializeField] private AWeaponGO _splashWeapon;
+    [SerializeField] private WeaponAmmoUI _weaponAmmoUI;
 
     private AWeaponGO _currentWeapon;
     private PlayerAnimatorController _animatorController;
@@ -105,6 +106,7 @@ public class PlayerGO : ACharacterGO
         RegisterEvents();
         _animatorController.Setup(this);
 
+        _weaponAmmoUI.Setup(this);
         ChangeWeapon(WeaponType.Basic);
 
         TriggerOnSetup();
@@ -146,7 +148,7 @@ public class PlayerGO : ACharacterGO
         _splashWeapon.OnEmptyAmmo += OnEmptyAmmo;
     }
 
-    private void OnEmptyAmmo()
+    private void OnEmptyAmmo(AWeaponGO weapon)
     {
         ChangeWeapon(WeaponType.Basic);
     }
