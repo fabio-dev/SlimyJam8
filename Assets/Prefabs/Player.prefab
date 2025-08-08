@@ -206,8 +206,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6377163221413351926}
   - component: {fileID: 5262456738024443091}
-  - component: {fileID: 6518619577239448494}
   - component: {fileID: 7946201230523200164}
+  - component: {fileID: 6518619577239448494}
   - component: {fileID: 8632900487272391373}
   - component: {fileID: 6280816447277447003}
   - component: {fileID: 1289437726424409276}
@@ -249,18 +249,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 051c621c4e6659548a9e240f9667d1da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6518619577239448494
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5044339530799331774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd85e689f06d35249a4a6bf98864b806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &7946201230523200164
@@ -308,7 +296,21 @@ MonoBehaviour:
   _gunShotPosition: {fileID: 7531282495160690201}
   _splashParticles: {fileID: 1203741516527364076, guid: 760c3d4a2f181da42ba009bfb57d2561, type: 3}
   _shield: {fileID: 3061698275465624857}
-  _weapon: {fileID: 2941576980614907291, guid: 1c91b06f62f5a0c4083cd90139716ad4, type: 3}
+  _basicWeapon: {fileID: 0}
+  _splashWeapon: {fileID: 0}
+--- !u!114 &6518619577239448494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5044339530799331774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd85e689f06d35249a4a6bf98864b806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _jumpInput: {fileID: 1289437726424409276}
 --- !u!114 &8632900487272391373
 MonoBehaviour:
   m_ObjectHideFlags: 0

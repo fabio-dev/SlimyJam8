@@ -64,7 +64,7 @@ public class ZoneManager : MonoBehaviour
 			return;
 		}
 
-		SplashGO splash = Instantiate(circleZoneVisualPrefab, center, Quaternion.identity);
+		SplashGO splash = Instantiate(circleZoneVisualPrefab, center, Quaternion.identity, transform);
 		splash.transform.localScale = Vector2.zero;
 		splash.transform.DOScale(radius * 2f, .15f)
 			.OnComplete(() => splash.DisableDamages());

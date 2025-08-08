@@ -1,9 +1,14 @@
 using Assets.Scripts.Domain;
+using DG.Tweening;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerSplashInput : BasePlayerInput
 {
+	[SerializeField] private PlayerJumpInput _jumpInput;
+
 	void Start()
 	{
 		Init();
@@ -17,7 +22,7 @@ public class PlayerSplashInput : BasePlayerInput
 			return;
 		}
 
-		if (!Player.CanMakeAction)
+		if (!Player.CanSplash)
 		{
 			return;
 		}
@@ -27,11 +32,23 @@ public class PlayerSplashInput : BasePlayerInput
 
 	private async Task MakeSplashAsync()
 	{
-		SFXPlayer.Instance.PlayPlayerJump();
-		Player?.Splash();
-		await Task.Delay(400);
+        Player?.Splash();
 
-		var zone = new CircleZone(transform.position, Player.SplashRadius);
+        if (Player.State == PlayerState.Jumping)
+        {
+            float currentY = _playerGO.Body.position.y;
+            _jumpInput.Stop();
+            _playerGO.Body.position = new Vector3(_playerGO.Body.position.x, currentY, 0f);
+            _playerGO.Body.DOLocalMoveY(0f, .15f).SetEase(Ease.Linear);
+        }
+        else
+        {
+            SFXPlayer.Instance.PlayPlayerJump();
+        }
+
+        await Task.Delay(400);
+
+        CircleZone zone = new(transform.position, Player.SplashRadius);
 		ZoneManager.Instance.AddZone(zone);
 
 		SFXPlayer.Instance.PlayPlayerSplash();

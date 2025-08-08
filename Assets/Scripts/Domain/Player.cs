@@ -31,7 +31,7 @@ namespace Assets.Scripts.Domain
 					return;
 				}
 
-				if (_isJumping && value != PlayerState.Jumping)
+				if (_isJumping && value != PlayerState.Jumping && value != PlayerState.Splashing)
 				{
 					return;
 				}
@@ -48,6 +48,7 @@ namespace Assets.Scripts.Domain
 
 				_state = value;
 				OnStateChanged?.Invoke(_state);
+				Debug.Log("State: " + _state);
 			}
 		}
 
@@ -90,6 +91,7 @@ namespace Assets.Scripts.Domain
         public float AttackDamages { get; private set; }
 
         public bool CanMakeAction => State == PlayerState.Idle || State == PlayerState.Moving;
+		public bool CanSplash => CanMakeAction || State == PlayerState.Jumping;
 
         public override void Move(Vector2 lastMove)
 		{

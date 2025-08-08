@@ -4,6 +4,13 @@ using UnityEngine.InputSystem;
 public class PlayerJumpInput : BasePlayerInput
 {
 	private Tween _jumpAnimation;
+
+	public void Stop()
+    {
+        Player.EndJump();
+		_jumpAnimation.Rewind();
+    }
+
 	void Start()
 	{
 		Init();

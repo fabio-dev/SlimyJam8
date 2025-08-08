@@ -218,7 +218,7 @@ public class PlayerGO : ACharacterGO
     {
         _shadowSpriteRenderer.gameObject.SetActive(false);
 
-        if (!ZoneManager.Instance.IsInsideAnyZone(transform.position))
+        if (!ZoneManager.Instance.IsInsideAnyZone(transform.position) && Player.State != PlayerState.Splashing)
         {
             Player.Health.TakeDamage(1f);
             ZoneManager.Instance.AddZone(new CircleZone(transform.position, 1f));
