@@ -1,5 +1,3 @@
-using System;
-
 namespace Assets.Scripts.Domain
 {
 	public class Cooldown
@@ -13,7 +11,6 @@ namespace Assets.Scripts.Domain
 			Duration = duration;
 		}
 
-		// Could also get the Time.time through the parameter of this method to avoid having a UnityEngine dependency.
 		public void Start()
 		{
 			_lastStartTime = UnityEngine.Time.time;

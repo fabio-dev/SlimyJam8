@@ -20,6 +20,7 @@ public class PlayerGO : ACharacterGO
     [SerializeField] private AWeaponGO _basicWeapon;
     [SerializeField] private AWeaponGO _splashWeapon;
     [SerializeField] private AWeaponGO _waveWeapon;
+    [SerializeField] private AWeaponGO _megaRayWeapon;
     [SerializeField] private WeaponAmmoUI _weaponAmmoUI;
 
     private AWeaponGO _currentWeapon;
@@ -150,6 +151,7 @@ public class PlayerGO : ACharacterGO
 
         _splashWeapon.OnEmptyAmmo += OnEmptyAmmo;
         _waveWeapon.OnEmptyAmmo += OnEmptyAmmo;
+        _megaRayWeapon.OnEmptyAmmo += OnEmptyAmmo;
     }
 
     private void OnEmptyAmmo(AWeaponGO weapon)
@@ -166,6 +168,9 @@ public class PlayerGO : ACharacterGO
                 break;
             case WeaponType.Wave:
                 _currentWeapon = _waveWeapon;
+                break;
+            case WeaponType.MegaRay:
+                _currentWeapon = _megaRayWeapon;
                 break;
             default:
                 _currentWeapon = _basicWeapon;
@@ -217,6 +222,7 @@ public class PlayerGO : ACharacterGO
 
         _splashWeapon.OnEmptyAmmo -= OnEmptyAmmo;
         _waveWeapon.OnEmptyAmmo -= OnEmptyAmmo;
+        _megaRayWeapon.OnEmptyAmmo -= OnEmptyAmmo;
     }
 
     private void JumpStart()

@@ -4,53 +4,83 @@ using UnityEngine;
 
 public class ProjectileGO : MonoBehaviour
 {
-	[SerializeField] private float _speed = 10f;
-	[SerializeField] private float _lifeTime = 2f;
+    [SerializeField] protected float _speed = 10f;
+    [SerializeField] protected float _lifeTime = 2f;
+    [SerializeField] protected bool _killOnCollide = true;
+    [SerializeField] protected AudioClip[] _appearSounds;
+    [SerializeField] protected float _knockBackStrength = 1f;
 
-	private Vector3 _direction;
-	private float _damageAmount = 0.0f;
-    private Assets.Scripts.Domain.Cooldown _launchDelay = new Assets.Scripts.Domain.Cooldown(1f);
+    protected Vector3 _direction;
+    protected float _damageAmount = 0.0f;
+    protected Assets.Scripts.Domain.Cooldown _launchDelay = new Assets.Scripts.Domain.Cooldown(1f);
 
     public event Action<ProjectileGO> OnCollide;
 
-    internal void Launch(Vector3 directionToTaget, float damage, float delay)
+    public virtual void Launch(Vector3 directionToTaget, float damage, float delay)
     {
+        if (_appearSounds != null && _appearSounds.Length > 0)
+        {
+            SFXPlayer.Instance.PlayAny(_appearSounds);
+        }
+        else
+        {
+            SFXPlayer.Instance.PlayPlayerShoot();
+        }
+
         _direction = directionToTaget.normalized;
         _damageAmount = damage;
-        Destroy(gameObject, _lifeTime);
         _launchDelay.SetDuration(delay);
         _launchDelay.Start();
+
+        StartCoroutine(KillIn(_lifeTime));
+    }
+
+    private IEnumerator KillIn(float timeBeforeKill)
+    {
+        yield return new WaitForSeconds(timeBeforeKill);
+        Kill();
     }
 
     private void FixedUpdate()
-	{
+    {
         if (_launchDelay.IsRunning())
         {
             return;
         }
-		transform.position += _direction * _speed * Time.deltaTime;
-	}
 
-    private void OnTriggerEnter2D(Collider2D collider)
+        MoveProjectile();
+    }
+
+    protected virtual void MoveProjectile()
+    {
+        transform.position += _direction * _speed * Time.deltaTime;
+    }
+
+    protected void OnTriggerEnter2D(Collider2D collider)
+    {
+        CheckTrigger(collider);
+    }
+
+    protected bool CheckTrigger(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Wall"))
         {
-            Kill();
-            return;
+            Collide();
+            return false;
         }
 
         if (collider.gameObject.TryGetComponent(out PotGO pot))
         {
             pot.Damage();
-            Kill();
-            return;
+            Collide();
+            return false;
         }
 
         if (collider.gameObject.TryGetComponent(out ChestGO chest))
         {
             chest.Damage();
-            Kill();
-            return;
+            Collide();
+            return false;
         }
 
         if (collider.gameObject.TryGetComponent(out ACharacterGO characterGO))
@@ -60,16 +90,26 @@ public class ProjectileGO : MonoBehaviour
             if (characterGO.gameObject.TryGetComponent(out AiBrain brain))
             {
                 Vector2 knockbackDir = _direction.normalized;
-                brain.ApplyKnockback(knockbackDir);
+                brain.ApplyKnockback(knockbackDir * _knockBackStrength);
             }
 
+            Collide();
+        }
+
+        return true;
+    }
+
+    private void Collide()
+    {
+        OnCollide?.Invoke(this);
+        if (_killOnCollide)
+        {
             Kill();
         }
     }
 
-    private void Kill()
+    protected virtual void Kill()
     {
-        OnCollide?.Invoke(this);
         Destroy(gameObject);
     }
 

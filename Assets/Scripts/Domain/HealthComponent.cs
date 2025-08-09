@@ -45,6 +45,7 @@ namespace Assets.Scripts.Domain
 			return BaseValue - DamageTaken <= 0;
 		}
 
+		internal bool IsInvulnerable => _invulnerable;
         internal void Invulnerable() => _invulnerable = true;
 		internal void Vulnerable() => _invulnerable = false;
 

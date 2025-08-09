@@ -60,7 +60,6 @@ public class PlayerAttackInput : BasePlayerInput
 		{
 			while (!token.IsCancellationRequested)
 			{
-				SFXPlayer.Instance.PlayPlayerShoot();
 				Shoot(_pointerScreenPosition);
 				_lastAttackTime = Time.time;
 				await Task.Delay(Mathf.RoundToInt(Player.AttackCooldown * 1000));

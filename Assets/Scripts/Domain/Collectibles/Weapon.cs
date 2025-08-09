@@ -30,5 +30,6 @@
         Basic,
         Splash,
         Wave,
+        MegaRay,
     }
 }

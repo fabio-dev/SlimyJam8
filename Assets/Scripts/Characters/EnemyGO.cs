@@ -12,6 +12,7 @@ public class EnemyGO : ACharacterGO
     [SerializeField] private int _numberOfDrops = 1;
     [SerializeField] private AiBrain _aiBrain;
 
+    private Cooldown _invulnerableCooldown = new Cooldown(.25f);
     private DropManager _dropManager;
     public Enemy Enemy => Character as Enemy;
 
@@ -26,15 +27,27 @@ public class EnemyGO : ACharacterGO
         character.SetHealth(_health);
         character.SetMoveSpeed(_moveSpeed);
         character.SetAttackCooldown(_basicAttackCooldown);
-        character.OnDamaged += PlayDamagedSound;
+        character.OnDamaged += Damaged;
         ((Enemy)character).Score = _score;
         _animatorController.Setup(this);
         TriggerOnSetup();
     }
 
-    private void PlayDamagedSound(float damaged)
+    private void Update()
+    {
+        if (Enemy.Health.IsInvulnerable && !_invulnerableCooldown.IsRunning())
+        {
+            Enemy.Health.Vulnerable();
+            _invulnerableCooldown.Stop();
+        }
+    }
+
+    private void Damaged(float damaged)
     {
         SFXPlayer.Instance.PlayEnemyHurt();
+
+        Enemy.Health.Invulnerable();
+        _invulnerableCooldown.Start();
     }
 
     protected override void OnDie(ACharacter character)
@@ -79,6 +92,6 @@ public class EnemyGO : ACharacterGO
     private void OnDestroy()
     {
         _animatorController.Kill();
-        Enemy.OnDamaged -= PlayDamagedSound;
+        Enemy.OnDamaged -= Damaged;
     }
 }

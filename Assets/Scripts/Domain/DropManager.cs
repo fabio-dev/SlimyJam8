@@ -14,6 +14,7 @@ namespace Assets.Scripts.Domain
         [SerializeField] private int _heartDropWeight = 1;
         [SerializeField] private int _splashWeaponDropWeight = 0;
         [SerializeField] private int _waveWeaponDropWeight = 0;
+        [SerializeField] private int _megaRayWeaponDropWeight = 0;
 
         private LevelManager _levelManager;
         private PlayerGO _player;
@@ -32,6 +33,7 @@ namespace Assets.Scripts.Domain
                 new DropItem(_heartDropWeight, new Heart()),
                 new DropItem(_splashWeaponDropWeight, new Weapon(WeaponType.Splash)),
                 new DropItem(_waveWeaponDropWeight, new Weapon(WeaponType.Wave)),
+                new DropItem(_megaRayWeaponDropWeight, new Weapon(WeaponType.MegaRay)),
             };
         }
 

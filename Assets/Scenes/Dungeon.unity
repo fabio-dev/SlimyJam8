@@ -321,6 +321,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 519420031}
     - target: {fileID: 7946201230523200164, guid: d44a52fea652d05428622b90b2734348, type: 3}
+      propertyPath: _megaRayWeapon
+      value: 
+      objectReference: {fileID: 6966502024047018253, guid: def9c4941ca65954b88fbb7973074be9, type: 3}
+    - target: {fileID: 7946201230523200164, guid: d44a52fea652d05428622b90b2734348, type: 3}
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 7946201230523200164, guid: d44a52fea652d05428622b90b2734348, type: 3}
@@ -2075,6 +2079,10 @@ PrefabInstance:
     - target: {fileID: 8884982004266244590, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
       propertyPath: _splashWeaponDropWeight
       value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884982004266244590, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
+      propertyPath: _megaRayWeaponDropWeight
+      value: 300
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
