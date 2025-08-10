@@ -13,6 +13,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 955137538411816529, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
+      propertyPath: _weight
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 955137538411816529, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
       propertyPath: _moveSpeed
       value: 1.5
       objectReference: {fileID: 0}

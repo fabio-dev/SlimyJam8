@@ -8,5 +8,9 @@ public interface IMovementStrategy
 
 	public void Update();
 
-	public Transform Target { get; }
+    public void Pause();
+
+    public void Resume();
+
+    public Transform Target { get; }
 }

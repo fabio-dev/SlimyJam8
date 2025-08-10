@@ -47,32 +47,40 @@ public partial class FollowTargetStrategy : IMovementStrategy
         if (_owner == null || _target == null) return;
 
         Vector2 currentPos = _owner.transform.position;
-        Vector2 targetPos = _target.position;
-        float distanceToTarget = Vector2.Distance(currentPos, targetPos);
 
-        // Gestion du timeout des waypoints
-        if (_waypointTimeout > 0f)
+        if (_movementPaused)
         {
-            _waypointTimeout -= Time.fixedDeltaTime;
-            if (_waypointTimeout <= 0f)
+            _owner.Rigidbody.MovePosition(currentPos + _knockback);
+        }
+        else
+        {
+            Vector2 targetPos = _target.position;
+            float distanceToTarget = Vector2.Distance(currentPos, targetPos);
+
+            // Gestion du timeout des waypoints
+            if (_waypointTimeout > 0f)
             {
-                _currentWaypoint = null;
+                _waypointTimeout -= Time.fixedDeltaTime;
+                if (_waypointTimeout <= 0f)
+                {
+                    _currentWaypoint = null;
+                }
             }
+
+            // Détection si on est bloqué
+            CheckIfStuck(currentPos);
+
+            Vector2 moveDirection = Vector2.zero;
+
+            if (distanceToTarget > _stopRange)
+            {
+                moveDirection = CalculateMovementDirection(currentPos, targetPos);
+            }
+
+            // Application du mouvement avec knockback
+            Vector2 finalMove = moveDirection * _moveSpeed * Time.fixedDeltaTime + _knockback;
+            _owner.Rigidbody.MovePosition(currentPos + finalMove);
         }
-
-        // Détection si on est bloqué
-        CheckIfStuck(currentPos);
-
-        Vector2 moveDirection = Vector2.zero;
-
-        if (distanceToTarget > _stopRange)
-        {
-            moveDirection = CalculateMovementDirection(currentPos, targetPos);
-        }
-
-        // Application du mouvement avec knockback
-        Vector2 finalMove = moveDirection * _moveSpeed * Time.fixedDeltaTime + _knockback;
-        _owner.Rigidbody.MovePosition(currentPos + finalMove);
 
         // Récupération du knockback
         _knockback = Vector2.Lerp(_knockback, Vector2.zero, Time.fixedDeltaTime * _knockbackRecoverySpeed);

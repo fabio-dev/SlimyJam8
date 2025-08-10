@@ -80,6 +80,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1802297814b2a7b41820f994ead1da55, type: 3}
   - {fileID: 8300000, guid: b7607ac4d972f334f88774fa54edafe5, type: 3}
   _chestBreak: {fileID: 8300000, guid: aaaaa580878518f4aa0bdff2c10044d5, type: 3}
+  _flaskAbsorb: {fileID: 8300000, guid: 0fd82759cbbe1ce49bfd2c8cdbed885c, type: 3}
 --- !u!82 &4836310990880873883
 AudioSource:
   m_ObjectHideFlags: 0

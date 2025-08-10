@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f0f92fb8d7a29c40b6c47378f8a18a3, type: 3}
-  m_Name: Phase_Test
+  m_Script: {fileID: 11500000, guid: cc94001910ef73c4f97a623e4412ed17, type: 3}
+  m_Name: Ponje_1
   m_EditorClassIdentifier: 
-  Enemies:
-  - {fileID: 11400000, guid: 7f23b3a26e6c655488943a08bf14cd0c, type: 2}
-  PhaseDurationInSeconds: 200
-  MinDelayToSpawnInSeconds: 1
-  MaxDelayToSpawnInSeconds: 10
+  Enemy: {fileID: 4176075044320908412, guid: 33ff1db59bd049749876665a981589d2, type: 3}
+  Weight: 1

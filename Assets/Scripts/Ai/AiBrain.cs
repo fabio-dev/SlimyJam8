@@ -5,7 +5,6 @@ public class AiBrain : MonoBehaviour
 {
 	[SerializeField] private AiBrainSettings _settings = null;
 	[SerializeField] private EnemyGO _owner = null;
-    [SerializeField] private float _weight = 10f;
 
     private IMovementStrategy _movementStrategy = null;
 	private IAttackStrategy _attackStrategy = null;
@@ -15,7 +14,7 @@ public class AiBrain : MonoBehaviour
 
     public void ApplyKnockback(Vector2 force)
     {
-		_movementStrategy.ApplyKnockback(force / _weight);
+		_movementStrategy.ApplyKnockback(force / _owner.TotalWeight);
     }
 
     private void OnDestroy()

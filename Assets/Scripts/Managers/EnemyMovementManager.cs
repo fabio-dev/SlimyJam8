@@ -116,6 +116,7 @@ public class EnemyMovementManager : MonoBehaviour
 public partial class FollowTargetStrategy : IMovementStrategy
 {
     private bool _isRegistered = false;
+    private bool _movementPaused = false;
 
     // Modification de la méthode Init
     public IMovementStrategy Init(EnemyGO owner, Transform target)
@@ -199,5 +200,15 @@ public partial class FollowTargetStrategy : IMovementStrategy
             EnemyMovementManager.Instance.UnregisterStrategy(this);
             _isRegistered = false;
         }
+    }
+
+    public void Pause()
+    {
+        _movementPaused = true;
+    }
+
+    public void Resume()
+    {
+        _movementPaused = false;
     }
 }

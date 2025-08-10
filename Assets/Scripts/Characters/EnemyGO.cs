@@ -11,14 +11,42 @@ public class EnemyGO : ACharacterGO
     [SerializeField] private int _score = 10;
     [SerializeField] private int _numberOfDrops = 1;
     [SerializeField] private AiBrain _aiBrain;
+    [SerializeField] private float _weight;
 
+    private float _baseScale;
+    private float _scale;
+    private int _facing = 1;
     private Cooldown _invulnerableCooldown = new Cooldown(.25f);
     private DropManager _dropManager;
     public Enemy Enemy => Character as Enemy;
 
     public IMovementStrategy MovementStrategy => _aiBrain.MovementStrategy;
 
+    public float Scale => _scale;
+    public float BaseScale => _baseScale;
+    public float Weight => _weight;
+    public float WeightMultiplier { get; set; } = 1f;
+
     public event Action OnAttack;
+
+    private void Start()
+    {
+        _baseScale = transform.localScale.x;
+        _scale = _baseScale;
+    }
+
+    public void SetFacing(int facing)
+    {
+        transform.localScale = new Vector3(facing * _scale, _scale, 1f);
+    }
+
+    public void SetScale(float scale)
+    {
+        _scale = scale;
+        transform.localScale = new Vector3(_facing * _scale, _scale, 1f);
+    }
+
+    public float TotalWeight => Weight * WeightMultiplier;
 
     public override void Setup(ACharacter character)
     {
@@ -73,6 +101,16 @@ public class EnemyGO : ACharacterGO
 
         SFXPlayer.Instance.PlayEnemyDie();
         base.OnDie(character);
+    }
+
+    public void StopMove()
+    {
+        MovementStrategy.Pause();
+    }
+
+    public void StartMove()
+    {
+        MovementStrategy.Resume();
     }
 
     public void SetDropManager(DropManager dropManager)
