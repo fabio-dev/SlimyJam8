@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Weapon_projectile_splash
   m_EditorClassIdentifier: 
   _sprites:
-  - _sprite: {fileID: 274778542984381035, guid: 7836fe598d43a7e48b0e7b48b1bf4ce8, type: 3}
+  - _sprite: {fileID: -4266977705174802555, guid: 3d6ab4cd249b0fd4a8b018809829b594, type: 3}
     _duration: 0.1
-  - _sprite: {fileID: -3225146245871689439, guid: 7836fe598d43a7e48b0e7b48b1bf4ce8, type: 3}
+  - _sprite: {fileID: -3184111257526983510, guid: 3d6ab4cd249b0fd4a8b018809829b594, type: 3}
     _duration: 0.1
-  - _sprite: {fileID: 4582146942564342192, guid: 7836fe598d43a7e48b0e7b48b1bf4ce8, type: 3}
+  - _sprite: {fileID: -4168917698965312970, guid: 3d6ab4cd249b0fd4a8b018809829b594, type: 3}
     _duration: 0.1
-  - _sprite: {fileID: -3225146245871689439, guid: 7836fe598d43a7e48b0e7b48b1bf4ce8, type: 3}
+  - _sprite: {fileID: -2878227107783177868, guid: 3d6ab4cd249b0fd4a8b018809829b594, type: 3}
     _duration: 0.1
