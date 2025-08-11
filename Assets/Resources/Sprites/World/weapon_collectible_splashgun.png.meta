@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: 714ed30b95559b5418370893bb2a2a0c
+guid: 22dffb621396c4f448edf68508f83f6d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1186885269909642933
-    second: megaray-loot_0
+      213: -2977558949455220740
+    second: splashgun-loot_0
   - first:
-      213: 8419425615553496224
-    second: megaray-loot_1
+      213: -2823188874768715973
+    second: splashgun-loot_1
   - first:
-      213: -170536214290148640
-    second: megaray-loot_2
+      213: -2789893610577525066
+    second: splashgun-loot_2
   - first:
-      213: 73309426331708651
-    second: megaray-loot_3
+      213: -478713922116688974
+    second: splashgun-loot_3
   - first:
-      213: -7756536132280242775
-    second: megaray-loot_4
+      213: -7910793340997217828
+    second: splashgun-loot_4
   - first:
-      213: -4234276991982851820
-    second: megaray-loot_5
+      213: -4500765429667979315
+    second: splashgun-loot_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -141,7 +141,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: weapon_collectible_megaray_0
+      name: weapon_collectible_splashgun_0
       rect:
         serializedVersion: 2
         x: 0
@@ -156,14 +156,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 889e58480dfbaff43af1c23bd4c0310f
-      internalID: 619649010
+      spriteID: f17742ca3b82e934f9e358a604ae2549
+      internalID: -1966690445
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapon_collectible_megaray_1
+      name: weapon_collectible_splashgun_1
       rect:
         serializedVersion: 2
         x: 64
@@ -178,14 +178,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2058b9aac68199d4c9ca3923f8bddde0
-      internalID: 1530779253
+      spriteID: 17588b006a64b9042b929b5169bc45df
+      internalID: 48333087
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapon_collectible_megaray_2
+      name: weapon_collectible_splashgun_2
       rect:
         serializedVersion: 2
         x: 128
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0aeace0fd3362a847958237ddc7b81d4
-      internalID: -1325765285
+      spriteID: 18e469e6e566ca64a9621b0bbc9c11ac
+      internalID: -1374371326
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapon_collectible_megaray_3
+      name: weapon_collectible_splashgun_3
       rect:
         serializedVersion: 2
         x: 192
@@ -222,14 +222,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 287485207a5677644b40685188c02940
-      internalID: 308372545
+      spriteID: cf00e5fe7be24a14f97970676f2d847d
+      internalID: 1721474134
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapon_collectible_megaray_4
+      name: weapon_collectible_splashgun_4
       rect:
         serializedVersion: 2
         x: 256
@@ -244,14 +244,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 37b6b75c2463a0140a33bd088cfcff2a
-      internalID: 476556341
+      spriteID: 2e731c73558c0a74a8c2619f9d119bc0
+      internalID: -1910114804
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapon_collectible_megaray_5
+      name: weapon_collectible_splashgun_5
       rect:
         serializedVersion: 2
         x: 320
@@ -266,8 +266,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a2da1817984f424dacce319c95dbcd0
-      internalID: -1847636302
+      spriteID: c281b3a5e2707d04f92bbf7f613e0160
+      internalID: -2035868057
       vertices: []
       indices: 
       edges: []
@@ -276,7 +276,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: d8595fd9cb0061944a869ee1702ea1f2
+    spriteID: 1bca1c379112f6b48a0e0975fe951ac2
     internalID: 0
     vertices: []
     indices: 
@@ -286,12 +286,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      weapon_collectible_megaray_0: 619649010
-      weapon_collectible_megaray_1: 1530779253
-      weapon_collectible_megaray_2: -1325765285
-      weapon_collectible_megaray_3: 308372545
-      weapon_collectible_megaray_4: 476556341
-      weapon_collectible_megaray_5: -1847636302
+      weapon_collectible_splashgun_0: -1966690445
+      weapon_collectible_splashgun_1: 48333087
+      weapon_collectible_splashgun_2: -1374371326
+      weapon_collectible_splashgun_3: 1721474134
+      weapon_collectible_splashgun_4: -1910114804
+      weapon_collectible_splashgun_5: -2035868057
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

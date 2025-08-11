@@ -347,19 +347,8 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: _deathZone
-      Entry: 7
-      Data: 0|CircleZone, Assembly-CSharp
-    - Name: centerTransform
-      Entry: 6
-      Data: 
-    - Name: radius
-      Entry: 4
-      Data: 2
-    - Name: 
-      Entry: 8
-      Data: 
+    SerializationNodes: []
+  _deathAreaRadius: 0.5
   _spriteRenderer: {fileID: 303568171005361907}
   _rigidbody: {fileID: 1296781025534712504}
   _deathMaskPrefab: {fileID: 7602200193259143599, guid: c8a6a5a4d2ff1e64081ace7c542271e6, type: 3}
@@ -373,8 +362,9 @@ MonoBehaviour:
   _splashParticles: {fileID: 1203741516527364076, guid: 760c3d4a2f181da42ba009bfb57d2561, type: 3}
   _shield: {fileID: 3061698275465624857}
   _basicWeapon: {fileID: 2941576980614907291, guid: 1c91b06f62f5a0c4083cd90139716ad4, type: 3}
-  _splashWeapon: {fileID: -5995067410353574150, guid: 3416d63a1dce8914a98aaff1bd740d64, type: 3}
-  _waveWeapon: {fileID: -5137800986400723736, guid: 776a736ffa7beca489ea168feb349d6d, type: 3}
+  _splashWeapon: {fileID: -788391886211138076, guid: 3416d63a1dce8914a98aaff1bd740d64, type: 3}
+  _waveWeapon: {fileID: 876480770711900463, guid: 776a736ffa7beca489ea168feb349d6d, type: 3}
+  _megaRayWeapon: {fileID: 6966502024047018253, guid: def9c4941ca65954b88fbb7973074be9, type: 3}
   _weaponAmmoUI: {fileID: 5005674021640366686}
 --- !u!114 &6518619577239448494
 MonoBehaviour:

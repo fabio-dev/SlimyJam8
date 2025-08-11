@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf99756fedacd6042bd9ea0fbf1c09c3, type: 3}
+  m_Name: Weapon_collectible_wave
+  m_EditorClassIdentifier: 
+  _sprites:
+  - _sprite: {fileID: -1429238475, guid: 06a76e9fd33b8074a9f72047201846b2, type: 3}
+    _duration: 0.1
+  - _sprite: {fileID: -289776182, guid: 06a76e9fd33b8074a9f72047201846b2, type: 3}
+    _duration: 0.1
+  - _sprite: {fileID: 1870160506, guid: 06a76e9fd33b8074a9f72047201846b2, type: 3}
+    _duration: 0.1
+  - _sprite: {fileID: -330343709, guid: 06a76e9fd33b8074a9f72047201846b2, type: 3}
+    _duration: 0.1
+  - _sprite: {fileID: -219642131, guid: 06a76e9fd33b8074a9f72047201846b2, type: 3}
+    _duration: 0.1
+  - _sprite: {fileID: 1608569893, guid: 06a76e9fd33b8074a9f72047201846b2, type: 3}
+    _duration: 0.1

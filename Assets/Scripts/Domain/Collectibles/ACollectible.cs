@@ -6,6 +6,14 @@
 
         public abstract string[] GetSounds();
 
-        public abstract string GetSprite();
+        public virtual string GetSprite()
+        {
+            return null;
+        }
+
+        public virtual string GetSpriteAnimations()
+        {
+            return null;
+        }
     }
 }

@@ -9,6 +9,7 @@ public class CollectibleGO : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteRenderer;
 
     protected Sequence _idleAnimation;
+    private LoopSpriteAnimator _idleAnimator;
 
     public event Action<ACollectible> OnCollected;
     private ACollectible _collectible;
@@ -22,7 +23,20 @@ public class CollectibleGO : MonoBehaviour
         _levelManager = levelManager;
         _idleAnimation = CreateIdleAnimation();
 
-        _spriteRenderer.sprite = Resources.Load<Sprite>($"Sprites/{collectible.GetSprite()}");
+        string sprite = collectible.GetSprite();
+        if (sprite == null)
+        {
+            string animations = collectible.GetSpriteAnimations();
+            _idleAnimator = new();
+            _idleAnimator.SetSpriteRenderer(_spriteRenderer);
+            _idleAnimator.SetSpritesAnimations(Resources.Load<SpriteAnimations>(animations));
+            _idleAnimator.Play();
+            Debug.Log("animations sprites configured");
+        }
+        else
+        {
+            _spriteRenderer.sprite = Resources.Load<Sprite>($"Sprites/{sprite}");
+        }
     }
 
     protected virtual Sequence CreateIdleAnimation()
@@ -57,6 +71,7 @@ public class CollectibleGO : MonoBehaviour
         _collectible.Collect(_player.Player, _levelManager);
 
         _idleAnimation.Kill();
+        _idleAnimator?.Kill();
         OnCollected?.Invoke(_collectible);
         Destroy(gameObject);
     }

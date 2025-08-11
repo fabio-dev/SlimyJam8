@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8435185323975210906}
-  - component: {fileID: -5995067410353574150}
+  - component: {fileID: -788391886211138076}
   m_Layer: 0
   m_Name: SplashWeapon
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-5995067410353574150
+--- !u!114 &-788391886211138076
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,10 +41,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3839872921315513095}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f9bc77c3d4418d4ea16cf8582409db3, type: 3}
+  m_Script: {fileID: 11500000, guid: c29c4a2740117c44abc48d5c6cd22e57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _ammo: 5
-  WeaponSprite: {fileID: 21300000, guid: d8133412a1984594aaad5d37d89aaf96, type: 3}
-  _projectilePrefab: {fileID: 1945989428011950081, guid: 52333b35ed64ac74087cebccf999b9d8, type: 3}
-  _splashRadius: 0.8
+  WeaponSprite: {fileID: 21300000, guid: 3b5411c6c67c61c499b97472e3732d03, type: 3}
+  _projectilePrefab: {fileID: 1945989428011950081, guid: 0d518c49365dd7142b572d5e2d7df9c0, type: 3}
+  _splashRadius: 0.6
+  _secondsBetweenSplashes: 0.1

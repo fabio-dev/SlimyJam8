@@ -21,7 +21,12 @@
 
         public override string GetSprite()
         {
-            return $"World/weapon_collectible_{WeaponType.ToString().ToLowerInvariant()}";
+            return null;
+        }
+
+        public override string GetSpriteAnimations()
+        {
+            return $"Data/weapon_collectible_{WeaponType.ToString().ToLowerInvariant()}";
         }
     }
 

@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ammo: 0
-  WeaponSprite: {fileID: 6317600740430409268, guid: 2f952cc6c7fb8754eb7bb5b264d94b5f, type: 3}
+  WeaponSprite: {fileID: 21300000, guid: 07a1ceee4346a7148949a648aed55bbd, type: 3}
   _projectilePrefab: {fileID: 1945989428011950081, guid: 31a2a96c2738e8547987bbd7304876ff, type: 3}
