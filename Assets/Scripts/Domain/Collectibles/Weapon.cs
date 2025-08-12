@@ -36,5 +36,6 @@
         Splash,
         Wave,
         MegaRay,
+        Shotgun,
     }
 }

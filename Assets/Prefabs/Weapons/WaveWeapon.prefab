@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ammo: 10
-  WeaponSprite: {fileID: 21300000, guid: 5fa0a241339442343957332308124536, type: 3}
+  UiSprite: {fileID: 21300000, guid: 5fa0a241339442343957332308124536, type: 3}
+  WeaponSprite: {fileID: 21300000, guid: 6d78a7f04f8d87547a3ff9ec7d346b99, type: 3}
   _projectilePrefab: {fileID: 1945989428011950081, guid: 52333b35ed64ac74087cebccf999b9d8, type: 3}
   _splashRadius: 1

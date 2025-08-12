@@ -353,6 +353,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 1296781025534712504}
   _deathMaskPrefab: {fileID: 7602200193259143599, guid: c8a6a5a4d2ff1e64081ace7c542271e6, type: 3}
   _shadowSpriteRenderer: {fileID: 2249982294702300435}
+  _weaponSpriteRenderer: {fileID: 3583659882016084847}
   _center: {fileID: 8924332137476545429}
   _gun: {fileID: 1984030197744437837}
   _gunSprite: {fileID: 2685170104054426564}
@@ -365,6 +366,7 @@ MonoBehaviour:
   _splashWeapon: {fileID: -788391886211138076, guid: 3416d63a1dce8914a98aaff1bd740d64, type: 3}
   _waveWeapon: {fileID: 876480770711900463, guid: 776a736ffa7beca489ea168feb349d6d, type: 3}
   _megaRayWeapon: {fileID: 6966502024047018253, guid: def9c4941ca65954b88fbb7973074be9, type: 3}
+  _shotgunWeapon: {fileID: 4653024433710145170, guid: b496c380e49b1264f9a084ff48de5097, type: 3}
   _weaponAmmoUI: {fileID: 5005674021640366686}
 --- !u!114 &6518619577239448494
 MonoBehaviour:

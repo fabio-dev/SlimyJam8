@@ -18,6 +18,8 @@ public class EnemyGO : ACharacterGO
     private int _facing = 1;
     private Cooldown _invulnerableCooldown = new Cooldown(.25f);
     private DropManager _dropManager;
+    private bool _canBeInvulnerable;
+
     public Enemy Enemy => Character as Enemy;
 
     public IMovementStrategy MovementStrategy => _aiBrain.MovementStrategy;
@@ -74,8 +76,11 @@ public class EnemyGO : ACharacterGO
     {
         SFXPlayer.Instance.PlayEnemyHurt();
 
-        Enemy.Health.Invulnerable();
-        _invulnerableCooldown.Start();
+        if (_canBeInvulnerable)
+        {
+            Enemy.Health.Invulnerable();
+            _invulnerableCooldown.Start();
+        }
     }
 
     protected override void OnDie(ACharacter character)
@@ -131,5 +136,15 @@ public class EnemyGO : ACharacterGO
     {
         _animatorController.Kill();
         Enemy.OnDamaged -= Damaged;
+    }
+
+    internal void DisableInvulnerability()
+    {
+        _canBeInvulnerable = false;
+    }
+
+    internal void EnableInvulnerability()
+    {
+        _canBeInvulnerable = true;
     }
 }

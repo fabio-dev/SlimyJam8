@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8435185323975210906}
-  - component: {fileID: -788391886211138076}
+  - component: {fileID: 4653024433710145170}
   m_Layer: 0
-  m_Name: SplashWeapon
+  m_Name: ShotgunWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-788391886211138076
+--- !u!114 &4653024433710145170
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,12 +41,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3839872921315513095}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c29c4a2740117c44abc48d5c6cd22e57, type: 3}
+  m_Script: {fileID: 11500000, guid: 769bbcc74ccbb7241b1c669283f986e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammo: 5
-  UiSprite: {fileID: 21300000, guid: 3b5411c6c67c61c499b97472e3732d03, type: 3}
-  WeaponSprite: {fileID: 21300000, guid: 3ebd2f8a80d6ca644bfbf72b55fc2a3e, type: 3}
-  _projectilePrefab: {fileID: 1945989428011950081, guid: 0d518c49365dd7142b572d5e2d7df9c0, type: 3}
-  _splashRadius: 0.6
-  _secondsBetweenSplashes: 0.1
+  _ammo: 12
+  UiSprite: {fileID: 21300000, guid: 1a5ba03248c94c9449c26a1533247c21, type: 3}
+  WeaponSprite: {fileID: 21300000, guid: 8aa021dac98848f48aaddd63f8b1ca98, type: 3}
+  _projectilePrefab: {fileID: 1945989428011950081, guid: eacd4a464cd5c0346b7d33bb92e14e7e, type: 3}
+  _numberOfProjectiles: 5
+  _spreadAngle: 30

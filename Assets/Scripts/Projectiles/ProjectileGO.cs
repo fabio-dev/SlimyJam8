@@ -9,6 +9,7 @@ public class ProjectileGO : MonoBehaviour
     [SerializeField] protected bool _killOnCollide = true;
     [SerializeField] protected AudioClip[] _appearSounds;
     [SerializeField] protected float _knockBackStrength = 1f;
+    [SerializeField] private bool _invulnerableOnTouched = true;
 
     protected Vector3 _direction;
     protected float _damageAmount = 0.0f;
@@ -85,7 +86,18 @@ public class ProjectileGO : MonoBehaviour
 
         if (collider.gameObject.TryGetComponent(out ACharacterGO characterGO))
         {
+            EnemyGO enemyGO = characterGO as EnemyGO;
+            if (enemyGO != null && !_invulnerableOnTouched)
+            {
+                enemyGO.DisableInvulnerability();
+            }
+
             characterGO.Character.Health.TakeDamage(_damageAmount);
+
+            if (enemyGO != null && !_invulnerableOnTouched)
+            {
+                enemyGO.EnableInvulnerability();
+            }
 
             if (characterGO.gameObject.TryGetComponent(out AiBrain brain))
             {

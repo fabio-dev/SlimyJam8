@@ -27,7 +27,7 @@ public class WeaponUI : MonoBehaviour
 
         _weapon = weapon;
 
-        _weaponImage.sprite = _weapon.WeaponSprite;
+        _weaponImage.sprite = _weapon.UiSprite;
         _fillImage.DOFillAmount(_weapon.AmmoPercentage, .3f);
 
         RegisterWeaponEvents();

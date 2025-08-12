@@ -4,6 +4,7 @@ using UnityEngine;
 public abstract class AWeaponGO : MonoBehaviour
 {
     [SerializeField] private int _ammo;
+    [SerializeField] public Sprite UiSprite;
     [SerializeField] public Sprite WeaponSprite;
 
     public event Action<AWeaponGO> OnEmptyAmmo;

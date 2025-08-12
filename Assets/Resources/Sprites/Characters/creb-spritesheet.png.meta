@@ -1,25 +1,34 @@
 fileFormatVersion: 2
-guid: 06a76e9fd33b8074a9f72047201846b2
+guid: 24d343c1e7da24546ae5ae7de17924ae
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5837233680845949356
-    second: wavegun-loot_0
+      213: 2186297645076283703
+    second: creb-spritesheet_0
   - first:
-      213: 3012926833517092073
-    second: wavegun-loot_1
+      213: 3555584724254318874
+    second: creb-spritesheet_1
   - first:
-      213: 87341807093465792
-    second: wavegun-loot_2
+      213: 6100363567248414894
+    second: creb-spritesheet_2
   - first:
-      213: -3997602001632540536
-    second: wavegun-loot_3
+      213: -1028877615229414172
+    second: creb-spritesheet_3
   - first:
-      213: 3723870030327622296
-    second: wavegun-loot_4
+      213: 2210121289426805136
+    second: creb-spritesheet_4
   - first:
-      213: -1183783312478340343
-    second: wavegun-loot_5
+      213: -5284884160160127901
+    second: creb-spritesheet_5
+  - first:
+      213: 2556765503993771729
+    second: creb-spritesheet_6
+  - first:
+      213: -6957448560186315490
+    second: creb-spritesheet_7
+  - first:
+      213: 457304299202113833
+    second: creb-spritesheet_8
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +61,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -66,7 +75,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -87,9 +96,9 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 512
-    resizeAlgorithm: 1
-    textureFormat: 4
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -141,133 +150,199 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: weapon_collectible_wavegun_0
+      name: creb-spritesheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 64
-        height: 64
+        x: 3
+        y: 127
+        width: 57
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: c747eefb18fe4ba43b6eef377a06ac67
-      internalID: -1429238475
+      spriteID: 7318b0cef1a475e10800000000000000
+      internalID: 2186297645076283703
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapon_collectible_wavegun_1
+      name: creb-spritesheet_1
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 64
+        x: 67
+        y: 127
+        width: 54
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 84fffa5fec2c0664cae774030545dfa0
-      internalID: -289776182
+      spriteID: a11ebf9e779f75130800000000000000
+      internalID: 3555584724254318874
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapon_collectible_wavegun_2
+      name: creb-spritesheet_2
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 64
+        x: 131
+        y: 127
+        width: 54
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 935b4aec11be54745b261ef87e261313
-      internalID: 1870160506
+      spriteID: ea89392e758d8a450800000000000000
+      internalID: 6100363567248414894
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapon_collectible_wavegun_3
+      name: creb-spritesheet_3
       rect:
         serializedVersion: 2
-        x: 192
-        y: 0
-        width: 64
-        height: 64
+        x: 3
+        y: 63
+        width: 54
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: fed6b8c5291899e468a80799c531fbd6
-      internalID: -330343709
+      spriteID: 4e456ea9241b8b1f0800000000000000
+      internalID: -1028877615229414172
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapon_collectible_wavegun_4
+      name: creb-spritesheet_4
       rect:
         serializedVersion: 2
-        x: 256
-        y: 0
-        width: 64
-        height: 64
+        x: 67
+        y: 63
+        width: 54
+        height: 53
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 5bb1ac0902ebaa44cb0244cf0814ea26
-      internalID: -219642131
+      spriteID: 09120de5a9debae10800000000000000
+      internalID: 2210121289426805136
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapon_collectible_wavegun_5
+      name: creb-spritesheet_5
       rect:
         serializedVersion: 2
-        x: 320
-        y: 0
-        width: 64
-        height: 64
+        x: 131
+        y: 63
+        width: 54
+        height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 1557273e94562cd4893b22b0986723f1
-      internalID: 1608569893
+      spriteID: 364219a5bd158a6b0800000000000000
+      internalID: -5284884160160127901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: creb-spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 0
+        width: 54
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d67587fda47b7320800000000000000
+      internalID: 2556765503993771729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: creb-spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 0
+        width: 55
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1daa0b856d227f90800000000000000
+      internalID: -6957448560186315490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: creb-spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 0
+        width: 55
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 921733456dba85600800000000000000
+      internalID: 457304299202113833
       vertices: []
       indices: 
       edges: []
@@ -276,7 +351,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 44317f276c64dae419b36901f661ef76
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -285,13 +360,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      weapon_collectible_wavegun_0: -1429238475
-      weapon_collectible_wavegun_1: -289776182
-      weapon_collectible_wavegun_2: 1870160506
-      weapon_collectible_wavegun_3: -330343709
-      weapon_collectible_wavegun_4: -219642131
-      weapon_collectible_wavegun_5: 1608569893
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

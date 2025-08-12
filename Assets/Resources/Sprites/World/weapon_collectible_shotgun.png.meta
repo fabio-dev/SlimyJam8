@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: 06a76e9fd33b8074a9f72047201846b2
+guid: 8ad9d328ac972e745956a9dbfdd474b8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5837233680845949356
-    second: wavegun-loot_0
+      213: -3250251286650437516
+    second: shotgun-loot_0
   - first:
-      213: 3012926833517092073
-    second: wavegun-loot_1
+      213: 7076979602994867104
+    second: shotgun-loot_1
   - first:
-      213: 87341807093465792
-    second: wavegun-loot_2
+      213: -5576878050802041071
+    second: shotgun-loot_2
   - first:
-      213: -3997602001632540536
-    second: wavegun-loot_3
+      213: -4591129511424039712
+    second: shotgun-loot_3
   - first:
-      213: 3723870030327622296
-    second: wavegun-loot_4
+      213: 5785777774263689330
+    second: shotgun-loot_4
   - first:
-      213: -1183783312478340343
-    second: wavegun-loot_5
+      213: -9112530497648885981
+    second: shotgun-loot_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -141,7 +141,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: weapon_collectible_wavegun_0
+      name: weapon_collectible_shotgun_0
       rect:
         serializedVersion: 2
         x: 0
@@ -156,14 +156,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c747eefb18fe4ba43b6eef377a06ac67
-      internalID: -1429238475
+      spriteID: 0cbd6d234062caa4e959e1af17040a3c
+      internalID: 1943106579
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapon_collectible_wavegun_1
+      name: weapon_collectible_shotgun_1
       rect:
         serializedVersion: 2
         x: 64
@@ -178,14 +178,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84fffa5fec2c0664cae774030545dfa0
-      internalID: -289776182
+      spriteID: c06d794a080986a40b60cba08122165d
+      internalID: 1886477364
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapon_collectible_wavegun_2
+      name: weapon_collectible_shotgun_2
       rect:
         serializedVersion: 2
         x: 128
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 935b4aec11be54745b261ef87e261313
-      internalID: 1870160506
+      spriteID: a069a22aac5e79a4d8d1a8cf3abbc6ce
+      internalID: -285605694
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapon_collectible_wavegun_3
+      name: weapon_collectible_shotgun_3
       rect:
         serializedVersion: 2
         x: 192
@@ -222,14 +222,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fed6b8c5291899e468a80799c531fbd6
-      internalID: -330343709
+      spriteID: 7795370f5cf8c8649bc3babe433d0197
+      internalID: -600017993
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapon_collectible_wavegun_4
+      name: weapon_collectible_shotgun_4
       rect:
         serializedVersion: 2
         x: 256
@@ -244,14 +244,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5bb1ac0902ebaa44cb0244cf0814ea26
-      internalID: -219642131
+      spriteID: 9241a80cf145c9c4eaf3f2dde01b3bf6
+      internalID: -1868430926
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapon_collectible_wavegun_5
+      name: weapon_collectible_shotgun_5
       rect:
         serializedVersion: 2
         x: 320
@@ -266,8 +266,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1557273e94562cd4893b22b0986723f1
-      internalID: 1608569893
+      spriteID: f9a22ba0ff5982240887b6cbbb066dab
+      internalID: 1764093559
       vertices: []
       indices: 
       edges: []
@@ -276,7 +276,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 44317f276c64dae419b36901f661ef76
+    spriteID: 7f34d67b73f27314db8b25119616b64c
     internalID: 0
     vertices: []
     indices: 
@@ -286,12 +286,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      weapon_collectible_wavegun_0: -1429238475
-      weapon_collectible_wavegun_1: -289776182
-      weapon_collectible_wavegun_2: 1870160506
-      weapon_collectible_wavegun_3: -330343709
-      weapon_collectible_wavegun_4: -219642131
-      weapon_collectible_wavegun_5: 1608569893
+      weapon_collectible_shotgun_0: 1943106579
+      weapon_collectible_shotgun_1: 1886477364
+      weapon_collectible_shotgun_2: -285605694
+      weapon_collectible_shotgun_3: -600017993
+      weapon_collectible_shotgun_4: -1868430926
+      weapon_collectible_shotgun_5: 1764093559
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

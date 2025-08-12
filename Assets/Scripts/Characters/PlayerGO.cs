@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerGO : ACharacterGO
 {
     [SerializeField] private SpriteRenderer _shadowSpriteRenderer;
+    [SerializeField] private SpriteRenderer _weaponSpriteRenderer;
     [SerializeField] private Transform _center;
     [SerializeField] private Transform _gun;
     [SerializeField] private Transform _gunSprite;
@@ -21,6 +22,7 @@ public class PlayerGO : ACharacterGO
     [SerializeField] private AWeaponGO _splashWeapon;
     [SerializeField] private AWeaponGO _waveWeapon;
     [SerializeField] private AWeaponGO _megaRayWeapon;
+    [SerializeField] private AWeaponGO _shotgunWeapon;
     [SerializeField] private WeaponAmmoUI _weaponAmmoUI;
 
     private AWeaponGO _currentWeapon;
@@ -152,6 +154,7 @@ public class PlayerGO : ACharacterGO
         _splashWeapon.OnEmptyAmmo += OnEmptyAmmo;
         _waveWeapon.OnEmptyAmmo += OnEmptyAmmo;
         _megaRayWeapon.OnEmptyAmmo += OnEmptyAmmo;
+        _shotgunWeapon.OnEmptyAmmo += OnEmptyAmmo;
     }
 
     private void OnEmptyAmmo(AWeaponGO weapon)
@@ -172,12 +175,16 @@ public class PlayerGO : ACharacterGO
             case WeaponType.MegaRay:
                 _currentWeapon = _megaRayWeapon;
                 break;
+            case WeaponType.Shotgun:
+                _currentWeapon = _shotgunWeapon;
+                break;
             default:
                 _currentWeapon = _basicWeapon;
                 break;
         }
 
         _currentWeapon.ResetAmmo();
+        _weaponSpriteRenderer.sprite = _currentWeapon.WeaponSprite;
         OnWeaponChanged?.Invoke(_currentWeapon);
     }
 
@@ -223,6 +230,7 @@ public class PlayerGO : ACharacterGO
         _splashWeapon.OnEmptyAmmo -= OnEmptyAmmo;
         _waveWeapon.OnEmptyAmmo -= OnEmptyAmmo;
         _megaRayWeapon.OnEmptyAmmo -= OnEmptyAmmo;
+        _shotgunWeapon.OnEmptyAmmo -= OnEmptyAmmo;
     }
 
     private void JumpStart()
