@@ -16,13 +16,17 @@ public class PonjeAnimator : AAnimatorController
 
     private void FixedUpdate()
     {
-        Vector2 currentPosition = transform.position;
-
         if (_movementStrategy?.Target == null)
         {
             return;
         }
 
+        if (_enemyGO == null || _enemyGO.Enemy.Health.IsDead())
+        {
+            return;
+        }
+
+        Vector2 currentPosition = transform.position;
         float xDiff = _movementStrategy.Target.position.x - transform.position.x;
 
         _facing = (xDiff >= 0) ? 1 : -1;
@@ -74,17 +78,27 @@ public class PonjeAnimator : AAnimatorController
 
     private void PlayIdleAnimation()
     {
+        if (_dieAnimator.IsPlaying())
+        {
+            return;
+        }
         _idleAnimator.Play();
     }
 
     private void PlayDamagedAnimation(float damaged)
     {
+        if (_dieAnimator.IsPlaying())
+        {
+            return;
+        }
         _idleAnimator.Stop();
         _damagedAnimator.Replay();
     }
 
     private void PlayDieAnimation(ACharacter character)
     {
+        _damagedAnimator.Stop();
+        _idleAnimator.Stop();
         _dieAnimator.Play();
     }
 

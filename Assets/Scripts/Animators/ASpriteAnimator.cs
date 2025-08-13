@@ -24,6 +24,7 @@ public class ASpriteAnimator
 
         foreach (SpriteAnimationDuration sprite in _sprites.Sprites)
         {
+            Debug.Log("Sprite " + sprite.Sprite.name + " for " + sprite.Duration);
             animation.AppendCallback(SetNextSprite);
             animation.AppendInterval(sprite.Duration);
         }

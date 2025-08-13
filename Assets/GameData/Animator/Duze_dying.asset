@@ -18,4 +18,4 @@ MonoBehaviour:
   - _sprite: {fileID: -1243541536481801338, guid: 94ac62c3613462a4281164e5d14174d3, type: 3}
     _duration: 0.1
   - _sprite: {fileID: -8064310658957591841, guid: 94ac62c3613462a4281164e5d14174d3, type: 3}
-    _duration: 0.1
+    _duration: 0.3

@@ -57,17 +57,27 @@ public class DuzeAnimatorController : AAnimatorController
 
     private void PlayIdleAnimation()
     {
+        if (_dieAnimator.IsPlaying())
+        {
+            return;
+        }
         _idleAnimator.Play();
     }
 
     private void PlayDamagedAnimation(float damaged)
     {
+        if (_dieAnimator.IsPlaying())
+        {
+            return;
+        }
         _idleAnimator.Stop();
         _damagedAnimator.Replay();
     }
 
     private void PlayDieAnimation(ACharacter character)
     {
+        _damagedAnimator.Stop();
+        _idleAnimator.Stop();
         _dieAnimator.Play();
     }
 

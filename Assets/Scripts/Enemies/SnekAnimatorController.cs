@@ -81,12 +81,17 @@ public class SnekAnimatorController : AAnimatorController
 
     private void FixedUpdate()
     {
-        Vector2 currentPosition = transform.position;
-
         if (_movementStrategy?.Target == null)
         {
             return;
         }
+
+        if (_enemyGO == null || _enemyGO.Enemy.Health.IsDead())
+        {
+            return;
+        }
+
+        Vector2 currentPosition = transform.position;
 
         double xDiff = _movementStrategy.Target.position.x - currentPosition.x;
         double yDiff = _movementStrategy.Target.position.y - currentPosition.y;
