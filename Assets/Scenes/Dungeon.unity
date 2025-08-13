@@ -496,7 +496,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 4
+  orthographic size: 4.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -797,8 +797,20 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8884982004266244590, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
+      propertyPath: _shotgunDropWeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884982004266244590, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
+      propertyPath: _waveWeaponDropWeight
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884982004266244590, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
       propertyPath: _splashWeaponDropWeight
-      value: 0
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884982004266244590, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
+      propertyPath: _megaRayWeaponDropWeight
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1036,52 +1048,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6377163221413351926, guid: d44a52fea652d05428622b90b2734348, type: 3}
   m_PrefabInstance: {fileID: 348868388}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1153604157
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1153604159}
-  - component: {fileID: 1153604158}
-  m_Layer: 0
-  m_Name: EnemyMovementDebug
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1153604158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1153604157}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 941d0a73873a69041acb7123138ff17f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _showDebugInfo: 0
-  _showRaycast: 1
---- !u!4 &1153604159
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1153604157}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1212296590 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2857551207110166237, guid: 85566a60ca1312d46bbffd6892a31390, type: 3}
@@ -2070,19 +2036,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8884982004266244590, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
       propertyPath: _shotgunDropWeight
-      value: 200
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8884982004266244590, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
       propertyPath: _waveWeaponDropWeight
-      value: 200
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8884982004266244590, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
       propertyPath: _splashWeaponDropWeight
-      value: 200
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8884982004266244590, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
       propertyPath: _megaRayWeaponDropWeight
-      value: 200
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2355,6 +2321,22 @@ PrefabInstance:
     - target: {fileID: 3519647490825868170, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
       propertyPath: m_Name
       value: EnemyDropManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884982004266244590, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
+      propertyPath: _shotgunDropWeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884982004266244590, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
+      propertyPath: _waveWeaponDropWeight
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884982004266244590, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
+      propertyPath: _splashWeaponDropWeight
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884982004266244590, guid: 72a1e5c8c23ace543be4fae02ff6cc1b, type: 3}
+      propertyPath: _megaRayWeaponDropWeight
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2687,7 +2669,7 @@ PrefabInstance:
       objectReference: {fileID: 808581598}
     - target: {fileID: 5371748706957349288, guid: 61bf6feecc3d3984f88caf07ae5a22b5, type: 3}
       propertyPath: _potChanceToSpawn
-      value: 0.5
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 5371748706957349288, guid: 61bf6feecc3d3984f88caf07ae5a22b5, type: 3}
       propertyPath: _chunks.Array.size
@@ -2695,7 +2677,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5371748706957349288, guid: 61bf6feecc3d3984f88caf07ae5a22b5, type: 3}
       propertyPath: _chestChanceToSpawn
-      value: 0.2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5371748706957349288, guid: 61bf6feecc3d3984f88caf07ae5a22b5, type: 3}
       propertyPath: '_chunks.Array.data[0]'
@@ -2760,36 +2742,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
       propertyPath: _phases.Array.size
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
       propertyPath: '_phases.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 2dba906d99b0bc34e93c0e9bf6aea3ad, type: 2}
+      objectReference: {fileID: 11400000, guid: 5983dd2feb7a4e84892f9ac0aeb13f59, type: 2}
     - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
       propertyPath: '_phases.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: 5983dd2feb7a4e84892f9ac0aeb13f59, type: 2}
+      objectReference: {fileID: 11400000, guid: 32da48de9c514f9408297463dc00f420, type: 2}
     - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
       propertyPath: '_phases.Array.data[2]'
       value: 
-      objectReference: {fileID: 11400000, guid: 32da48de9c514f9408297463dc00f420, type: 2}
+      objectReference: {fileID: 11400000, guid: 1bd42753599074746a5b835ae96f8338, type: 2}
     - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
       propertyPath: '_phases.Array.data[3]'
       value: 
-      objectReference: {fileID: 11400000, guid: 1bd42753599074746a5b835ae96f8338, type: 2}
+      objectReference: {fileID: 11400000, guid: a1788198c665ab143a04d81e5b247cdb, type: 2}
     - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
       propertyPath: '_phases.Array.data[4]'
       value: 
-      objectReference: {fileID: 11400000, guid: a1788198c665ab143a04d81e5b247cdb, type: 2}
+      objectReference: {fileID: 11400000, guid: d80133608b430924ba322978b0a5cca3, type: 2}
     - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
       propertyPath: '_phases.Array.data[5]'
       value: 
-      objectReference: {fileID: 11400000, guid: cab28f71693dac9498e51300b0d02df2, type: 2}
+      objectReference: {fileID: 11400000, guid: 27826ab4eb213de43aa1f12087173965, type: 2}
     - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
       propertyPath: '_phases.Array.data[6]'
       value: 
-      objectReference: {fileID: 11400000, guid: cab28f71693dac9498e51300b0d02df2, type: 2}
+      objectReference: {fileID: 11400000, guid: 9e49b00392335524c9f4db6ef14ed525, type: 2}
     - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
       propertyPath: '_phases.Array.data[7]'
       value: 
@@ -3333,7 +3315,7 @@ PrefabInstance:
       objectReference: {fileID: 1374583321}
     - target: {fileID: 2857551207110166237, guid: 85566a60ca1312d46bbffd6892a31390, type: 3}
       propertyPath: _numberOfStartingDrops
-      value: 25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6007601766156984641, guid: 85566a60ca1312d46bbffd6892a31390, type: 3}
       propertyPath: m_Name
@@ -3853,4 +3835,3 @@ SceneRoots:
   - {fileID: 4761270984568771066}
   - {fileID: 1027282635}
   - {fileID: 5396118068301066154}
-  - {fileID: 1153604159}

@@ -56,14 +56,7 @@ public abstract class ACharacterGO : SerializedMonoBehaviour
         DeathMaskAnimatorController deathMask = Instantiate(_deathMaskPrefab, transform.position, Quaternion.identity);
         OnDieAnimationEnded?.Invoke();
 
-        Sequence spriteDyingAnimation = DOTween.Sequence();
-        spriteDyingAnimation.Append(_spriteRenderer.transform.DOScaleY(0f, 1f));
-        spriteDyingAnimation.Join(_spriteRenderer.DOColor(Color.black, 1f));
-        spriteDyingAnimation.Play();
-        spriteDyingAnimation.OnComplete(() =>
-        {
-            Destroy(gameObject);
-        });
+        Destroy(gameObject);
     }
 
     protected void TriggerOnSetup() => OnSetup?.Invoke();

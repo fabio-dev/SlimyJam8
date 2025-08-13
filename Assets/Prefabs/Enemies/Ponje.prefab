@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 955137538411816529, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
       propertyPath: _score
-      value: 25
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 955137538411816529, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
       propertyPath: _health
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 955137538411816529, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
       propertyPath: _weight
@@ -22,11 +22,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 955137538411816529, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
       propertyPath: _moveSpeed
-      value: 1.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 955137538411816529, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
       propertyPath: _deathAreaRadius
-      value: 1
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 955137538411816529, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
       propertyPath: _animatorController
@@ -128,3 +128,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _radiusAbsorption: 0.5
+  _fatDuration: 3
+  _fatSize: 1.3
+  _fatWeightMultiplier: 5
+  _fatFlaskRadius: 1.5
+  _absorptionStopDurationInSeconds: 0.5

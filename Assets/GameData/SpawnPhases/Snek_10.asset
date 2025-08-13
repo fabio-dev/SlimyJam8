@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Snek_10
   m_EditorClassIdentifier: 
   Enemy: {fileID: 6129237727838509219, guid: 10e218c2acfc6e049abe53e090f24abf, type: 3}
-  Weight: 5
+  Weight: 10

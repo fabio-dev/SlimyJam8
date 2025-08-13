@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 955137538411816529, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
       propertyPath: _health
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 955137538411816529, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
       propertyPath: _weight
@@ -133,7 +133,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectilePrefab: {fileID: 5274789563252565349, guid: 75dad7fbdaa16074e8d15afa2cb4d44c, type: 3}
-  _numberOfProjectiles: 10
+  _minNumberOfProjectiles: 6
+  _maxNumberOfProjectiles: 12
   _damage: 1
 --- !u!114 &-1557953495875620795
 MonoBehaviour:

@@ -138,37 +138,24 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 6714619182592615071}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: _deathZone
-      Entry: 7
-      Data: 0|CircleZone, Assembly-CSharp
-    - Name: centerTransform
-      Entry: 10
-      Data: 0
-    - Name: radius
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: _animatorController
-      Entry: 6
-      Data: 
+    SerializationNodes: []
+  _deathAreaRadius: 0.8
   _spriteRenderer: {fileID: 2150572542758624212}
   _rigidbody: {fileID: 7800500842652666766}
   _deathMaskPrefab: {fileID: 7602200193259143599, guid: c8a6a5a4d2ff1e64081ace7c542271e6, type: 3}
-  _moveSpeed: 1.4
+  _animatorController: {fileID: 0}
+  _moveSpeed: 0
   _health: 3
   _basicAttackCooldown: 1
   _score: 10
   _numberOfDrops: 1
   _aiBrain: {fileID: 8358360567541710514}
+  _weight: 0
 --- !u!114 &8358360567541710514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,7 +170,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _settings: {fileID: 11400000, guid: f3b3d9ee823742b4d8c55853efe3fc43, type: 2}
   _owner: {fileID: 955137538411816529}
-  _weight: 30
 --- !u!50 &7800500842652666766
 Rigidbody2D:
   serializedVersion: 5

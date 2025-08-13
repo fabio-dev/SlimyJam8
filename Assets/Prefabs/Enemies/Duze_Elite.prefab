@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 955137538411816529, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
       propertyPath: _score
-      value: 20
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 955137538411816529, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
       propertyPath: _health
-      value: 10
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 955137538411816529, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
       propertyPath: _weight

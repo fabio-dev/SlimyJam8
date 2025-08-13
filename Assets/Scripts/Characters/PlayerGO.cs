@@ -44,6 +44,8 @@ public class PlayerGO : ACharacterGO
 
     public Vector3 GunShotPosition => _gunShotPosition.position;
 
+    public float AttackCooldown => _currentWeapon.AttackCooldownModifier * Player.AttackCooldown;
+
     public void ShowGun()
     {
         _gunSprite.gameObject.SetActive(true);

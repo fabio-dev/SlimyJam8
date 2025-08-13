@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b33f42bc0e46f6e4482716314a20571c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammo: 10
+  _ammo: 3
   UiSprite: {fileID: 21300000, guid: 3b5439f6b8d757b4f833bd5406ccc135, type: 3}
   WeaponSprite: {fileID: 21300000, guid: 8a379deaea3dc894b9a80aedeefd33e9, type: 3}
+  _attackCooldownModifier: 3
   _projectilePrefab: {fileID: -2938583625350380977, guid: eea5fbac44ab6414886839da3766526d, type: 3}

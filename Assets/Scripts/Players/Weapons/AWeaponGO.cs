@@ -6,6 +6,7 @@ public abstract class AWeaponGO : MonoBehaviour
     [SerializeField] private int _ammo;
     [SerializeField] public Sprite UiSprite;
     [SerializeField] public Sprite WeaponSprite;
+    [SerializeField] private float _attackCooldownModifier = 1f;
 
     public event Action<AWeaponGO> OnEmptyAmmo;
     public event Action<AWeaponGO> OnShot;
@@ -13,6 +14,8 @@ public abstract class AWeaponGO : MonoBehaviour
     public int CurrentAmmo { get; protected set; }
     public int MaxAmmo => _ammo;
     public float AmmoPercentage => MaxAmmo > 0 ? (float)CurrentAmmo / MaxAmmo : 1f;
+
+    public float AttackCooldownModifier => _attackCooldownModifier;
 
     public virtual void Shoot(Vector2 shootDirection)
     {

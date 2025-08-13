@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f0f92fb8d7a29c40b6c47378f8a18a3, type: 3}
+  m_Name: Phase_7
+  m_EditorClassIdentifier: 
+  Enemies:
+  - {fileID: 11400000, guid: 7f23b3a26e6c655488943a08bf14cd0c, type: 2}
+  - {fileID: 11400000, guid: 6e19dfce76adde347b811d51fb891475, type: 2}
+  - {fileID: 11400000, guid: 2b2233747d1fbe346b3370694f50bf40, type: 2}
+  - {fileID: 11400000, guid: d5bfeb1bafcb2e646bda0fa10dd17744, type: 2}
+  - {fileID: 11400000, guid: 3edfbf9035154da43808c753559015f1, type: 2}
+  PhaseDurationInSeconds: 40
+  MinDelayToSpawnInSeconds: 0.5
+  MaxDelayToSpawnInSeconds: 1.5

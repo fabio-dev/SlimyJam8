@@ -3,7 +3,8 @@ using UnityEngine;
 public class ExplodeOnDeath : MonoBehaviour
 {
     [SerializeField] private ProjectileGO _projectilePrefab;
-    [SerializeField] private int _numberOfProjectiles = 10;
+    [SerializeField] private int _minNumberOfProjectiles = 4;
+    [SerializeField] private int _maxNumberOfProjectiles = 12;
     [SerializeField] private float _damage = 1f;
 
     private EnemyGO _enemyGO;
@@ -16,9 +17,9 @@ public class ExplodeOnDeath : MonoBehaviour
 
     private void Explode()
     {
-        float angleStep = 360f / _numberOfProjectiles;
-
-        for (int i = 0; i < _numberOfProjectiles; i++)
+        int numberOfProjectiles = Random.Range(_minNumberOfProjectiles, _maxNumberOfProjectiles + 1);
+        float angleStep = 360f / numberOfProjectiles;
+        for (int i = 0; i < numberOfProjectiles; i++)
         {
             float currentAngle = angleStep * i;
 
