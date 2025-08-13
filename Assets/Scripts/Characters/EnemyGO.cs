@@ -18,7 +18,7 @@ public class EnemyGO : ACharacterGO
     private int _facing = 1;
     private Cooldown _invulnerableCooldown = new Cooldown(.25f);
     private DropManager _dropManager;
-    private bool _canBeInvulnerable;
+    private bool _canBeInvulnerable = true;
 
     public Enemy Enemy => Character as Enemy;
 
@@ -61,6 +61,12 @@ public class EnemyGO : ACharacterGO
         ((Enemy)character).Score = _score;
         _animatorController.Setup(this);
         TriggerOnSetup();
+
+        ExplodeOnDeath explode = GetComponent<ExplodeOnDeath>();
+        if (explode != null)
+        {
+            explode.Setup(this);
+        }
     }
 
     private void Update()

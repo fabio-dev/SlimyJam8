@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f0f92fb8d7a29c40b6c47378f8a18a3, type: 3}
-  m_Name: Phase_Test
+  m_Script: {fileID: 11500000, guid: cc94001910ef73c4f97a623e4412ed17, type: 3}
+  m_Name: Creb_1
   m_EditorClassIdentifier: 
-  Enemies:
-  - {fileID: 11400000, guid: d5bfeb1bafcb2e646bda0fa10dd17744, type: 2}
-  PhaseDurationInSeconds: 200
-  MinDelayToSpawnInSeconds: 1
-  MaxDelayToSpawnInSeconds: 10
+  Enemy: {fileID: 586484903188510592, guid: 4e613f30f04ec0e4db2b87949c691e92, type: 3}
+  Weight: 1

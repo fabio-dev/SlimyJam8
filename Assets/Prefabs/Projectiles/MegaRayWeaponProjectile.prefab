@@ -405,6 +405,7 @@ MonoBehaviour:
   _appearSounds:
   - {fileID: 8300000, guid: 937a621c616d8a04383a5364b946a607, type: 3}
   _knockBackStrength: 0.02
+  _invulnerableOnTouched: 1
   _headSprite: {fileID: 8572828072492070266}
   _bodySprite: {fileID: 3368215707201019708}
   _footSprite: {fileID: 7110590274666104693}

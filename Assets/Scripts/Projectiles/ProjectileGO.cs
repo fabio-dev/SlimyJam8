@@ -87,6 +87,7 @@ public class ProjectileGO : MonoBehaviour
         if (collider.gameObject.TryGetComponent(out ACharacterGO characterGO))
         {
             EnemyGO enemyGO = characterGO as EnemyGO;
+
             if (enemyGO != null && !_invulnerableOnTouched)
             {
                 enemyGO.DisableInvulnerability();

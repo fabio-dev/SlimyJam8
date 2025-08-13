@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Domain;
 using Sirenix.OdinInspector;
 using System;
+using System.Collections;
 using UnityEngine;
 
 public abstract class ACharacterGO : SerializedMonoBehaviour
@@ -16,6 +17,8 @@ public abstract class ACharacterGO : SerializedMonoBehaviour
     public Rigidbody2D Rigidbody => _rigidbody;
 	public event Action OnSetup;
 	public bool IsSetup { get; private set; }
+
+	public event Action OnDieAnimationEnded;
 
     private void Start()
     {
@@ -43,10 +46,16 @@ public abstract class ACharacterGO : SerializedMonoBehaviour
 	{
 		Character.OnDie -= OnDie;
 		ZoneManager.Instance.AddZone(new CircleZone(transform.position, _deathAreaRadius));
-        DeathMaskAnimatorController deathMask = Instantiate(_deathMaskPrefab, transform.position, Quaternion.identity);
-		deathMask.StartIn(.3f);
-        Destroy(gameObject, .3f);
+		StartCoroutine(TriggerOnDieAnimation(.3f));
 	}
 
-	protected void TriggerOnSetup() => OnSetup?.Invoke();
+    private IEnumerator TriggerOnDieAnimation(float delayInSeconds)
+    {
+		yield return new WaitForSeconds(delayInSeconds);
+        DeathMaskAnimatorController deathMask = Instantiate(_deathMaskPrefab, transform.position, Quaternion.identity);
+        OnDieAnimationEnded?.Invoke();
+		Destroy(gameObject);
+    }
+
+    protected void TriggerOnSetup() => OnSetup?.Invoke();
 }

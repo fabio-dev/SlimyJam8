@@ -1,19 +1,16 @@
 fileFormatVersion: 2
-guid: 5856410f4db9d0e4e85749ac0301cf49
+guid: 9d37acde70b1f4b4db8dbe621e4ea6b1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7618118311556056004
-    second: projectile_shotgun_0
+      213: 8395130301553960540
+    second: creb_projectiles_0
   - first:
-      213: 8770533971041837694
-    second: projectile_shotgun_1
+      213: -7491888661372485856
+    second: creb_projectiles_1
   - first:
-      213: -5668568823616085261
-    second: projectile_shotgun_2
-  - first:
-      213: 3645390901413109121
-    second: projectile_shotgun_3
+      213: 3974017040824400305
+    second: creb_projectiles_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -135,7 +132,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: projectile_shotgun_0
+      name: creb_projectiles_0
       rect:
         serializedVersion: 2
         x: 0
@@ -148,16 +145,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c3c7dc612c1074690800000000000000
-      internalID: -7618118311556056004
+      spriteID: cb32cee1f7882a34fbd2a284a1528aa4
+      internalID: 8395130301553960540
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: projectile_shotgun_1
+      name: creb_projectiles_1
       rect:
         serializedVersion: 2
         x: 16
@@ -170,16 +167,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e72e17aad2237b970800000000000000
-      internalID: 8770533971041837694
+      spriteID: e72638ca6eed6c646a14b16cc501a7d8
+      internalID: -7491888661372485856
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: projectile_shotgun_2
+      name: creb_projectiles_2
       rect:
         serializedVersion: 2
         x: 32
@@ -192,16 +189,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3f2628330b23551b0800000000000000
-      internalID: -5668568823616085261
+      spriteID: 4518554e3e12a28498b407446cc902de
+      internalID: 3974017040824400305
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: projectile_shotgun_3
+      name: creb_projectiles_3
       rect:
         serializedVersion: 2
         x: 48
@@ -214,10 +211,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 18d5b22f5b7079230800000000000000
-      internalID: 3645390901413109121
+      spriteID: 6976b1336af973b40aa3c790229ccb65
+      internalID: -1382876358
       vertices: []
       indices: 
       edges: []
@@ -226,7 +223,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 33843b3e125d85a46a9c03c0d32a121e
+    spriteID: 2de6e99cbea0875408c43041c53ffa5e
     internalID: 0
     vertices: []
     indices: 
@@ -236,10 +233,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      projectile_shotgun_0: -7618118311556056004
-      projectile_shotgun_1: 8770533971041837694
-      projectile_shotgun_2: -5668568823616085261
-      projectile_shotgun_3: 3645390901413109121
+      creb_projectiles_0: 8395130301553960540
+      creb_projectiles_1: -7491888661372485856
+      creb_projectiles_2: 3974017040824400305
+      creb_projectiles_3: -1382876358
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
