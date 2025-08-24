@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8001887581769058120}
   - component: {fileID: 5732246811285185172}
   - component: {fileID: 1227300049262366289}
+  - component: {fileID: -5557975220696597182}
   m_Layer: 10
   m_Name: Splash
   m_TagString: Untagged
@@ -138,3 +139,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _circleCollider: {fileID: 5732246811285185172}
+--- !u!114 &-5557975220696597182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7875892632741635161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a37df532d1548b4408c209b02e5a3f0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minSoftness: 0.7
+  maxSoftness: 3
+  softnessSpeed: 1
+  minThickness: 1.99
+  maxThickness: 23.8
+  thicknessSpeed: 1
+  animationOffset: 1.5
+  minDeformation: 0.02
+  maxDeformation: 0.07
+  deformationSpeed: 0.5

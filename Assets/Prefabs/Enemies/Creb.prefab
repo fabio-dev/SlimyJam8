@@ -27,7 +27,7 @@ PrefabInstance:
     - target: {fileID: 955137538411816529, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
       propertyPath: _animatorController
       value: 
-      objectReference: {fileID: -1557953495875620795}
+      objectReference: {fileID: -3388197623704161094}
     - target: {fileID: 955137538411816529, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
       propertyPath: serializationData.Prefab
       value: 
@@ -113,7 +113,7 @@ PrefabInstance:
       addedObject: {fileID: -8777016676718514345}
     - targetCorrespondingSourceObject: {fileID: 6963846044673964606, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
       insertIndex: 4
-      addedObject: {fileID: -1557953495875620795}
+      addedObject: {fileID: -3388197623704161094}
   m_SourcePrefab: {fileID: 100100000, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
 --- !u!1 &7333625436650318831 stripped
 GameObject:
@@ -134,9 +134,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _projectilePrefab: {fileID: 5274789563252565349, guid: 75dad7fbdaa16074e8d15afa2cb4d44c, type: 3}
   _minNumberOfProjectiles: 6
-  _maxNumberOfProjectiles: 12
+  _maxNumberOfProjectiles: 6
   _damage: 1
---- !u!114 &-1557953495875620795
+--- !u!114 &-3388197623704161094
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7333625436650318831}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59f77e88b45d77f4288f5110352801c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 1100b4e1145bf4546ab5a92f84085b02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _idleAnimations: {fileID: 11400000, guid: 013b73cca20dc404a9aeb83e24bef76b, type: 2}

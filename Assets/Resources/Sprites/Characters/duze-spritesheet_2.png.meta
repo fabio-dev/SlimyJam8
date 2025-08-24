@@ -360,7 +360,16 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      duze-spritesheet_2_0: 3893116481620238459
+      duze-spritesheet_2_1: 5918129933102500441
+      duze-spritesheet_2_2: 8409686728029797949
+      duze-spritesheet_2_3: 8866278162791097041
+      duze-spritesheet_2_4: 3731931749158955404
+      duze-spritesheet_2_5: -282088846498493132
+      duze-spritesheet_2_6: 8906427468297505241
+      duze-spritesheet_2_7: 4360056521258998613
+      duze-spritesheet_2_8: 1251896530744277769
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

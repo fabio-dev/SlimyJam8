@@ -10,16 +10,27 @@ public class AiBrain : MonoBehaviour
 	private IAttackStrategy _attackStrategy = null;
 	private bool _isDead = false;
 
-	public IMovementStrategy MovementStrategy => _movementStrategy;
+	// Modifiez cette ligne pour permettre la modification (setter public)
+	public IMovementStrategy MovementStrategy
+    {
+        get { return _movementStrategy; }
+        set { _movementStrategy = value; }
+    }
 
     public void ApplyKnockback(Vector2 force)
     {
-		_movementStrategy.ApplyKnockback(force / _owner.TotalWeight);
+		if (_movementStrategy != null)
+        {
+            _movementStrategy.ApplyKnockback(force / _owner.TotalWeight);
+        }
     }
 
     private void OnDestroy()
     {
-        _owner.OnSetup -= Setup;
+        if (_owner != null)
+        {
+            _owner.OnSetup -= Setup;
+        }
     }
 
     private void FixedUpdate()

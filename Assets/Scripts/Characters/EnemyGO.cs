@@ -54,6 +54,23 @@ public class EnemyGO : ACharacterGO
     {
         base.Setup(character);
         _aiBrain.Setup();
+
+        // --- AJOUT DE LA LOGIQUE SPÉCIFIQUE POUR "DUZE" ---
+        // Si le nom de l'objet contient "Duze", on change sa stratégie de mouvement.
+        if (gameObject.name.Contains("Duze"))
+        {
+            if (_aiBrain != null)
+            {
+                PlayerGO player = GameManager.Instance.PlayerGO;
+                if (player != null)
+                {
+                    // On remplace la stratégie de mouvement par celle de la méduse
+                    _aiBrain.MovementStrategy = new JellyfishMovementStrategy().Init(this, player.Center);
+                }
+            }
+        }
+        // --- FIN DE L'AJOUT ---
+
         character.SetHealth(_health);
         character.SetMoveSpeed(_moveSpeed);
         character.SetAttackCooldown(_basicAttackCooldown);
@@ -141,7 +158,10 @@ public class EnemyGO : ACharacterGO
     private void OnDestroy()
     {
         _animatorController.Kill();
-        Enemy.OnDamaged -= Damaged;
+        if (Enemy != null)
+        {
+            Enemy.OnDamaged -= Damaged;
+        }
     }
 
     internal void DisableInvulnerability()

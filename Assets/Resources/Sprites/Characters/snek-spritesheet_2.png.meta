@@ -660,7 +660,28 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      snek-spritesheet_2_0: 8100222605382313414
+      snek-spritesheet_2_1: -679154817708986426
+      snek-spritesheet_2_10: -4634100619712658092
+      snek-spritesheet_2_11: -4174059249192239988
+      snek-spritesheet_2_12: 7344459714543079172
+      snek-spritesheet_2_13: 4286098009596359608
+      snek-spritesheet_2_14: -511573902001680425
+      snek-spritesheet_2_15: -5531471277945523048
+      snek-spritesheet_2_16: 8012067791053247435
+      snek-spritesheet_2_17: 5136186128802568508
+      snek-spritesheet_2_18: 4006225719274962362
+      snek-spritesheet_2_19: -6329112909614496140
+      snek-spritesheet_2_2: 1382481743848089847
+      snek-spritesheet_2_20: -4067218117810945583
+      snek-spritesheet_2_3: 936097709412739897
+      snek-spritesheet_2_4: 8435190616480725792
+      snek-spritesheet_2_5: 199876266412862025
+      snek-spritesheet_2_6: 3477852298887757257
+      snek-spritesheet_2_7: -3704330175223663094
+      snek-spritesheet_2_8: -5756058279567966716
+      snek-spritesheet_2_9: -1346151320021461534
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

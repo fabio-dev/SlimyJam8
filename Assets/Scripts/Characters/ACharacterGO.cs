@@ -13,6 +13,8 @@ public abstract class ACharacterGO : SerializedMonoBehaviour
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private DeathMaskAnimatorController _deathMaskPrefab;
 
+    private Collider2D _collider;
+
     public ACharacter Character { get; private set; }
     public SpriteRenderer SpriteRenderer => _spriteRenderer;
     public Rigidbody2D Rigidbody => _rigidbody;
@@ -20,6 +22,12 @@ public abstract class ACharacterGO : SerializedMonoBehaviour
     public bool IsSetup { get; private set; }
 
     public event Action OnDieAnimationEnded;
+
+
+    protected virtual void Awake()
+    {
+        _collider = GetComponent<Collider2D>();
+    }
 
     private void Start()
     {
@@ -45,9 +53,25 @@ public abstract class ACharacterGO : SerializedMonoBehaviour
 
     protected virtual void OnDie(ACharacter character)
     {
+
+        if (_collider != null)
+        {
+            _collider.enabled = false;
+        }
+
+
+        if (_rigidbody != null)
+        {
+            _rigidbody.linearVelocity = Vector2.zero;
+            _rigidbody.bodyType = RigidbodyType2D.Kinematic; 
+        }
+
+
         Character.OnDie -= OnDie;
+        
+
         ZoneManager.Instance.AddZone(new CircleZone(transform.position, _deathAreaRadius));
-        StartCoroutine(TriggerOnDieAnimation(.5f));
+        StartCoroutine(TriggerOnDieAnimation(0.02f));
     }
 
     private IEnumerator TriggerOnDieAnimation(float delayInSeconds)

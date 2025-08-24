@@ -1,6 +1,7 @@
 using Assets.Scripts.Domain;
 using System;
 using UnityEngine;
+using DG.Tweening;
 
 public class PotGO : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class PotGO : MonoBehaviour
     {
         SetNextSprite();
         _damages++;
+        transform.DOShakeScale(1, 0.5f);
 
         if (_damages == _health)
         {

@@ -42,11 +42,20 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _DeformationFrequency: 20
+    - _DeformationSpeed: 2
+    - _DeformationStrength: 0.02
+    - _EdgeAntiAliasing: 0
     - _EnableExternalAlpha: 0
+    - _OutlineBlendMode: 2
+    - _OutlineEnabled: 1
+    - _OutlineSoftness: 0.5
+    - _OutlineThickness: 9.2
     - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 0.5082325, g: 0.764151, b: 0.74832135, a: 0.21960784}
+    - _Color: {r: 0.3137255, g: 0.5019608, b: 0.5176471, a: 0.21960784}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 0.5137255, g: 0.6, b: 0.6039216, a: 0.25490198}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

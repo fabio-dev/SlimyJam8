@@ -16,6 +16,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 1297402288563583131, guid: 6b1825ad9ea09cb4d8f462eeb0b6aed0, type: 3}
+      propertyPath: _speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1297402288563583131, guid: 6b1825ad9ea09cb4d8f462eeb0b6aed0, type: 3}
+      propertyPath: _lifeTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2759366090439972403, guid: 6b1825ad9ea09cb4d8f462eeb0b6aed0, type: 3}
       propertyPath: m_Name
       value: EnemyProjectile
