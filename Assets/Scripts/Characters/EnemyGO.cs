@@ -69,7 +69,19 @@ public class EnemyGO : ACharacterGO
                 }
             }
         }
-        // --- FIN DE L'AJOUT ---
+
+        else if (gameObject.name.Contains("Snek")) // AJOUT DE LA CONDITION POUR LE SERPENT
+        {
+            if (_aiBrain != null)
+            {
+                PlayerGO player = GameManager.Instance.PlayerGO;
+                if (player != null)
+                {
+                    // On remplace la stratégie par défaut par celle du serpent
+                    _aiBrain.MovementStrategy = new SinusoidalMovementStrategy().Init(this, player.Center);
+                }
+            }
+        }
 
         character.SetHealth(_health);
         character.SetMoveSpeed(_moveSpeed);
