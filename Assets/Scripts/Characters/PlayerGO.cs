@@ -68,29 +68,37 @@ public class PlayerGO : ACharacterGO
                 Player.Vulnerable();
             }
         }
-
-        Vector2 mouseScreenPos = InputManager.Instance.Player.Value.Look.ReadValue<Vector2>();
-
-        HandlePlayerOrientation(mouseScreenPos);
-        HandleGunOrientation(mouseScreenPos);
     }
 
-    private void HandlePlayerOrientation(Vector2 mouseScreenPos)
+    private void HandlePlayerOrientation(Vector2 direction)
     {
-        SpriteRenderer.transform.localScale = mouseScreenPos.x < Screen.width / 2f ? new Vector3(-1f, 1f, 1f) : Vector3.one;
+        SpriteRenderer.transform.localScale = direction.x < 0f ? new Vector3(-1f, 1f, 1f) : Vector3.one;
     }
 
-    private void HandleGunOrientation(Vector2 mouseScreenPos)
+    private void HandleGunOrientation(Vector2 direction)
     {
-        Vector3 mouseWorldPos = _camera.ScreenToWorldPoint(mouseScreenPos);
-        mouseWorldPos.z = 0;
+        if (direction.magnitude > 0.1f)
+        {
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            _gun.rotation = Quaternion.Euler(0, 0, angle);
 
-        Vector2 direction = mouseWorldPos - _gun.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            bool shouldFlipGun;
+            if (UnifiedLookInput.IsUsingMouse)
+            {
+                shouldFlipGun = UnifiedLookInput.CurrentLookInput.x < Screen.width / 2f;
+            }
+            else
+            {
+                shouldFlipGun = direction.x < 0;
+            }
 
-        _gun.rotation = Quaternion.Euler(0, 0, angle);
+            _gunSprite.localScale = shouldFlipGun ? new Vector3(1f, -1f, 1f) : Vector3.one;
+        }
+    }
 
-        _gunSprite.localScale = mouseScreenPos.x < Screen.width / 2f ? new Vector3(1f, -1f, 1f) : Vector3.one;
+    private void Start()
+    {
+        UnifiedLookInput.OnLookInput += OnLookAround;
     }
 
     public override void Setup(ACharacter character)
@@ -118,6 +126,15 @@ public class PlayerGO : ACharacterGO
         ChangeWeapon(WeaponType.Basic);
 
         TriggerOnSetup();
+    }
+
+    private void OnLookAround(Vector2 position, bool isMouse)
+    {
+        Vector2 test = UnifiedLookInput.GetWorldDirection(transform.position);
+
+        Debug.Log("Looking around: " + test);
+        HandlePlayerOrientation(test);
+        HandleGunOrientation(test);
     }
 
     protected override void OnDie(ACharacter character)
