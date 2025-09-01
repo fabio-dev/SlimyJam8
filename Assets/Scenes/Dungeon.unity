@@ -1892,6 +1892,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7508561357158740888, guid: 56e88abc57dc2bb408e5fe5f18313e70, type: 3}
   m_PrefabInstance: {fileID: 8481500027406674210}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1464082170 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5371748706957349288, guid: 61bf6feecc3d3984f88caf07ae5a22b5, type: 3}
+  m_PrefabInstance: {fileID: 4761270984568771066}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0be5238de5f20aa4580ba4987696e1d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1553342536 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8760776059006289591, guid: 56e88abc57dc2bb408e5fe5f18313e70, type: 3}
@@ -2690,7 +2701,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5371748706957349288, guid: 61bf6feecc3d3984f88caf07ae5a22b5, type: 3}
       propertyPath: _chunks.Array.size
-      value: 8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5371748706957349288, guid: 61bf6feecc3d3984f88caf07ae5a22b5, type: 3}
       propertyPath: _chestChanceToSpawn
@@ -2703,27 +2714,27 @@ PrefabInstance:
     - target: {fileID: 5371748706957349288, guid: 61bf6feecc3d3984f88caf07ae5a22b5, type: 3}
       propertyPath: '_chunks.Array.data[1]'
       value: 
-      objectReference: {fileID: 2624917258591318373, guid: f340cee5c0d68094c908a8e867d38924, type: 3}
+      objectReference: {fileID: 2624917258591318373, guid: a9cf5bd8626c0314dad8b9d1a4929429, type: 3}
     - target: {fileID: 5371748706957349288, guid: 61bf6feecc3d3984f88caf07ae5a22b5, type: 3}
       propertyPath: '_chunks.Array.data[2]'
       value: 
-      objectReference: {fileID: 2624917258591318373, guid: b73b57c5bbbaa0f468f60c79437df287, type: 3}
+      objectReference: {fileID: 2624917258591318373, guid: a9cf5bd8626c0314dad8b9d1a4929429, type: 3}
     - target: {fileID: 5371748706957349288, guid: 61bf6feecc3d3984f88caf07ae5a22b5, type: 3}
       propertyPath: '_chunks.Array.data[3]'
       value: 
-      objectReference: {fileID: 2624917258591318373, guid: 242029d23cee49643bc4a5cb68664c7c, type: 3}
+      objectReference: {fileID: 2624917258591318373, guid: a9cf5bd8626c0314dad8b9d1a4929429, type: 3}
     - target: {fileID: 5371748706957349288, guid: 61bf6feecc3d3984f88caf07ae5a22b5, type: 3}
       propertyPath: '_chunks.Array.data[4]'
       value: 
-      objectReference: {fileID: 2624917258591318373, guid: 035e7154a3a213044a633b4370f2edbe, type: 3}
+      objectReference: {fileID: 2624917258591318373, guid: a9cf5bd8626c0314dad8b9d1a4929429, type: 3}
     - target: {fileID: 5371748706957349288, guid: 61bf6feecc3d3984f88caf07ae5a22b5, type: 3}
       propertyPath: '_chunks.Array.data[5]'
       value: 
-      objectReference: {fileID: 2624917258591318373, guid: 86f6b461567798a4a9b98438dfa53b32, type: 3}
+      objectReference: {fileID: 2624917258591318373, guid: a9cf5bd8626c0314dad8b9d1a4929429, type: 3}
     - target: {fileID: 5371748706957349288, guid: 61bf6feecc3d3984f88caf07ae5a22b5, type: 3}
       propertyPath: '_chunks.Array.data[6]'
       value: 
-      objectReference: {fileID: 2624917258591318373, guid: c2aabee04ff5a354683034b2f4d6cda7, type: 3}
+      objectReference: {fileID: 2624917258591318373, guid: a9cf5bd8626c0314dad8b9d1a4929429, type: 3}
     - target: {fileID: 5371748706957349288, guid: 61bf6feecc3d3984f88caf07ae5a22b5, type: 3}
       propertyPath: '_chunks.Array.data[7]'
       value: 
@@ -2750,6 +2761,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
+      propertyPath: _dungeon
+      value: 
+      objectReference: {fileID: 1464082170}
+    - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
       propertyPath: _enemyPrefab
       value: 
       objectReference: {fileID: 955137538411816529, guid: e8365b76ea4bdae4980b2e549a184ba7, type: 3}
@@ -2759,7 +2774,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
       propertyPath: _phases.Array.size
-      value: 7
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
       propertyPath: '_phases.Array.data[0]'
@@ -2772,19 +2787,19 @@ PrefabInstance:
     - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
       propertyPath: '_phases.Array.data[2]'
       value: 
-      objectReference: {fileID: 11400000, guid: 1bd42753599074746a5b835ae96f8338, type: 2}
+      objectReference: {fileID: 11400000, guid: 9e49b00392335524c9f4db6ef14ed525, type: 2}
     - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
       propertyPath: '_phases.Array.data[3]'
       value: 
-      objectReference: {fileID: 11400000, guid: a1788198c665ab143a04d81e5b247cdb, type: 2}
+      objectReference: {fileID: 11400000, guid: 9e49b00392335524c9f4db6ef14ed525, type: 2}
     - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
       propertyPath: '_phases.Array.data[4]'
       value: 
-      objectReference: {fileID: 11400000, guid: d80133608b430924ba322978b0a5cca3, type: 2}
+      objectReference: {fileID: 11400000, guid: 9e49b00392335524c9f4db6ef14ed525, type: 2}
     - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
       propertyPath: '_phases.Array.data[5]'
       value: 
-      objectReference: {fileID: 11400000, guid: 27826ab4eb213de43aa1f12087173965, type: 2}
+      objectReference: {fileID: 11400000, guid: 9e49b00392335524c9f4db6ef14ed525, type: 2}
     - target: {fileID: 2256877699141232795, guid: 1b698d3f56d8a3447a89e379ef1e4ebc, type: 3}
       propertyPath: '_phases.Array.data[6]'
       value: 

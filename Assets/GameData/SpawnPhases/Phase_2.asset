@@ -16,5 +16,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c2d4ae883baed1142a6283b1784142ba, type: 2}
   - {fileID: 11400000, guid: fe83466f5b2888d4aa64ef26c8d67fab, type: 2}
   PhaseDurationInSeconds: 20
-  MinDelayToSpawnInSeconds: 3
-  MaxDelayToSpawnInSeconds: 5
+  DelayToNextSpawnInSeconds: 4
+  NumberOfEnemiesToSpawn: 2

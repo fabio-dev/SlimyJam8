@@ -48,7 +48,6 @@ namespace Assets.Scripts.Domain
 
 				_state = value;
 				OnStateChanged?.Invoke(_state);
-				Debug.Log("State: " + _state);
 			}
 		}
 

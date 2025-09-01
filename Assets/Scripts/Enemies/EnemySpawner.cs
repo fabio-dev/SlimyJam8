@@ -1,14 +1,14 @@
-using UnityEngine;
-using System.Collections;
 using Assets.Scripts.Domain;
-using System.Linq;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private SpawnPhase[] _phases;
-    [SerializeField] private float _spawnRadiusMin = 10f;
-    [SerializeField] private float _spawnRadiusMax = 14f;
+    [SerializeField] private DungeonGenerator _dungeon;
 
     private PlayerGO _player;
     private DropManager _dropManager;
@@ -51,31 +51,41 @@ public class EnemySpawner : MonoBehaviour
     {
         while (true)
         {
-            SpawnEnemy();
+            SpawnEnemies();
             yield return new WaitForSeconds(_delayToNextSpawn);
         }
     }
 
-    private void SpawnEnemy()
+    private void SpawnEnemies()
     {
         if (_player == null)
         {
             return;
         }
 
-        Vector2 randomDir = UnityEngine.Random.insideUnitCircle.normalized;
-        float randomDistance = UnityEngine.Random.Range(_spawnRadiusMin, _spawnRadiusMax);
-        Vector2 spawnPosition = (Vector2)_player.transform.position + randomDir * randomDistance;
+        ChunkGO chunk = _dungeon.GetPlayerCurrentChunk();
+        List<SpawnAreaGO> spawnAreas = new List<SpawnAreaGO>(chunk.SpawnAreas);
 
-        EnemyGO enemyPrefab = RandomEnemy();
-        EnemyGO enemyGO = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        for (int i = 0; i < _currentPhase.NumberOfEnemiesToSpawn; i++)
+        {
+            if (spawnAreas.Count == 0)
+            {
+                break;
+            }
 
-        Enemy enemy = new Enemy();
-        enemyGO.Setup(enemy);
-        enemyGO.SetDropManager(_dropManager);
-        enemy.OnDie += UpdateScore;
+            Debug.Log($"Spawning enemies in chunk [{chunk.name}]");
+            int rngArea = UnityEngine.Random.Range(0, spawnAreas.Count);
 
-        _delayToNextSpawn = UnityEngine.Random.Range(_currentPhase.MinDelayToSpawnInSeconds, _currentPhase.MaxDelayToSpawnInSeconds);
+            EnemyGO enemyPrefab = RandomEnemy();
+            EnemyGO enemyGO = Instantiate(enemyPrefab, spawnAreas[rngArea].transform.position, Quaternion.identity);
+
+            Enemy enemy = new Enemy();
+            enemyGO.Setup(enemy);
+            enemyGO.SetDropManager(_dropManager);
+            enemy.OnDie += UpdateScore;
+        }
+
+        _delayToNextSpawn = _currentPhase.DelayToNextSpawnInSeconds;
     }
 
     private void UpdateScore(ACharacter enemy)

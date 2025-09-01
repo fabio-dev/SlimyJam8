@@ -4,7 +4,7 @@ using UnityEngine;
 public class SpawnPhase : ScriptableObject
 {
     public SpawnEnemy[] Enemies;
-    public float PhaseDurationInSeconds;
-    public float MinDelayToSpawnInSeconds;
-    public float MaxDelayToSpawnInSeconds;
+    public float PhaseDurationInSeconds = 20f;
+    public float DelayToNextSpawnInSeconds = 5f;
+    public int NumberOfEnemiesToSpawn = 1;
 }

@@ -4,6 +4,12 @@ public class ChunkGO : MonoBehaviour
 {
     public int Size { get; private set; }
     public Vector2Int ChunkCoords { get; private set; }
+    public SpawnAreaGO[] SpawnAreas { get; private set; }
+
+    private void Start()
+    {
+        SpawnAreas = GetComponentsInChildren<SpawnAreaGO>();
+    }
 
     public void Init(Vector2Int coords, int size)
     {

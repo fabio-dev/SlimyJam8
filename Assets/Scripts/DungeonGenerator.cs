@@ -1,5 +1,6 @@
 using Assets.Scripts.Domain;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DungeonGenerator : MonoBehaviour
@@ -41,10 +42,23 @@ public class DungeonGenerator : MonoBehaviour
         }
     }
 
+    public ChunkGO GetPlayerCurrentChunk()
+    {
+        Vector2 playerPosition = GameManager.Instance.PlayerGO.transform.position;
+        Vector2Int playerPositionInChunk = GetChunkCoord(_player.position);
+
+        if (generatedChunks.ContainsKey(playerPositionInChunk))
+        {
+            return generatedChunks[playerPositionInChunk];
+        }
+
+        return generatedChunks.First().Value;
+    }
+
     private Vector2Int GetChunkCoord(Vector3 position)
     {
-        int x = Mathf.FloorToInt(position.x / ChunkSize);
-        int y = Mathf.FloorToInt(position.y / ChunkSize);
+        int x = Mathf.FloorToInt((position.x + ChunkSize / 2f) / ChunkSize);
+        int y = Mathf.FloorToInt((position.y + ChunkSize / 2f) / ChunkSize);
         return new Vector2Int(x, y);
     }
 
@@ -59,7 +73,7 @@ public class DungeonGenerator : MonoBehaviour
             SpawnPot(coords);
         }
 
-        float rngChest =  Random.Range(0f, 1f);
+        float rngChest = Random.Range(0f, 1f);
         if (rngChest <= _chestChanceToSpawn)
         {
             SpawnChest(coords);
