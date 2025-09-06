@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 1854928037}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &95135580
@@ -285,7 +285,6 @@ GameObject:
   - component: {fileID: 645731519}
   - component: {fileID: 645731518}
   - component: {fileID: 645731517}
-  - component: {fileID: 645731520}
   m_Layer: 5
   m_Name: ControlsButton
   m_TagString: Untagged
@@ -335,9 +334,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0, g: 0.6392157, b: 0.7372549, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0, g: 0.6392157, b: 0.7372549, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -353,7 +352,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 645731518}
+  m_TargetGraphic: {fileID: 2147165207}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -407,21 +406,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 645731515}
   m_CullTransparentMesh: 1
---- !u!114 &645731520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 645731515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cceaf30244ba76d488c07b62b3eba9c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _text: {fileID: 2147165207}
-  _textColor: {r: 1, g: 1, b: 1, a: 1}
-  _hoverColor: {r: 0, g: 0.37027463, b: 0.5849056, a: 1}
 --- !u!1 &792527496
 GameObject:
   m_ObjectHideFlags: 0
@@ -1195,7 +1179,6 @@ GameObject:
   - component: {fileID: 1854928041}
   - component: {fileID: 1854928040}
   - component: {fileID: 1854928039}
-  - component: {fileID: 1854928042}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -1245,9 +1228,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0, g: 0.6392157, b: 0.7372549, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0, g: 0.6392157, b: 0.7372549, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1263,7 +1246,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1854928040}
+  m_TargetGraphic: {fileID: 792527498}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -1317,21 +1300,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1854928037}
   m_CullTransparentMesh: 1
---- !u!114 &1854928042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1854928037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cceaf30244ba76d488c07b62b3eba9c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _text: {fileID: 792527498}
-  _textColor: {r: 1, g: 1, b: 1, a: 1}
-  _hoverColor: {r: 0, g: 0.37027463, b: 0.5849056, a: 1}
 --- !u!1 &1878172316
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,7 +1387,6 @@ GameObject:
   - component: {fileID: 1899030875}
   - component: {fileID: 1899030874}
   - component: {fileID: 1899030873}
-  - component: {fileID: 1899030876}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -1469,9 +1436,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0, g: 0.6392157, b: 0.7372549, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0, g: 0.6392157, b: 0.7372549, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1487,7 +1454,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1899030874}
+  m_TargetGraphic: {fileID: 928744523}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -1541,21 +1508,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1899030871}
   m_CullTransparentMesh: 1
---- !u!114 &1899030876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1899030871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cceaf30244ba76d488c07b62b3eba9c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _text: {fileID: 928744523}
-  _textColor: {r: 1, g: 1, b: 1, a: 1}
-  _hoverColor: {r: 0, g: 0.37027463, b: 0.5849056, a: 1}
 --- !u!1 &2147165205
 GameObject:
   m_ObjectHideFlags: 0
@@ -1809,6 +1761,14 @@ PrefabInstance:
       propertyPath: _sceneTransition
       value: 
       objectReference: {fileID: 1188697006}
+    - target: {fileID: 2238707277868992068, guid: 11babe8a5fa5c044c9ece6a41bfbc99f, type: 3}
+      propertyPath: _firstSelectedButton
+      value: 
+      objectReference: {fileID: 1854928037}
+    - target: {fileID: 2238707277868992068, guid: 11babe8a5fa5c044c9ece6a41bfbc99f, type: 3}
+      propertyPath: _defaultSelectedButton
+      value: 
+      objectReference: {fileID: 1854928037}
     - target: {fileID: 3354080293784401066, guid: 11babe8a5fa5c044c9ece6a41bfbc99f, type: 3}
       propertyPath: m_Name
       value: MainMenuManager

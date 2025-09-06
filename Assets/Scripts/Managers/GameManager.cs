@@ -2,94 +2,101 @@ using Assets.Scripts.Domain;
 using DG.Tweening;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-	[SerializeField] private PlayerGO _playerGO;
-	[SerializeField] private EnemySpawner _enemySpawner;
-	[SerializeField] private AbilityUI _dashAbility;
-	[SerializeField] private AbilityUI _splashAbility;
-	[SerializeField] private WeaponUI _weaponUI;
+    [SerializeField] private PlayerGO _playerGO;
+    [SerializeField] private EnemySpawner _enemySpawner;
+    [SerializeField] private AbilityUI _dashAbility;
+    [SerializeField] private AbilityUI _splashAbility;
+    [SerializeField] private WeaponUI _weaponUI;
     [SerializeField] private PowerUpManager _powerUpManager;
-	[SerializeField] private CameraFollow _camera;
-	[SerializeField] private HealthUI _healthUI;
-	[SerializeField] private DropManager _enemyDropManager;
-	[SerializeField] private DropManager _potDropManager;
-	[SerializeField] private DropManager _chestDropManager;
-	[SerializeField] private ExperienceUI _experienceUI;
-	[SerializeField] private ScoreManager _scoreManager;
-	[SerializeField] private AudioClip _music;
-	[SerializeField] private AudioClip _gameOverMusic;
+    [SerializeField] private CameraFollow _camera;
+    [SerializeField] private HealthUI _healthUI;
+    [SerializeField] private DropManager _enemyDropManager;
+    [SerializeField] private DropManager _potDropManager;
+    [SerializeField] private DropManager _chestDropManager;
+    [SerializeField] private ExperienceUI _experienceUI;
+    [SerializeField] private ScoreManager _scoreManager;
+    [SerializeField] private AudioClip _music;
+    [SerializeField] private AudioClip _gameOverMusic;
     [SerializeField] private SceneTransition _sceneTransition;
-	[SerializeField] private PlayerSpawning _playerSpawning;
-	[SerializeField] private GameOverUI _gameOver;
-	[SerializeField] private Image _redImage;
-	[SerializeField] private int _numberOfStartingDrops;
+    [SerializeField] private PlayerSpawning _playerSpawning;
+    [SerializeField] private GameOverUI _gameOver;
+    [SerializeField] private GameObject _gameOverDefaultSelectedButton;
+    [SerializeField] private Image _redImage;
+    [SerializeField] private int _numberOfStartingDrops;
 
-	private bool _firstUpdate = false;
-	private Player _player;
-	private LevelManager _levelManager;
-	public PlayerGO PlayerGO { get { return _playerGO; } }
-	public static GameManager Instance { get; private set; }
+    private bool _firstUpdate = false;
+    private Player _player;
+    private LevelManager _levelManager;
+    public PlayerGO PlayerGO { get { return _playerGO; } }
+    public static GameManager Instance { get; private set; }
 
-	public void Quit()
-	{
-		MusicManager.Instance.StopMusic();
-		_sceneTransition.HideScreen();
-		_sceneTransition.OnHidden += () => SceneManager.LoadScene(0);
-	}
-
-	public void Replay()
+    public void Quit()
     {
-		MusicManager.Instance.StopMusic();
+        MusicManager.Instance.StopMusic();
+        _sceneTransition.HideScreen();
+        _sceneTransition.OnHidden += () => SceneManager.LoadScene(0);
+    }
+
+    public void Replay()
+    {
+        MusicManager.Instance.StopMusic();
         _sceneTransition.HideScreen();
         _sceneTransition.OnHidden += () => SceneManager.LoadScene(1);
     }
 
     private void Awake()
-	{
-		if (Instance != null && Instance != this)
-		{
-			Destroy(gameObject);
-		}
-		else
-		{
-			Instance = this;
-		}
-	}
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
 
-	private void Update()
-	{
-		if (!_firstUpdate)
-		{
-			FirstUpdate();
-			_firstUpdate = true;
-		}
-	}
+    private void Update()
+    {
+        if (!_firstUpdate)
+        {
+            FirstUpdate();
+            _firstUpdate = true;
+        }
 
-	private void FirstUpdate()
-	{
-		MusicManager.Instance.ChangeClip(_music);
-		_sceneTransition.ShowScreen();
+        if (EventSystem.current.currentSelectedGameObject != null)
+        {
+            Debug.Log("Selected: " + EventSystem.current.currentSelectedGameObject.name);
+        }
+    }
+
+    private void FirstUpdate()
+    {
+        MusicManager.Instance.ChangeClip(_music);
+        _sceneTransition.ShowScreen();
         _sceneTransition.OnShowed += PlayerSpawning;
     }
 
-	private void PlayerSpawning()
-	{
-		_playerSpawning.OnGroundTouched += () =>
+    private void PlayerSpawning()
+    {
+        _playerSpawning.OnGroundTouched += () =>
         {
             ZoneManager.Instance.AddZone(new CircleZone(_playerSpawning.transform.position, 2f));
-			SFXPlayer.Instance.PlayPlayerSplash();
+            SFXPlayer.Instance.PlayPlayerSplash();
         };
-		_playerSpawning.OnReady += InitAndStart;
-		_playerSpawning.RunAnimation();
+        _playerSpawning.OnReady += InitAndStart;
+        _playerSpawning.RunAnimation();
     }
 
     private void InitAndStart()
     {
-		_playerGO.gameObject.SetActive(true);
+        _playerGO.gameObject.SetActive(true);
         _playerSpawning.gameObject.SetActive(false);
 
         _player = new Player();
@@ -100,8 +107,8 @@ public class GameManager : MonoBehaviour
 
         _levelManager = new LevelManager();
         _enemyDropManager.Setup(_playerGO, _levelManager);
-		_potDropManager.Setup(_playerGO, _levelManager);
-		_chestDropManager.Setup(_playerGO, _levelManager);
+        _potDropManager.Setup(_playerGO, _levelManager);
+        _chestDropManager.Setup(_playerGO, _levelManager);
         _experienceUI.Setup(_levelManager);
 
         _playerGO.Setup(_player);
@@ -121,41 +128,44 @@ public class GameManager : MonoBehaviour
         _scoreManager.Setup(_player);
         _scoreManager.Run();
 
-		for (int i = 0; i < _numberOfStartingDrops; i++)
-		{
-			Vector2 startingDropPosition = new Vector2(i, -1);
-			_chestDropManager.Drop(startingDropPosition);
+        for (int i = 0; i < _numberOfStartingDrops; i++)
+        {
+            Vector2 startingDropPosition = new Vector2(i, -1);
+            _chestDropManager.Drop(startingDropPosition);
         }
     }
 
     private void LostGame(ACharacter player)
     {
-		SFXPlayer.Instance.PlayGameOver();
-		MusicManager.Instance.StopInstant();
-		StartCoroutine(EasterEgg());
-		_gameOver.gameObject.SetActive(true);
-		_gameOver.SetScore(_scoreManager.Score);
-		_powerUpManager.gameObject.SetActive(false);
+        SFXPlayer.Instance.PlayGameOver();
+        MusicManager.Instance.StopInstant();
+        StartCoroutine(EasterEgg());
+
+        _gameOver.gameObject.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(_gameOverDefaultSelectedButton);
+
+        _gameOver.SetScore(_scoreManager.Score);
+        _powerUpManager.gameObject.SetActive(false);
     }
 
-	private IEnumerator EasterEgg()
-	{
-		yield return new WaitForSeconds(8f);
-		MusicManager.Instance.ChangeClip(_gameOverMusic);
-		_redImage.DOFade(1f, 66f);
+    private IEnumerator EasterEgg()
+    {
+        yield return new WaitForSeconds(8f);
+        MusicManager.Instance.ChangeClip(_gameOverMusic);
+        _redImage.DOFade(1f, 66f);
     }
 
     private void Pause()
-	{
-		Time.timeScale = 0f;
-		_playerGO.Pause();
-		_camera.Pause();
-	}
+    {
+        Time.timeScale = 0f;
+        _playerGO.Pause();
+        _camera.Pause();
+    }
 
-	private void Resume()
-	{
-		Time.timeScale = 1f;
-		_playerGO.Resume();
-		_camera.Resume();
-	}
+    private void Resume()
+    {
+        Time.timeScale = 1f;
+        _playerGO.Resume();
+        _camera.Resume();
+    }
 }
