@@ -130,11 +130,10 @@ public class PlayerGO : ACharacterGO
 
     private void OnLookAround(Vector2 position, bool isMouse)
     {
-        Vector2 test = UnifiedLookInput.GetWorldDirection(transform.position);
+        Vector2 lookPosition = UnifiedLookInput.GetWorldDirection(transform.position);
 
-        Debug.Log("Looking around: " + test);
-        HandlePlayerOrientation(test);
-        HandleGunOrientation(test);
+        HandlePlayerOrientation(lookPosition);
+        HandleGunOrientation(lookPosition);
     }
 
     protected override void OnDie(ACharacter character)
@@ -245,6 +244,7 @@ public class PlayerGO : ACharacterGO
         Player.OnDie -= Dying;
         Player.OnShielded -= OnShielded;
         Player.OnWeaponChanged -= ChangeWeapon;
+        UnifiedLookInput.OnLookInput -= OnLookAround;
 
         _splashWeapon.OnEmptyAmmo -= OnEmptyAmmo;
         _waveWeapon.OnEmptyAmmo -= OnEmptyAmmo;

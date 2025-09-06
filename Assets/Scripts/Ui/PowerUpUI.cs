@@ -17,7 +17,11 @@ public class PowerUpUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
     private Color _baseColor;
     private APowerUp _powerUp;
 
-    public event Action<APowerUp> OnSelect;
+    public APowerUp PowerUp => _powerUp;
+
+    public event Action<PowerUpUI> OnSelect;
+    public event Action<PowerUpUI> OnEnter;
+    public event Action<PowerUpUI> OnExit;
 
     void Start()
     {
@@ -50,15 +54,25 @@ public class PowerUpUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        OnSelect?.Invoke(_powerUp);
+        OnSelect?.Invoke(this);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        _image.color = Color.gray;
+        OnEnter?.Invoke(this);
     }
 
     public void OnPointerExit(PointerEventData eventData)
+    {
+        OnExit?.Invoke(this);
+    }
+
+    public void SetEntered()
+    {
+        _image.color = Color.gray;
+    }
+
+    public void SetExited()
     {
         _image.color = _baseColor;
     }

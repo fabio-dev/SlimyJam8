@@ -66,8 +66,6 @@ public class UnifiedLookInput : MonoBehaviour
 
         OnLookInput?.Invoke(currentUnifiedInput, isUsingMouse);
         OnLookPerformed?.Invoke(currentUnifiedInput);
-
-        Debug.Log($"Unified Look Input: {input} (Source: {(fromMouse ? "Mouse" : "Joystick")})");
     }
 
     private void Update()
