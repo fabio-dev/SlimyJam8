@@ -77,6 +77,12 @@ public class ProjectileGO : MonoBehaviour
             return false;
         }
 
+        if (collider.gameObject.TryGetComponent(out WallGO wall))
+        {
+            Collide();
+            return false;
+        }
+
         if (collider.gameObject.TryGetComponent(out ChestGO chest))
         {
             chest.Damage();
