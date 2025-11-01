@@ -1,6 +1,7 @@
 using Assets.Scripts.Domain;
 using System;
 using UnityEngine;
+using DG.Tweening;
 
 public class EnemyGO : ACharacterGO
 {
@@ -12,6 +13,9 @@ public class EnemyGO : ACharacterGO
     [SerializeField] private int _numberOfDrops = 1;
     [SerializeField] private AiBrain _aiBrain;
     [SerializeField] private float _weight;
+    [SerializeField] private EnemySpawningGO _spawningAnimationPrefab;
+    [SerializeField] private Collider2D _collider;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
 
     private float _baseScale;
     private float _scale;
@@ -19,6 +23,7 @@ public class EnemyGO : ACharacterGO
     private Cooldown _invulnerableCooldown = new Cooldown(.25f);
     private DropManager _dropManager;
     private bool _canBeInvulnerable = true;
+    private Color _originalColor;
 
     public Enemy Enemy => Character as Enemy;
 
@@ -35,6 +40,31 @@ public class EnemyGO : ACharacterGO
     {
         _baseScale = transform.localScale.x;
         _scale = _baseScale;
+
+        Invisible();
+        PlaySpawnAnimation();
+    }
+
+    private void PlaySpawnAnimation()
+    {
+        EnemySpawningGO animation = Instantiate(_spawningAnimationPrefab, transform);
+        animation.OnEnding += CancelInvisible;
+    }
+
+    private void Invisible()
+    {
+        _aiBrain.Pause();
+        _originalColor = _spriteRenderer.color;
+        _collider.enabled = false;
+        _spriteRenderer.color = new Color(0f, 0f, 0f, 0f);
+    }
+
+    private void CancelInvisible()
+    {
+        transform.localScale = Vector3.zero;
+        transform.DOScale(1f, .5f).SetEase(Ease.OutBack).OnComplete(() => { _aiBrain.Resume(); });
+        _collider.enabled = true;
+        _spriteRenderer.color = _originalColor;
     }
 
     public void SetFacing(int facing)

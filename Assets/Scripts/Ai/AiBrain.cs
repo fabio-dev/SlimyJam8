@@ -3,15 +3,19 @@ using UnityEngine;
 
 public class AiBrain : MonoBehaviour
 {
-	[SerializeField] private AiBrainSettings _settings = null;
-	[SerializeField] private EnemyGO _owner = null;
+    [SerializeField] private AiBrainSettings _settings = null;
+    [SerializeField] private EnemyGO _owner = null;
 
     private IMovementStrategy _movementStrategy = null;
-	private IAttackStrategy _attackStrategy = null;
-	private bool _isDead = false;
+    private IAttackStrategy _attackStrategy = null;
+    private bool _isDead = false;
+    private bool _isPaused = false;
 
-	// Modifiez cette ligne pour permettre la modification (setter public)
-	public IMovementStrategy MovementStrategy
+    public void Pause() => _isPaused = true;
+    public void Resume() => _isPaused = false;
+
+    // Modifiez cette ligne pour permettre la modification (setter public)
+    public IMovementStrategy MovementStrategy
     {
         get { return _movementStrategy; }
         set { _movementStrategy = value; }
@@ -19,7 +23,7 @@ public class AiBrain : MonoBehaviour
 
     public void ApplyKnockback(Vector2 force)
     {
-		if (_movementStrategy != null)
+        if (_movementStrategy != null)
         {
             _movementStrategy.ApplyKnockback(force / _owner.TotalWeight);
         }
@@ -34,37 +38,37 @@ public class AiBrain : MonoBehaviour
     }
 
     private void FixedUpdate()
-	{
-		if (_isDead)
-		{
-			return;
-		}
-		if (_movementStrategy != null)
-		{
-			_movementStrategy.Update();
-		}
+    {
+        if (_isPaused || _isDead)
+        {
+            return;
+        }
+        if (_movementStrategy != null)
+        {
+            _movementStrategy.Update();
+        }
 
-		if (_attackStrategy != null)
-		{
-			_attackStrategy.Update();
-		}
-	}
+        if (_attackStrategy != null)
+        {
+            _attackStrategy.Update();
+        }
+    }
 
-	public void Setup()
-	{
-		if (_settings == null)
-		{
-			return;
-		}
+    public void Setup()
+    {
+        if (_settings == null)
+        {
+            return;
+        }
 
-		PlayerGO player = GameManager.Instance.PlayerGO;
-		_attackStrategy = _settings.AttackStrategy.Init(_owner, player);
-		_movementStrategy = _settings.MovementStrategy.Init(_owner, player.Center);
+        PlayerGO player = GameManager.Instance.PlayerGO;
+        _attackStrategy = _settings.AttackStrategy.Init(_owner, player);
+        _movementStrategy = _settings.MovementStrategy.Init(_owner, player.Center);
         _owner.Enemy.OnDie += OnDie;
     }
 
     private void OnDie(ACharacter character)
     {
-		_isDead = true;
+        _isDead = true;
     }
 }

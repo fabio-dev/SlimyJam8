@@ -52,6 +52,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -73,6 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -2108793553
   m_SortingLayer: 6
   m_SortingOrder: 0
@@ -156,6 +159,9 @@ MonoBehaviour:
   _numberOfDrops: 1
   _aiBrain: {fileID: 8358360567541710514}
   _weight: 0
+  _spawningAnimationPrefab: {fileID: 7705992028032376133, guid: 4c6f3107d96d4b547b884cd6af51c835, type: 3}
+  _collider: {fileID: 3087706663170808456}
+  _spriteRenderer: {fileID: 2150572542758624212}
 --- !u!114 &8358360567541710514
 MonoBehaviour:
   m_ObjectHideFlags: 0
